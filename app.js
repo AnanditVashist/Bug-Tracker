@@ -3,6 +3,7 @@ const express= require("express");
 const path=require("path");
 const mongoose=require('mongoose');
 const ejsMate=require('ejs-mate');
+const Projects=require('./models/project')
 
 mongoose.connect('mongodb://localhost:27017/trackii',{
     useNewUrlParser: true,
@@ -28,6 +29,9 @@ app.set("views", path.join(__dirname,"views"));
 app.get('/',(req,res)=>{
     res.send('Connected')
 })
+
+
+
 
 app.listen('4000',()=>{
     console.log('Serving on port 4000')
