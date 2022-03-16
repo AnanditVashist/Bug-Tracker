@@ -3,7 +3,7 @@ const express= require("express");
 const path=require("path");
 const mongoose=require('mongoose');
 const ejsMate=require('ejs-mate');
-const Projects=require('./models/project')
+const Project=require('./models/project')
 
 
 const projectsController=require('./controllers/projects')
@@ -29,11 +29,13 @@ app.use(methodOverride('_method'));
 app.set("view engine","ejs");
 app.set("views", path.join(__dirname,"views"));
 
+app.use('/projects', projectsController)
+
 app.get('/',(req,res)=>{
     res.send('Connected')
 })
 
-app.use('/projects', projectsController)
+
 
 
 app.listen('4000',()=>{
