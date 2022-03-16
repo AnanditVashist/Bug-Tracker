@@ -5,6 +5,9 @@ const mongoose=require('mongoose');
 const ejsMate=require('ejs-mate');
 const Projects=require('./models/project')
 
+
+const projectsController=require('./controllers/projects')
+
 mongoose.connect('mongodb://localhost:27017/trackii',{
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -30,7 +33,7 @@ app.get('/',(req,res)=>{
     res.send('Connected')
 })
 
-
+app.use('/projects', projectsController)
 
 
 app.listen('4000',()=>{
