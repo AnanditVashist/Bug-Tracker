@@ -9,8 +9,14 @@
 <body>
     <ul>
         <% for (let project of projects) {%>
-            <li><%= project.name %>- <%= project.description %></li>
+            <li><%= project.name %>- <%= project.description %>-
+                <a href="/projects/details/<%= project._id %> ">Details</a>
+                <a href="/projects/edit/<%= project._id %>">Edit</a>
+                <form action="/projects/delete/<%= project._id %>?_method=DELETE" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
     </ul>
- <% } %> 
+        <% } %> 
 </body>
 </html>
