@@ -1,5 +1,5 @@
 const mongoose=require('mongoose')
-
+const Projet=require('../models/project')
 const ticketSchema=new mongoose.Schema({
     title:String,
     description: String,
@@ -18,6 +18,10 @@ const ticketSchema=new mongoose.Schema({
         enum:['New','Reviewed','In Progress','Resolved'],
         required: true
     },
+    project:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Project'
+    }
 
 })
 
