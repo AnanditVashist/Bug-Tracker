@@ -8,11 +8,11 @@
 </head>
 <body>
     <ul>
-        <% for (let project of projects) {%>
-            <li><%= project.name %>- <%= project.description %>-
-                <a href="/projects/details/<%= project._id %> ">Details</a>
-                <a href="/projects/edit/<%= project._id %>">Edit</a>
-                <form action="/projects/delete/<%= project._id %>?_method=DELETE" method="post">
+        <% for (let ticket of tickets) {%>
+            <li><%= ticket.title %>- <%= ticket.description %>-
+                <a href="/tickets/details/<%= ticket._id %> ">Details</a>
+                <a href="/tickets/edit/<%= ticket._id %>">Edit</a>
+                <form action="/tickets/delete/<%= ticket._id %>?_method=DELETE" method="post">
                     <button type="submit">Delete</button>
                 </form>
             </li>

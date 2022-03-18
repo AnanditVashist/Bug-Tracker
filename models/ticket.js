@@ -1,11 +1,12 @@
 const mongoose=require('mongoose')
 const Projet=require('../models/project')
+
 const ticketSchema=new mongoose.Schema({
     title:String,
     description: String,
     type:{
         type: String,
-        enum:['UI','Bckend','Runtime','Other'],
+        enum:['UI','Backend','Runtime','Other'],
         required: true
     },
     priority:{
