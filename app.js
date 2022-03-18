@@ -7,6 +7,8 @@ const Project=require('./models/project')
 
 
 const projectsController=require('./controllers/projects')
+const ticketsController=require('./controllers/tickets')
+
 
 mongoose.connect('mongodb://localhost:27017/trackii',{
     useNewUrlParser: true,
@@ -30,6 +32,8 @@ app.set("view engine","ejs");
 app.set("views", path.join(__dirname,"views"));
 
 app.use('/projects', projectsController)
+app.use('/tickets', ticketsController)
+
 
 app.get('/',(req,res)=>{
     res.send('Connected')

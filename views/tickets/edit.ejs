@@ -7,11 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/projects/edit/<%=project._id%>?_method=PUT" method="POST">
+    <form action="/tickets/edit/<%=ticket._id%>?_method=PUT" method="POST">
         <label for="Title">Title</label>
-        <input type="text" name="project[name]" value="<%= project.name %>" >
+        <input type="text" name="ticket[title]" value="<%= ticket.title %>" >
         <label for="Description">Description</label>
-        <input type="text" name="project[description]" value="<%= project.description %>">
+        <input type="text" name="ticket[description]" value="<%= ticket.description %>">
         <button type="submit">Save Changes</button>
     </form>
 </body>
