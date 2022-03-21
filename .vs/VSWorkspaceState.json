@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\controllers",
+    "\\models"
   ],
-  "SelectedNode": "\\app.js",
+  "SelectedNode": "\\TrackiiVS.njsproj",
   "PreviewInSolutionExplorer": false
 }
