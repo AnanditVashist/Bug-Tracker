@@ -1,0 +1,3 @@
+C:\Workspace\Trackii\obj\Debug\TrackiiVS.njsproj.AssemblyReference.cache
+C:\Workspace\Trackii\obj\Debug\TrackiiVS.njsproj.CoreCompileInputs.cache
+C:\Workspace\Trackii\bin\Microsoft.NodejsTools.WebRole.dll
