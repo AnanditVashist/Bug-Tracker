@@ -55,76 +55,24 @@
                         </div>
                     </li><!-- .dropdown -->
                     <li class="dropdown notification-dropdown mr-n1">
-                        <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-toggle="dropdown">
-                            <div class="icon-status icon-status-info"><em class="icon ni ni-bell"></em></div>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right dropdown-menu-s1">
-                            <div class="dropdown-head">
-                                <span class="sub-title nk-dropdown-title">Notifications</span>
-                                <a href="#">Mark All as Read</a>
-                            </div>
-                            <div class="dropdown-body">
-                                <div class="nk-notification">
-                                    <div class="nk-notification-item dropdown-inner">
-                                        <div class="nk-notification-icon">
-                                            <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                        <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-toggle="dropdown">
+                                            <div class="icon-status icon-status-na "><em class="icon ni ni-bell"></em></div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right dropdown-menu-s1">
+                                            <div class="dropdown-head">
+                                                <span class="sub-title nk-dropdown-title">Notifications</span>
+                                                <form id="mark-all-form" action="/Home/MarkAllNotificationsAsViewed" method="post">
+                                                    <a href="javascript: void(0)" onclick="javascript: document.getElementById('mark-all-form').submit()">Mark All as Read</a>
+                                                <input name="__RequestVerificationToken" type="hidden" value="CfDJ8L-jzOfSM-9BiKNZ66Zfv7JlNlBA0DFlylYEic61BWyIaueLy3CwgcqqnOaraJdBsSxrZ-BkUjg9zKsR2lVkerF5tNJh3gExfWkZDjih3c2vgBPsiIbAAySVXR3-IykInut2O03RLpdOH0Jzo3lhqtClp9Ol6SYDPHrFD8k3KGvsrFHPSuWtYgAtI4f-dHfEow" /></form>
+
+                                            </div>
+                                            <div class="dropdown-body">
+                                                <div class="nk-notification">
+                                                        <p class="text-center py-3">You have no new notifications</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="nk-notification-content">
-                                            <div class="nk-notification-text">You have requested to <span>Widthdrawl</span></div>
-                                            <div class="nk-notification-time">2 hrs ago</div>
-                                        </div>
-                                    </div>
-                                    <div class="nk-notification-item dropdown-inner">
-                                        <div class="nk-notification-icon">
-                                            <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
-                                        </div>
-                                        <div class="nk-notification-content">
-                                            <div class="nk-notification-text">Your <span>Deposit Order</span> is placed</div>
-                                            <div class="nk-notification-time">2 hrs ago</div>
-                                        </div>
-                                    </div>
-                                    <div class="nk-notification-item dropdown-inner">
-                                        <div class="nk-notification-icon">
-                                            <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
-                                        </div>
-                                        <div class="nk-notification-content">
-                                            <div class="nk-notification-text">You have requested to <span>Widthdrawl</span></div>
-                                            <div class="nk-notification-time">2 hrs ago</div>
-                                        </div>
-                                    </div>
-                                    <div class="nk-notification-item dropdown-inner">
-                                        <div class="nk-notification-icon">
-                                            <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
-                                        </div>
-                                        <div class="nk-notification-content">
-                                            <div class="nk-notification-text">Your <span>Deposit Order</span> is placed</div>
-                                            <div class="nk-notification-time">2 hrs ago</div>
-                                        </div>
-                                    </div>
-                                    <div class="nk-notification-item dropdown-inner">
-                                        <div class="nk-notification-icon">
-                                            <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
-                                        </div>
-                                        <div class="nk-notification-content">
-                                            <div class="nk-notification-text">You have requested to <span>Widthdrawl</span></div>
-                                            <div class="nk-notification-time">2 hrs ago</div>
-                                        </div>
-                                    </div>
-                                    <div class="nk-notification-item dropdown-inner">
-                                        <div class="nk-notification-icon">
-                                            <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
-                                        </div>
-                                        <div class="nk-notification-content">
-                                            <div class="nk-notification-text">Your <span>Deposit Order</span> is placed</div>
-                                            <div class="nk-notification-time">2 hrs ago</div>
-                                        </div>
-                                    </div>
-                                </div><!-- .nk-notification -->
-                            </div><!-- .nk-dropdown-body -->
-                            <div class="dropdown-foot center">
-                                <a href="#">View All</a>
-                            </div>
-                        </div>
+                       
                     </li><!-- .dropdown -->
                 </ul><!-- .nk-quick-nav -->
             </div><!-- .nk-header-tools -->
