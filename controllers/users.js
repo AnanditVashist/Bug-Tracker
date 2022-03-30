@@ -12,8 +12,10 @@ router.get('/register',(req,res)=>
 router.post('/register', async(req,res)=>{
     const {email,username,password}=req.body;
     const user=new User({email,username})
+    user.role='manager';
     const registerUser=await User.register(user,password)
-    res.render('projects')
+    console.log(user)
+    res.redirect('projects')
 })
 
 
@@ -29,5 +31,7 @@ router.get('/logout',(req,res)=>{
     req.logout()
     res.redirect('/')
 })
+
+
 
 module.exports=router;
