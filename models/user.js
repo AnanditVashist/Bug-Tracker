@@ -7,6 +7,14 @@ const UserSchema=new Schema({
         type: String,
         required: true,
         unique: true
+    },
+    role: {
+        type: String,
+        default: 'newUser',
+        enum: ["admin", "manager","developer","submitter","newUser"],
+    },
+    accessToke:{
+        type: String
     }
 })
 

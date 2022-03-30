@@ -3,14 +3,14 @@ const router = express.Router()
 const mongoose=require('mongoose')
 const Project=require('../models/project')
 const {isLoggedIn}=require('../middleware')
-
+const {grantAccess}=require('../middleware')
 
 router.get('/',isLoggedIn,async (req,res)=>{
     const projects=await Project.find()
     res.render('projects/index',{projects})
 })
 
-router.get('/create',isLoggedIn,(req,res)=>{
+router.get('/create',isLoggedIn,grantAccess('createAny','project'),(req,res)=>{
   
     res.render('projects/create')
 })
