@@ -1,8 +1,46 @@
 <% layout('../views/layouts/boilerplate') -%>
-    <form action="/projects/create" method="POST">
-        <label for="Title">Title</label>
-        <input type="text" name="project[name]">
-        <label for="Description">Description</label>
-        <input type="text" name="project[description]">
-        <button type="submit">Submit</button>
-    </form>
+<div class="components-preview wide-md mx-auto">
+    <div class="nk-block-head nk-block-head-lg wide-sm">
+        <div class="nk-block-head-content">
+            <div class="nk-block-head-sub"><a class="back-to" href="/Projects"><em class="icon ni ni-arrow-left"></em><span>Projects</span></a></div>
+            <h2 class="nk-block-title fw-normal">Create Project</h2>
+            <div class="nk-block-des">
+                <p class="lead">Here you can name your new project, add a short description, and a project image.</p>
+            </div>
+        </div>
+    </div>
+    <div class="nk-block nk-block-lg">
+        <div class="card card-preview">
+            <div class="card-inner">
+                <form class="form-validate is-alter" enctype="multipart/form-data" action="/Projects/Create" method="post">
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="Name">Name</label>
+                        <div class="form-control-wrap">
+                            <input type="text" class="form-control" required data-val="true" data-val-length="The field Project Name must be a string with a maximum length of 50." data-val-length-max="50" data-val-required="The Project Name field is required." id="Name" maxlength="50" name="Name" value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="Description">Short Description</label>
+                        <div class="form-control-wrap">
+                            <textarea type="text" class="form-control" required data-val="true" data-val-length="The field Short Description must be a string with a maximum length of 100." data-val-length-max="100" id="Description" maxlength="100" name="Description">
+</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="default-06">Project Image</label>
+                        <div class="form-control-wrap">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="customFile" name="FormFile">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-lg btn-primary">Create Project</button>
+                    </div>
+                <input name="__RequestVerificationToken" type="hidden" value="CfDJ8IWQKc7et4hLtZz-Eych0vf8p9xJUR9HWo3tlI98GPTjzYanSYmuVETIf4qve74NAa4kTyH9S5Ef_IxA6U_Uhb_BPvbIBOEV-sNdrhquABnS5w9TjIuhOB4bTvNbfcNkzEChIYPS0-N_G2DMxR61MQ-q1E1g9IxoBMsGL_kgXee-RcdUDq6cmFHdX6hpIJPylg" /></form>
+            </div>
+        </div><!-- .card-preview -->
+    </div>
+</div>

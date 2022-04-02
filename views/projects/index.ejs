@@ -1,12 +1,599 @@
 <% layout('../views/layouts/boilerplate') -%>
-    <ul>
-        <% for (let project of projects) {%>
-            <li><%= project.name %>- <%= project.description %>-
-                <a href="/projects/details/<%= project._id %> ">Details</a>
-                <a href="/projects/edit/<%= project._id %>">Edit</a>
-                <form action="/projects/delete/<%= project._id %>?_method=DELETE" method="post">
-                    <button type="submit">Delete</button>
-                </form>
-            </li>
-    </ul>
-        <% } %> 
+
+
+<div id="projects-container">
+    <div class="nk-block-head nk-block-head-sm">
+        <div class="nk-block-between">
+            <div class="nk-block-head-content">
+                <h3 class="nk-block-title page-title">All Projects</h3>
+                <div class="nk-block-des text-soft">
+                            <p>10 active projects.</p>
+                </div>
+            </div><!-- .nk-block-head-content -->
+            <div class="nk-block-head-content">
+                <div class="toggle-wrap nk-block-tools-toggle">
+                    <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-menu-alt-r"></em></a>
+                    <div class="toggle-expand-content" data-content="pageMenu">
+                        <ul class="nk-block-tools g-3">
+                                <li class="nk-block-tools-opt">
+                                    <input type="text" class="w-100 form-control d-inline-block search" value="" placeholder="Search projects..." />
+                                </li>
+                            <li>
+                                <div class="drodown">
+                                    <a href="#" class="dropdown-toggle btn btn-white btn-dim btn-outline-light" data-toggle="dropdown"><span>View</span><em class="icon ni ni-chevron-down"></em></a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <ul class="link-list-opt no-bdr">
+                                            <li><a href="/Projects/AllProjects"><span>All Projects</span></a></li>
+                                            <li><a href="/Projects/AssignedProjects"><span>My Projects</span></a></li>
+                                            <li><a href="/Projects/ArchivedProjects"><span>Archived Projects</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                                <li class="nk-block-tools-opt"><a class="btn btn-primary" href="/Projects/Create"><em class="icon ni ni-plus"></em><span>Add Project</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="nk-block">
+    <div class="justify-content-center d-flex align-items-center mt-5 hide-on-load">
+        <!-- <div class="spinner-border text-primary hide-on-load" role="status">  <span class="sr-only">Loading...</span></div> -->
+    </div>
+    <div class="row g-gs list-js-list show-on-load">
+                <div class="col-sm-6 col-lg-4 col-xxl-3">
+                    <div class="card card-bordered h-100">
+                        <div class="card-inner">
+                            <div class="project">
+                                <div class="project-head">
+                                    <a class="project-title" href="/Projects/Details/1">
+                                        <div class="user-avatar sq bg-purple"><span>EP</span></div>
+                                        <div class="project-info">
+                                            <h6 class="title">Example Project 9</h6>
+                                            <span class="sub-text">Apr 08, 2021</span>
+                                        </div>
+                                    </a>
+                                        <div class="drodown">
+                                            <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 mr-n1" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <ul class="link-list-opt no-bdr">
+
+                                                    <li><a href="/Projects/Details/1"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
+                                                    <li><a href="/Projects/Edit/1"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="project-details">
+                                    <p class="description">This is an example project. Here you can have a short description to explain the project.</p>
+                                </div>
+                                <div class="project-progress">
+                                    <div class="project-progress-details">
+                                        <div class="project-progress-task"><span>Weekly resolved to new ratio</span></div>
+                                        <div class="project-progress-percent">100%</div>
+                                    </div>
+                                    <div class="progress progress-pill progress-md bg-light">
+                                        <div class="progress-bar" data-progress="100"></div>
+                                    </div>
+                                </div>
+                                <div class="project-meta">
+                                    <ul class="project-users g-1">
+                                                <li>
+                                                    <div class="user-avatar sm bg-primary"><span>KD</span></div>
+                                                </li>
+                                                <li>
+                                                    <div class="user-avatar sm bg-blue"><span>JP</span></div>
+                                                </li>
+                                                    <li>
+                                                        <div class="user-avatar bg-light sm"><span>+2</span></div>
+                                                    </li>
+
+                                    </ul>
+                                        <span class="badge badge-dim badge-success"><em class="icon ni ni-check-circle"></em><span>Active</span></span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 col-xxl-3">
+                    <div class="card card-bordered h-100">
+                        <div class="card-inner">
+                            <div class="project">
+                                <div class="project-head">
+                                    <a class="project-title" href="/Projects/Details/2">
+                                        <div class="user-avatar sq bg-warning"><span>EP</span></div>
+                                        <div class="project-info">
+                                            <h6 class="title">Example Project 8</h6>
+                                            <span class="sub-text">Apr 13, 2021</span>
+                                        </div>
+                                    </a>
+                                        <div class="drodown">
+                                            <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 mr-n1" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <ul class="link-list-opt no-bdr">
+
+                                                    <li><a href="/Projects/Details/2"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
+                                                    <li><a href="/Projects/Edit/2"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="project-details">
+                                    <p class="description">This is an example project. Here you can have a short description to explain the project.</p>
+                                </div>
+                                <div class="project-progress">
+                                    <div class="project-progress-details">
+                                        <div class="project-progress-task"><span>Weekly resolved to new ratio</span></div>
+                                        <div class="project-progress-percent">100%</div>
+                                    </div>
+                                    <div class="progress progress-pill progress-md bg-light">
+                                        <div class="progress-bar" data-progress="100"></div>
+                                    </div>
+                                </div>
+                                <div class="project-meta">
+                                    <ul class="project-users g-1">
+                                                <li>
+                                                    <div class="user-avatar sm bg-primary"><span>KD</span></div>
+                                                </li>
+                                                <li>
+                                                    <div class="user-avatar sm bg-blue"><span>JP</span></div>
+                                                </li>
+                                                    <li>
+                                                        <div class="user-avatar bg-light sm"><span>+2</span></div>
+                                                    </li>
+
+                                    </ul>
+                                        <span class="badge badge-dim badge-success"><em class="icon ni ni-check-circle"></em><span>Active</span></span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 col-xxl-3">
+                    <div class="card card-bordered h-100">
+                        <div class="card-inner">
+                            <div class="project">
+                                <div class="project-head">
+                                    <a class="project-title" href="/Projects/Details/3">
+                                        <div class="user-avatar sq bg-info"><span>EP</span></div>
+                                        <div class="project-info">
+                                            <h6 class="title">Example Project 7</h6>
+                                            <span class="sub-text">Apr 18, 2021</span>
+                                        </div>
+                                    </a>
+                                        <div class="drodown">
+                                            <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 mr-n1" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <ul class="link-list-opt no-bdr">
+
+                                                    <li><a href="/Projects/Details/3"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
+                                                    <li><a href="/Projects/Edit/3"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="project-details">
+                                    <p class="description">This is an example project. Here you can have a short description to explain the project.</p>
+                                </div>
+                                <div class="project-progress">
+                                    <div class="project-progress-details">
+                                        <div class="project-progress-task"><span>Weekly resolved to new ratio</span></div>
+                                        <div class="project-progress-percent">100%</div>
+                                    </div>
+                                    <div class="progress progress-pill progress-md bg-light">
+                                        <div class="progress-bar" data-progress="100"></div>
+                                    </div>
+                                </div>
+                                <div class="project-meta">
+                                    <ul class="project-users g-1">
+                                                <li>
+                                                    <div class="user-avatar sm bg-primary"><span>KD</span></div>
+                                                </li>
+                                                <li>
+                                                    <div class="user-avatar sm bg-blue"><span>JP</span></div>
+                                                </li>
+                                                    <li>
+                                                        <div class="user-avatar bg-light sm"><span>+2</span></div>
+                                                    </li>
+
+                                    </ul>
+                                        <span class="badge badge-dim badge-success"><em class="icon ni ni-check-circle"></em><span>Active</span></span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 col-xxl-3">
+                    <div class="card card-bordered h-100">
+                        <div class="card-inner">
+                            <div class="project">
+                                <div class="project-head">
+                                    <a class="project-title" href="/Projects/Details/4">
+                                        <div class="user-avatar sq bg-danger"><span>EP</span></div>
+                                        <div class="project-info">
+                                            <h6 class="title">Example Project 6</h6>
+                                            <span class="sub-text">Apr 23, 2021</span>
+                                        </div>
+                                    </a>
+                                        <div class="drodown">
+                                            <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 mr-n1" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <ul class="link-list-opt no-bdr">
+
+                                                    <li><a href="/Projects/Details/4"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
+                                                    <li><a href="/Projects/Edit/4"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="project-details">
+                                    <p class="description">This is an example project. Here you can have a short description to explain the project.</p>
+                                </div>
+                                <div class="project-progress">
+                                    <div class="project-progress-details">
+                                        <div class="project-progress-task"><span>Weekly resolved to new ratio</span></div>
+                                        <div class="project-progress-percent">100%</div>
+                                    </div>
+                                    <div class="progress progress-pill progress-md bg-light">
+                                        <div class="progress-bar" data-progress="100"></div>
+                                    </div>
+                                </div>
+                                <div class="project-meta">
+                                    <ul class="project-users g-1">
+                                                <li>
+                                                    <div class="user-avatar sm bg-primary"><span>KD</span></div>
+                                                </li>
+                                                <li>
+                                                    <div class="user-avatar sm bg-blue"><span>JP</span></div>
+                                                </li>
+                                                    <li>
+                                                        <div class="user-avatar bg-light sm"><span>+2</span></div>
+                                                    </li>
+
+                                    </ul>
+                                        <span class="badge badge-dim badge-success"><em class="icon ni ni-check-circle"></em><span>Active</span></span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 col-xxl-3">
+                    <div class="card card-bordered h-100">
+                        <div class="card-inner">
+                            <div class="project">
+                                <div class="project-head">
+                                    <a class="project-title" href="/Projects/Details/5">
+                                        <div class="user-avatar sq bg-success"><span>EP</span></div>
+                                        <div class="project-info">
+                                            <h6 class="title">Example Project 5</h6>
+                                            <span class="sub-text">Apr 28, 2021</span>
+                                        </div>
+                                    </a>
+                                        <div class="drodown">
+                                            <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 mr-n1" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <ul class="link-list-opt no-bdr">
+
+                                                    <li><a href="/Projects/Details/5"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
+                                                    <li><a href="/Projects/Edit/5"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="project-details">
+                                    <p class="description">This is an example project. Here you can have a short description to explain the project.</p>
+                                </div>
+                                <div class="project-progress">
+                                    <div class="project-progress-details">
+                                        <div class="project-progress-task"><span>Weekly resolved to new ratio</span></div>
+                                        <div class="project-progress-percent">100%</div>
+                                    </div>
+                                    <div class="progress progress-pill progress-md bg-light">
+                                        <div class="progress-bar" data-progress="100"></div>
+                                    </div>
+                                </div>
+                                <div class="project-meta">
+                                    <ul class="project-users g-1">
+                                                <li>
+                                                    <div class="user-avatar sm bg-primary"><span>KD</span></div>
+                                                </li>
+                                                <li>
+                                                    <div class="user-avatar sm bg-blue"><span>JP</span></div>
+                                                </li>
+                                                    <li>
+                                                        <div class="user-avatar bg-light sm"><span>+2</span></div>
+                                                    </li>
+
+                                    </ul>
+                                        <span class="badge badge-dim badge-success"><em class="icon ni ni-check-circle"></em><span>Active</span></span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 col-xxl-3">
+                    <div class="card card-bordered h-100">
+                        <div class="card-inner">
+                            <div class="project">
+                                <div class="project-head">
+                                    <a class="project-title" href="/Projects/Details/6">
+                                        <div class="user-avatar sq bg-primary"><span>EP</span></div>
+                                        <div class="project-info">
+                                            <h6 class="title">Example Project 4</h6>
+                                            <span class="sub-text">May 03, 2021</span>
+                                        </div>
+                                    </a>
+                                        <div class="drodown">
+                                            <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 mr-n1" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <ul class="link-list-opt no-bdr">
+
+                                                    <li><a href="/Projects/Details/6"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
+                                                    <li><a href="/Projects/Edit/6"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="project-details">
+                                    <p class="description">This is an example project. Here you can have a short description to explain the project.</p>
+                                </div>
+                                <div class="project-progress">
+                                    <div class="project-progress-details">
+                                        <div class="project-progress-task"><span>Weekly resolved to new ratio</span></div>
+                                        <div class="project-progress-percent">100%</div>
+                                    </div>
+                                    <div class="progress progress-pill progress-md bg-light">
+                                        <div class="progress-bar" data-progress="100"></div>
+                                    </div>
+                                </div>
+                                <div class="project-meta">
+                                    <ul class="project-users g-1">
+                                                <li>
+                                                    <div class="user-avatar sm bg-primary"><span>KD</span></div>
+                                                </li>
+                                                <li>
+                                                    <div class="user-avatar sm bg-blue"><span>JP</span></div>
+                                                </li>
+                                                    <li>
+                                                        <div class="user-avatar bg-light sm"><span>+2</span></div>
+                                                    </li>
+
+                                    </ul>
+                                        <span class="badge badge-dim badge-success"><em class="icon ni ni-check-circle"></em><span>Active</span></span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 col-xxl-3">
+                    <div class="card card-bordered h-100">
+                        <div class="card-inner">
+                            <div class="project">
+                                <div class="project-head">
+                                    <a class="project-title" href="/Projects/Details/7">
+                                        <div class="user-avatar sq bg-dark"><span>EP</span></div>
+                                        <div class="project-info">
+                                            <h6 class="title">Example Project 3</h6>
+                                            <span class="sub-text">May 08, 2021</span>
+                                        </div>
+                                    </a>
+                                        <div class="drodown">
+                                            <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 mr-n1" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <ul class="link-list-opt no-bdr">
+
+                                                    <li><a href="/Projects/Details/7"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
+                                                    <li><a href="/Projects/Edit/7"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="project-details">
+                                    <p class="description">This is an example project. Here you can have a short description to explain the project.</p>
+                                </div>
+                                <div class="project-progress">
+                                    <div class="project-progress-details">
+                                        <div class="project-progress-task"><span>Weekly resolved to new ratio</span></div>
+                                        <div class="project-progress-percent">100%</div>
+                                    </div>
+                                    <div class="progress progress-pill progress-md bg-light">
+                                        <div class="progress-bar" data-progress="100"></div>
+                                    </div>
+                                </div>
+                                <div class="project-meta">
+                                    <ul class="project-users g-1">
+                                                <li>
+                                                    <div class="user-avatar sm bg-primary"><span>KD</span></div>
+                                                </li>
+                                                <li>
+                                                    <div class="user-avatar sm bg-blue"><span>JP</span></div>
+                                                </li>
+                                                    <li>
+                                                        <div class="user-avatar bg-light sm"><span>+2</span></div>
+                                                    </li>
+
+                                    </ul>
+                                        <span class="badge badge-dim badge-success"><em class="icon ni ni-check-circle"></em><span>Active</span></span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 col-xxl-3">
+                    <div class="card card-bordered h-100">
+                        <div class="card-inner">
+                            <div class="project">
+                                <div class="project-head">
+                                    <a class="project-title" href="/Projects/Details/8">
+                                        <div class="user-avatar sq bg-azure"><span>EP</span></div>
+                                        <div class="project-info">
+                                            <h6 class="title">Example Project 2</h6>
+                                            <span class="sub-text">May 13, 2021</span>
+                                        </div>
+                                    </a>
+                                        <div class="drodown">
+                                            <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 mr-n1" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <ul class="link-list-opt no-bdr">
+
+                                                    <li><a href="/Projects/Details/8"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
+                                                    <li><a href="/Projects/Edit/8"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="project-details">
+                                    <p class="description">This is an example project. Here you can have a short description to explain the project.</p>
+                                </div>
+                                <div class="project-progress">
+                                    <div class="project-progress-details">
+                                        <div class="project-progress-task"><span>Weekly resolved to new ratio</span></div>
+                                        <div class="project-progress-percent">100%</div>
+                                    </div>
+                                    <div class="progress progress-pill progress-md bg-light">
+                                        <div class="progress-bar" data-progress="100"></div>
+                                    </div>
+                                </div>
+                                <div class="project-meta">
+                                    <ul class="project-users g-1">
+                                                <li>
+                                                    <div class="user-avatar sm bg-primary"><span>KD</span></div>
+                                                </li>
+                                                <li>
+                                                    <div class="user-avatar sm bg-blue"><span>JP</span></div>
+                                                </li>
+                                                    <li>
+                                                        <div class="user-avatar bg-light sm"><span>+2</span></div>
+                                                    </li>
+
+                                    </ul>
+                                        <span class="badge badge-dim badge-success"><em class="icon ni ni-check-circle"></em><span>Active</span></span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 col-xxl-3">
+                    <div class="card card-bordered h-100">
+                        <div class="card-inner">
+                            <div class="project">
+                                <div class="project-head">
+                                    <a class="project-title" href="/Projects/Details/9">
+                                        <div class="user-avatar sq bg-indigo"><span>EP</span></div>
+                                        <div class="project-info">
+                                            <h6 class="title">Example Project 1</h6>
+                                            <span class="sub-text">May 18, 2021</span>
+                                        </div>
+                                    </a>
+                                        <div class="drodown">
+                                            <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 mr-n1" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <ul class="link-list-opt no-bdr">
+
+                                                    <li><a href="/Projects/Details/9"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
+                                                    <li><a href="/Projects/Edit/9"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="project-details">
+                                    <p class="description">This is an example project. Here you can have a short description to explain the project.</p>
+                                </div>
+                                <div class="project-progress">
+                                    <div class="project-progress-details">
+                                        <div class="project-progress-task"><span>Weekly resolved to new ratio</span></div>
+                                        <div class="project-progress-percent">100%</div>
+                                    </div>
+                                    <div class="progress progress-pill progress-md bg-light">
+                                        <div class="progress-bar" data-progress="100"></div>
+                                    </div>
+                                </div>
+                                <div class="project-meta">
+                                    <ul class="project-users g-1">
+                                                <li>
+                                                    <div class="user-avatar sm bg-primary"><span>KD</span></div>
+                                                </li>
+                                                <li>
+                                                    <div class="user-avatar sm bg-blue"><span>JP</span></div>
+                                                </li>
+                                                    <li>
+                                                        <div class="user-avatar bg-light sm"><span>+2</span></div>
+                                                    </li>
+
+                                    </ul>
+                                        <span class="badge badge-dim badge-success"><em class="icon ni ni-check-circle"></em><span>Active</span></span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 col-xxl-3">
+                    <div class="card card-bordered h-100">
+                        <div class="card-inner">
+                            <div class="project">
+                                <div class="project-head">
+                                    <a class="project-title" href="/Projects/Details/10">
+                                        <div class="user-avatar sq bg-orange"><span>EP</span></div>
+                                        <div class="project-info">
+                                            <h6 class="title">Example Project 0</h6>
+                                            <span class="sub-text">May 23, 2021</span>
+                                        </div>
+                                    </a>
+                                        <div class="drodown">
+                                            <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger mt-n1 mr-n1" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <ul class="link-list-opt no-bdr">
+
+                                                    <li><a href="/Projects/Details/10"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
+                                                    <li><a href="/Projects/Edit/10"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="project-details">
+                                    <p class="description">This is an example project. Here you can have a short description to explain the project.</p>
+                                </div>
+                                <div class="project-progress">
+                                    <div class="project-progress-details">
+                                        <div class="project-progress-task"><span>Weekly resolved to new ratio</span></div>
+                                        <div class="project-progress-percent">100%</div>
+                                    </div>
+                                    <div class="progress progress-pill progress-md bg-light">
+                                        <div class="progress-bar" data-progress="100"></div>
+                                    </div>
+                                </div>
+                                <div class="project-meta">
+                                    <ul class="project-users g-1">
+                                                <li>
+                                                    <div class="user-avatar sm bg-primary"><span>KD</span></div>
+                                                </li>
+                                                <li>
+                                                    <div class="user-avatar sm bg-blue"><span>JP</span></div>
+                                                </li>
+                                                    <li>
+                                                        <div class="user-avatar bg-light sm"><span>+2</span></div>
+                                                    </li>
+
+                                    </ul>
+                                        <span class="badge badge-dim badge-success"><em class="icon ni ni-check-circle"></em><span>Active</span></span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+    </div>
+
+</div>
+
