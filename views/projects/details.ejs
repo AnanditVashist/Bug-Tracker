@@ -1,12 +1,626 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <li><%= project.title %>-<%= project.description %>  </li>
-</body>
-</html>
+<% layout('../views/layouts/boilerplate') -%>
+
+<div class="nk-block-head">
+    <div class="nk-block-head-content">
+        <div class="nk-block-head-sub"><a class="text-soft back-to" href="/Projects"><em class="icon ni ni-arrow-left"> </em><span>Projects</span></a></div>
+        <div class="nk-block-between-md g-4">
+            <div class="nk-block-head-content">
+                <h2 class="nk-block-title fw-normal">Example Project 9</h2>
+                <div class="nk-block-des">
+                        <p>08 Apr, 2021 <span class="badge badge-outline badge-success">Active</span></p>
+
+                </div>
+            </div>
+            <div class="nk-block-head-content">
+                <ul class="nk-block-tools gx-3">
+                        <li class="order-md-last"><a class="btn btn-primary" href="/Projects/Edit/1"><span>Edit</span> </a></li>
+                        <li class="order-md-last"><a class="btn btn-primary" href="/Projects/AssignUsers/1"><span>Assign Users</span> </a></li>
+                        <li class="order-md-last"><button type="button" data-toggle="modal" data-target="#archiveProjectModal" class="btn btn-danger"><em class="icon ni ni-cross"></em> <span>Archive</span> </button></li>
+                    <li><a class="btn btn-icon btn-light" href="/Projects/Details/1"><em class="icon ni ni-reload"></em></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="nk-block nk-block-lg">
+    <div class="row g-gs">
+
+
+    </div>
+</div>
+
+    <div class="nk-block nk-block-lg">
+        <div class="row g-gs">
+            <!-- .col -->
+            <div class="col-lg-12">
+                <div class="card card-bordered h-100">
+                    <div class="card-inner">
+                        <div class="card-title-group align-start mb-3">
+                            <div class="card-title">
+                                <h6 class="title">Workload Distribution</h6>
+                                <p>The workload by developer based on ticket priority and volume.</p>
+                            </div>
+                        </div><!-- .card-title-group -->
+                        <div class="nk-order-ovwg">
+                            <div class="row g-4 align-end">
+                                <div class="col">
+                                    <div class="nk-order-ovwg-ck">
+                                        <canvas class="bar-chart" id="workloadStackedBarChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<div class="nk-block nk-block-lg">
+    <div class="row g-gs">
+        <!-- .col -->
+        <div class="col-lg-12">
+            <div class="card card-bordered h-100">
+                <div class="card-inner">
+                    <div class="card-title-group align-start mb-3">
+                        <div class="card-title">
+                            <h6 class="title">Tickets Overview</h6>
+                            <p>Tickets created and resolved in the last 15 days.</p>
+                        </div>
+                    </div>
+                    <div class="nk-order-ovwg">
+                        <div class="row g-4 align-end">
+                            <div class="col-xxl-8">
+                                <div class="nk-order-ovwg-ck">
+                                    <canvas class="tickets-overview-chart" id="ticketsOverview"></canvas>
+                                </div>
+                            </div>
+                            <div class="col-xxl-4">
+                                <div class="row g-4">
+                                    <div class="col-sm-6 col-xxl-12">
+                                        <div class="nk-order-ovwg-data buy">
+                                            <div class="amount"><span id="resolved-ticket-count">---</span> <small class="currenct currency-usd">Resolved</small></div>
+                                            <div class="info">From <strong>Mar 17, 2022</strong> to today</div>
+                                            <div class="title"><em class="icon ni ni-arrow-down-left"></em> Resolved</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-xxl-12">
+                                        <div class="nk-order-ovwg-data sell">
+                                            <div class="amount"><span id="new-ticket-count">---</span> <small class="currenct currency-usd">Created</small></div>
+                                            <div class="info">From <strong>Mar 17, 2022 </strong> to today</div>
+                                            <div class="title"><em class="icon ni ni-arrow-up-left"></em> Created</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="nk-block nk-block-lg">
+    <div class="row g-gs">
+        <div class="col">
+            <div class="card card-bordered w-100 h-100">
+                <div class="card-inner">
+                    <div class="card-title-group">
+                        <div class="card-title card-title-sm">
+                            <h6 class="title">Tickets By Type</h6>
+                        </div>
+                    </div>
+                    <div class="traffic-channel-doughnut-ck">
+                        <canvas class="analytics-doughnut" id="TicketTypeDoughnut"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card card-bordered w-100 h-100">
+                <div class="card-inner">
+                    <div class="card-title-group">
+                        <div class="card-title card-title-sm">
+                            <h6 class="title">Tickets By Status</h6>
+                        </div>
+                    </div>
+                    <div class="traffic-channel-doughnut-ck">
+                        <canvas class="analytics-doughnut" id="TicketStatusDoughnut"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card card-bordered w-100 h-100">
+                <div class="card-inner">
+                    <div class="card-title-group">
+                        <div class="card-title card-title-sm">
+                            <h6 class="title">Ticket By Priority</h6>
+                        </div>
+                    </div>
+                    <div class="traffic-channel-doughnut-ck">
+                        <canvas class="analytics-doughnut" id="TicketPriorityDoughnut"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="nk-block nk-block-lg">
+    <div class="row g-gs">
+        <div class="col">
+            <div class="card card-bordered">
+                <div class="card-inner border-bottom">
+                    <div class="card-title-group">
+                        <div class="card-title"><h6 class="title">Users On Project</h6></div>
+                    </div>
+                </div>
+                <ul class="nk-support h-max-500px is-scrollable">
+                        <li class="nk-support-item">
+                            <div class="user-avatar">KD</div>
+                            <div class="nk-support-content">
+                                <div class="title">
+                                    <span>Kevin Daniels</span>
+                                    <span class="badge badge-dot badge-dot-xs badge-primary ml-1">Developer </span>
+                                </div>
+                                <p>Assigned 5 tickets in this project.</p>
+                            </div>
+                        </li>
+                        <li class="nk-support-item">
+                            <div class="user-avatar">JP</div>
+                            <div class="nk-support-content">
+                                <div class="title">
+                                    <span>Joshua2 Peters</span>
+                                    <span class="badge badge-dot badge-dot-xs badge-primary ml-1">Admin </span>
+                                </div>
+                                <p>Assigned 0 tickets in this project.</p>
+                            </div>
+                        </li>
+                        <li class="nk-support-item">
+                            <div class="user-avatar">KW</div>
+                            <div class="nk-support-content">
+                                <div class="title">
+                                    <span>Kim Williams</span>
+                                    <span class="badge badge-dot badge-dot-xs badge-primary ml-1">Project Manager </span>
+                                </div>
+                                <p>Assigned 0 tickets in this project.</p>
+                            </div>
+                        </li>
+                        <li class="nk-support-item">
+                            <div class="user-avatar">JW</div>
+                            <div class="nk-support-content">
+                                <div class="title">
+                                    <span>Jason Walker</span>
+                                    <span class="badge badge-dot badge-dot-xs badge-primary ml-1">Submitter </span>
+                                </div>
+                                <p>Assigned 0 tickets in this project.</p>
+                            </div>
+                        </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="nk-block-head">
+    <div class="nk-block-head-content">
+        <h4 class="nk-block-title">Tickets</h4>
+        <p>These are tickets only in <strong class="text-primary">Example Project 9</strong>. To view all tickets, go to the all tickets page.</p>
+    </div>
+</div>
+
+<div class="nk-block nk-block-lg">
+    <div class="card card-preview">
+        <div class="card-inner">
+            
+<table class="datatable-init nk-tb-list nk-tb-ulist" data-auto-responsive="false">
+<thead>
+    <tr class="nk-tb-item nk-tb-head">
+        <th class="nk-tb-col tb-col-xxl"><span>Id</span></th>
+        <th class="nk-tb-col"><span class="sub-text">Title</span></th>
+        <th class="nk-tb-col"><span class="sub-text">Priority</span></th>
+        <th class="nk-tb-col tb-col-md"><span class="sub-text">Assigned To</span></th>
+        <th class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></th>
+        <th class="nk-tb-col tb-col-lg"><span class="sub-text">Type</span></th>
+        <th class="nk-tb-col tb-col-lg"><span class="sub-text">Project</span></th>
+        <th class="nk-tb-col tb-col-xxl"><span class="sub-text">Owner</span></th>
+        <th class="nk-tb-col tb-col-xxl"><span class="sub-text">Created</span></th>
+        <th class="nk-tb-col tb-col-xxl"><span class="sub-text">Updated</span></th>
+        <th class="nk-tb-col nk-tb-col-tools text-right">
+        </th>
+    </tr>
+</thead>
+<tbody>
+        <tr class="nk-tb-item">
+            <td class="nk-tb-col tb-col-xxl">
+                <span><a href="/Tickets/Details/117?source=controller">#117</a></span>
+            </td>
+            <td class="nk-tb-col">
+                <h6 class="text-wrap">Random 112: ticket generated automatically.</h6>
+            </td>
+            <td class="nk-tb-col" data-order="-4" style="color:#e85347">
+                <span class="badge badge-dot">Urgent</span>
+            </td>
+            <td class="nk-tb-col tb-col-md">
+                <ul class="list-status">
+                    <li><em class="icon text-success ni ni-check-circle"></em> <span>Kevin Daniels</span></li>
+                </ul>
+            </td>
+            <td class="nk-tb-col tb-col-md">
+                <span class="tb-status text-primary">Reviewed</span>
+            </td>
+            <td class="nk-tb-col tb-col-lg">
+                <span>Backend</span>
+            </td>
+            <td class="nk-tb-col tb-col-lg">
+                <a href="/Projects/Details/1"><span class="tb-status text-primary">Example Project 9</span></a>
+            </td>
+            <td class="nk-tb-col tb-col-xxl">
+                <ul class="list-status">
+                    <li><em class="icon ni ni-user-fill"></em>Jason Walker</li>
+                </ul>
+            </td>
+            <td class="nk-tb-col tb-col-xxl" data-sort="03/17/2022 04:15PM">
+                <span class="tb-status">Mar 17</span>
+            </td>
+            <td class="nk-tb-col tb-col-xxl" data-sort="Mar/28/2022">
+                <span class="tb-status">Mar 28</span>
+            </td>
+            <td class="nk-tb-col ">
+                <a class="btn btn-primary" href="/Tickets/Details/117"><span>View</span></a>
+            </td>
+        </tr>            <tr class="nk-tb-item">
+            <td class="nk-tb-col tb-col-xxl">
+                <span><a href="/Tickets/Details/126?source=controller">#126</a></span>
+            </td>
+            <td class="nk-tb-col">
+                <h6 class="text-wrap">Random 113: ticket generated automatically.</h6>
+            </td>
+            <td class="nk-tb-col" data-order="-1" style="color:#09c2de">
+                <span class="badge badge-dot">Low</span>
+            </td>
+            <td class="nk-tb-col tb-col-md">
+                <ul class="list-status">
+                    <li><em class="icon text-success ni ni-check-circle"></em> <span>Kevin Daniels</span></li>
+                </ul>
+            </td>
+            <td class="nk-tb-col tb-col-md">
+                <span class="tb-status text-primary">In Progress</span>
+            </td>
+            <td class="nk-tb-col tb-col-lg">
+                <span>Runtime</span>
+            </td>
+            <td class="nk-tb-col tb-col-lg">
+                <a href="/Projects/Details/1"><span class="tb-status text-primary">Example Project 9</span></a>
+            </td>
+            <td class="nk-tb-col tb-col-xxl">
+                <ul class="list-status">
+                    <li><em class="icon ni ni-user-fill"></em>Jason Walker</li>
+                </ul>
+            </td>
+            <td class="nk-tb-col tb-col-xxl" data-sort="03/20/2022 04:15PM">
+                <span class="tb-status">Mar 20</span>
+            </td>
+            <td class="nk-tb-col tb-col-xxl" data-sort="Mar/28/2022">
+                <span class="tb-status">Mar 28</span>
+            </td>
+            <td class="nk-tb-col ">
+                <a class="btn btn-primary" href="/Tickets/Details/126"><span>View</span></a>
+            </td>
+        </tr>            <tr class="nk-tb-item">
+            <td class="nk-tb-col tb-col-xxl">
+                <span><a href="/Tickets/Details/134?source=controller">#134</a></span>
+            </td>
+            <td class="nk-tb-col">
+                <h6 class="text-wrap">Random 123: ticket generated automatically.</h6>
+            </td>
+            <td class="nk-tb-col" data-order="-3" style="color:#f4bd0e">
+                <span class="badge badge-dot">High</span>
+            </td>
+            <td class="nk-tb-col tb-col-md">
+                <ul class="list-status">
+                    <li><em class="icon text-success ni ni-check-circle"></em> <span>Kevin Daniels</span></li>
+                </ul>
+            </td>
+            <td class="nk-tb-col tb-col-md">
+                <span class="tb-status text-primary">Reviewed</span>
+            </td>
+            <td class="nk-tb-col tb-col-lg">
+                <span>Runtime</span>
+            </td>
+            <td class="nk-tb-col tb-col-lg">
+                <a href="/Projects/Details/1"><span class="tb-status text-primary">Example Project 9</span></a>
+            </td>
+            <td class="nk-tb-col tb-col-xxl">
+                <ul class="list-status">
+                    <li><em class="icon ni ni-user-fill"></em>Jason Walker</li>
+                </ul>
+            </td>
+            <td class="nk-tb-col tb-col-xxl" data-sort="03/25/2022 03:40PM">
+                <span class="tb-status">Mar 25</span>
+            </td>
+            <td class="nk-tb-col tb-col-xxl" data-sort="Mar/29/2022">
+                <span class="tb-status">Mar 29</span>
+            </td>
+            <td class="nk-tb-col ">
+                <a class="btn btn-primary" href="/Tickets/Details/134"><span>View</span></a>
+            </td>
+        </tr>            <tr class="nk-tb-item">
+            <td class="nk-tb-col tb-col-xxl">
+                <span><a href="/Tickets/Details/144?source=controller">#144</a></span>
+            </td>
+            <td class="nk-tb-col">
+                <h6 class="text-wrap">Random 145: ticket generated automatically.</h6>
+            </td>
+            <td class="nk-tb-col" data-order="-2" style="color:#ffa353">
+                <span class="badge badge-dot">Moderate</span>
+            </td>
+            <td class="nk-tb-col tb-col-md">
+                <ul class="list-status">
+                    <li><em class="icon text-success ni ni-check-circle"></em> <span>Kevin Daniels</span></li>
+                </ul>
+            </td>
+            <td class="nk-tb-col tb-col-md">
+                <span class="tb-status text-primary">In Progress</span>
+            </td>
+            <td class="nk-tb-col tb-col-lg">
+                <span>Backend</span>
+            </td>
+            <td class="nk-tb-col tb-col-lg">
+                <a href="/Projects/Details/1"><span class="tb-status text-primary">Example Project 9</span></a>
+            </td>
+            <td class="nk-tb-col tb-col-xxl">
+                <ul class="list-status">
+                    <li><em class="icon ni ni-user-fill"></em>Jason Walker</li>
+                </ul>
+            </td>
+            <td class="nk-tb-col tb-col-xxl" data-sort="03/25/2022 03:40PM">
+                <span class="tb-status">Mar 25</span>
+            </td>
+            <td class="nk-tb-col tb-col-xxl" data-sort="Mar/29/2022">
+                <span class="tb-status">Mar 29</span>
+            </td>
+            <td class="nk-tb-col ">
+                <a class="btn btn-primary" href="/Tickets/Details/144"><span>View</span></a>
+            </td>
+        </tr>            <tr class="nk-tb-item">
+            <td class="nk-tb-col tb-col-xxl">
+                <span><a href="/Tickets/Details/196?source=controller">#196</a></span>
+            </td>
+            <td class="nk-tb-col">
+                <h6 class="text-wrap">Random 161: ticket generated automatically.</h6>
+            </td>
+            <td class="nk-tb-col" data-order="0" style="color:#8091a7">
+                <span class="badge badge-dot">Pending</span>
+            </td>
+            <td class="nk-tb-col tb-col-md">
+                <ul class="list-status">
+                    <li><em class="icon text-success ni ni-check-circle"></em> <span>Kevin Daniels</span></li>
+                </ul>
+            </td>
+            <td class="nk-tb-col tb-col-md">
+                <span class="tb-status text-primary">In Progress</span>
+            </td>
+            <td class="nk-tb-col tb-col-lg">
+                <span>UI</span>
+            </td>
+            <td class="nk-tb-col tb-col-lg">
+                <a href="/Projects/Details/1"><span class="tb-status text-primary">Example Project 9</span></a>
+            </td>
+            <td class="nk-tb-col tb-col-xxl">
+                <ul class="list-status">
+                    <li><em class="icon ni ni-user-fill"></em>Jason Walker</li>
+                </ul>
+            </td>
+            <td class="nk-tb-col tb-col-xxl" data-sort="03/23/2022 08:22PM">
+                <span class="tb-status">Mar 23</span>
+            </td>
+            <td class="nk-tb-col tb-col-xxl" data-sort="Mar/30/2022">
+                <span class="tb-status">Mar 30</span>
+            </td>
+            <td class="nk-tb-col ">
+                <a class="btn btn-primary" href="/Tickets/Details/196"><span>View</span></a>
+            </td>
+        </tr>
+</tbody>
+</table>
+
+
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="modal fade" id="archiveProjectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Archive Project</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            Are you sure you want to archive this project?
+        </div>
+        <div class="modal-footer">
+            <form action="/Projects/ArchiveProject/1" method="post">
+                <button type="submit" class="btn btn-danger">Archive</button>
+            <input name="__RequestVerificationToken" type="hidden" value="CfDJ8GG61DbYsKhNnCx8U1WKFB0NNeTLCIkOU8Gm2Uxu-O_OFTtp7mL-RQkLyUo1Oct8vGbKvELpKi2hjINVk5Zyp5Srd5esWTHsqhe1A6rpnT4AT4pxoN18xG-W4w_1oIDpl4puoMc5XCBTWVjzE00V8137xtjzc-P9tN73Fx9OAoVDo_GHw7lAhaMTlsNyG9T26Q" /></form>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- <script src="/dist/assets/js/charts/chart-setups.js"></script>
+
+<script>
+    function generateColors(amount) {
+        base_colors = ["#f98c45", "#9cabff", "#8feac5", "#6b79c8", "#79f1dc"]
+        output_colors = []
+
+        let forwards = true;
+        let index = 0;
+
+        while (output_colors.length < amount) {
+            output_colors.push(base_colors[index])
+
+            index = forwards ? index + 1 : index - 1;
+
+            if (index == 0 || index == base_colors.length - 1) {
+                forwards = !forwards;
+            }
+        }
+
+        return output_colors;
+    }
+</script>
+
+<script>
+
+
+
+
+    var NRTicketsTimelineURL = '/Charts/NRTTProject?days=15&projectId=1'
+
+    console.log(NRTicketsTimelineURL)
+
+    $.post(NRTicketsTimelineURL).then(function (response) {
+
+        let endDate = response.newTicketTimeline.timeline[response.newTicketTimeline.timeline.length - 1].formattedDate;
+
+        let labels = response.newTicketTimeline.timeline.map(function (e) {
+            return e.formattedDate;
+        });
+
+        let newTicketData = response.newTicketTimeline.timeline.map(function (e) {
+            return e.ticketCount;
+        });
+
+        let resolvedTicketData = response.resolvedTicketTimeline.timeline.map(function (e) {
+            return e.ticketCount;
+        });
+
+        var ticketsOverview = {
+            labels: labels,
+            dataUnit: 'Tickets',
+            datasets: [{
+                label: "Resolved Tickets",
+                color: "#8feac5",
+                data: resolvedTicketData
+            }, {
+                label: "New Tickets",
+                color: "#9cabff",
+                data: newTicketData
+            }]
+        };
+
+        const ticketChart = createMultipleBarChart("ticketsOverview", ticketsOverview);
+
+        $('#resolved-ticket-count').html(response.resolvedTicketTimeline.totalTickets)
+        $('#new-ticket-count').html(response.newTicketTimeline.totalTickets)
+    })
+</script>
+
+<script>
+         var WorkloadUrl = '/Charts/ProjectWorkloadMap/1'
+
+        console.log(NRTicketsTimelineURL)
+
+        $.post(WorkloadUrl).then(function (response) {
+            colors = generateColors(response.priorityMaps.length).reverse();
+            var workloadData = {
+                labels: response.fullNames,
+                stacked: true,
+                dataUnit: 'Tickets',
+                datasets: response.priorityMaps.map(function (e, i) {
+                    return {
+                        label: e.label,
+                        data: e.data,
+                        color: e.color,
+                    }
+                })
+            };
+
+            const workloadChart = barChart("workloadStackedBarChart", workloadData);
+
+
+        })
+
+</script>
+
+<script>
+         var TicketTypesURL = '/Charts/ProjectTicketsByType/1'
+
+        $.post(TicketTypesURL).then(function (response) {
+            var ticketTypesData = {
+                labels: response.map(function (e) {
+                    return e.type
+                }),
+                dataUnit: 'Tickets',
+                legend: false,
+                datasets: [{
+                    borderColor: "#fff",
+                    background: generateColors(response.length),
+                    data: response.map(function (e) {
+                        return e.count
+                    })
+                }]
+            };
+            createAnalyticsDoughnut("TicketTypeDoughnut", ticketTypesData);
+        });
+</script>
+
+<script>
+         var TicketTypesURL = '/Charts/ProjectTicketsByStatus/1'
+
+        $.post(TicketTypesURL).then(function (response) {
+            var ticketTypesData = {
+                labels: response.map(function (e) {
+                    return e.type
+                }),
+                dataUnit: 'Tickets',
+                legend: false,
+                datasets: [{
+                    borderColor: "#fff",
+                    background: generateColors(response.length),
+                    data: response.map(function (e) {
+                        return e.count
+                    })
+                }]
+            };
+            createAnalyticsDoughnut("TicketStatusDoughnut", ticketTypesData);
+        });
+</script>
+
+<script>
+    var TicketPrioritiesURL = '/Charts/ProjectTicketsByPriority/1'
+
+    $.post(TicketPrioritiesURL).then(function (response) {
+            var ticketPriorityData = {
+                labels: response.map(function (e) {
+                    return e.type
+                }),
+                dataUnit: 'Tickets',
+                legend: false,
+                datasets: [{
+                    borderColor: "#fff",
+                    background: generateColors(response.length),
+                    data: response.map(function (e) {
+                        return e.count
+                    })
+                }]
+            };
+        createAnalyticsDoughnut("TicketPriorityDoughnut", ticketPriorityData);
+        });
+</script> -->
+
+
+

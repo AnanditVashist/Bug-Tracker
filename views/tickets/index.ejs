@@ -1,22 +1,232 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <ul>
-        <% for (let ticket of tickets) {%>
-            <li><%= ticket.title %>- <%= ticket.description %>-
-                <a href="/tickets/details/<%= ticket._id %> ">Details</a>
-                <a href="/tickets/edit/<%= ticket._id %>">Edit</a>
-                <form action="/tickets/delete/<%= ticket._id %>?_method=DELETE" method="post">
-                    <button type="submit">Delete</button>
-                </form>
-            </li>
-    </ul>
-        <% } %> 
-</body>
-</html>
+<% layout('../views/layouts/boilerplate') -%>
+<div class="nk-block-head nk-block-head-sm">
+    <div class="nk-block-between">
+        <div class="nk-block-head-content">
+            <h3 class="nk-block-title page-title">Tickets</h3>
+            <div class="nk-block-des text-soft">
+                <p>View all tickets or filter as needed.</p>
+            </div>
+        </div><!-- .nk-block-head-content -->
+        <div class="nk-block-head-content">
+            <div class="toggle-wrap nk-block-tools-toggle">
+                <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                <div class="toggle-expand-content" data-content="pageMenu">
+                    <ul class="nk-block-tools g-3">
+                        <li>
+                            <div class="drodown">
+                                <a href="#" class="dropdown-toggle btn btn-white btn-dim btn-outline-light" data-toggle="dropdown"><span>Quick Filter</span><em class="icon ni ni-chevron-down"></em></a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <ul class="link-list-opt no-bdr">
+                                        <li><a href="/Tickets/AllTickets?priority=Urgent"><span>Urgent Tickets</span></a></li>
+                                        <li><a href="/Tickets/AllTickets?priority=Pending"><span>Pending Tickets</span></a></li>
+                                            <li><a class="text-danger" href="/Tickets/AllTickets?unassigned=true"><span>Unassigned Tickets</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="nk-block nk-block-lg">
+    <div class="card card-bordered card-full">
+        <div class="card-inner position-relative card-tools-toggle">
+            <div class="card-title-group">
+                <div class="card-tools">
+                    <ul class="card-tools-nav">
+                        <li class="active"><a href="/Tickets/AllTickets"><span>All</span></a></li>
+                            <li><a href="/Tickets/ProjectTickets"><span>In My Projects</span></a></li>
+                        <li><a href="/Tickets/MyTickets"><span>Submitted By Me</span></a></li>
+
+                    </ul>
+                </div>
+                <div class="card-tools mr-n1">
+                    <ul class="btn-toolbar gx-1">
+                        
+                        
+                        <li>
+                            <div class="dropdown">
+                                <a href="#" class="btn btn-trigger btn-icon dropdown-toggle" data-toggle="dropdown">
+                                    <em class="icon ni ni-filter-alt"></em>
+                                </a>
+                                <div class="filter-wg dropdown-menu dropdown-menu-xl dropdown-menu-right">
+                                    <div class="dropdown-head">
+                                        <span class="sub-title dropdown-title">Filter Tickets</span>
+                                    </div>
+                                    <div class="dropdown-body dropdown-body-rg">
+                                        <form method="get" action="/Tickets/AllTickets">
+                                            <div class="row gx-6 gy-3">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label class="overline-title overline-title-alt">Type</label>
+                                                        <select class="form-select form-select-sm" name="Type">
+                                                            <option selected disabled value="select">Select</option>
+                                                        <option value="UI">UI</option>
+<option value="Backend">Backend</option>
+<option value="Runtime">Runtime</option>
+</select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label class="overline-title overline-title-alt">Status</label>
+                                                        <select class="form-select form-select-sm" name="Status">
+                                                            <option selected disabled value="select">Select</option>
+                                                        <option value="New">New</option>
+<option value="Reviewed">Reviewed</option>
+<option value="In Progress">In Progress</option>
+<option value="Resolved">Resolved</option>
+</select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label class="overline-title overline-title-alt">Priority</label>
+                                                        <select class="form-select form-select-sm" name="Priority">
+                                                            <option selected disabled value="select">Select</option>
+                                                        <option value="Pending">Pending</option>
+<option value="Low">Low</option>
+<option value="Moderate">Moderate</option>
+<option value="High">High</option>
+<option value="Urgent">Urgent</option>
+</select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                            <label class="overline-title overline-title-alt">Assignment</label>
+                                                        <div class="custom-control custom-switch">
+                                                            <input type="checkbox"  name="unassigned" value="true" class="custom-control-input" id="customSwitch2">
+                                                            <label class="custom-control-label" for="customSwitch2">Unassigned</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-secondary">Filter</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="dropdown-foot between">
+                                        <a href="/Tickets/AllTickets">Reset Filter</a>
+                                    </div>
+                                </div><!-- .filter-wg -->
+                            </div><!-- .dropdown -->
+                        </li><!-- li -->
+                    </ul><!-- .btn-toolbar -->
+                </div><!-- .card-tools -->
+            </div>
+        </div>
+        <div class="card-inner border-top">
+            
+<table class="datatable-init nk-tb-list nk-tb-ulist" data-auto-responsive="false">
+    <thead>
+        <tr class="nk-tb-item nk-tb-head">
+            <th class="nk-tb-col tb-col-xxl"><span>Id</span></th>
+            <th class="nk-tb-col"><span class="sub-text">Title</span></th>
+            <th class="nk-tb-col"><span class="sub-text">Priority</span></th>
+            <th class="nk-tb-col tb-col-md"><span class="sub-text">Assigned To</span></th>
+            <th class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></th>
+            <th class="nk-tb-col tb-col-lg"><span class="sub-text">Type</span></th>
+            <th class="nk-tb-col tb-col-lg"><span class="sub-text">Project</span></th>
+            <th class="nk-tb-col tb-col-xxl"><span class="sub-text">Owner</span></th>
+            <th class="nk-tb-col tb-col-xxl"><span class="sub-text">Created</span></th>
+            <th class="nk-tb-col tb-col-xxl"><span class="sub-text">Updated</span></th>
+            <th class="nk-tb-col nk-tb-col-tools text-right">
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr class="nk-tb-item">
+                <td class="nk-tb-col tb-col-xxl">
+                    <span><a href="/Tickets/Details/12?source=controller">#12</a></span>
+                </td>
+                <td class="nk-tb-col">
+                    <h6 class="text-wrap">Random 157: ticket generated automatically.</h6>
+                </td>
+                <td class="nk-tb-col" data-order="0" style="color:#8091a7">
+                    <span class="badge badge-dot">Pending</span>
+                </td>
+                <td class="nk-tb-col tb-col-md">
+                    <ul class="list-status">
+                        <li><em class="icon text-success ni ni-check-circle"></em> <span>Kevin Daniels</span></li>
+                    </ul>
+                </td>
+                <td class="nk-tb-col tb-col-md">
+                    <span class="tb-status text-primary">In Progress</span>
+                </td>
+                <td class="nk-tb-col tb-col-lg">
+                    <span>Backend</span>
+                </td>
+                <td class="nk-tb-col tb-col-lg">
+                    <a href="/Projects/Details/4"><span class="tb-status text-primary">Example Project 6</span></a>
+                </td>
+                <td class="nk-tb-col tb-col-xxl">
+                    <ul class="list-status">
+                        <li><em class="icon ni ni-user-fill"></em>Jason Walker</li>
+                    </ul>
+                </td>
+                <td class="nk-tb-col tb-col-xxl" data-sort="03/21/2022 04:15PM">
+                    <span class="tb-status">Mar 21</span>
+                </td>
+                <td class="nk-tb-col tb-col-xxl" data-sort="Mar/28/2022">
+                    <span class="tb-status">Mar 28</span>
+                </td>
+                <td class="nk-tb-col ">
+                    <a class="btn btn-primary" href="/Tickets/Details/12"><span>View</span></a>
+                </td>
+            </tr>            <tr class="nk-tb-item">
+                <td class="nk-tb-col tb-col-xxl">
+                    <span><a href="/Tickets/Details/13?source=controller">#13</a></span>
+                </td>
+                <td class="nk-tb-col">
+                    <h6 class="text-wrap">Random 193: ticket generated automatically.</h6>
+                </td>
+                <td class="nk-tb-col" data-order="-4" style="color:#e85347">
+                    <span class="badge badge-dot">Urgent</span>
+                </td>
+                <td class="nk-tb-col tb-col-md">
+                    <ul class="list-status">
+                        <li><em class="icon text-success ni ni-check-circle"></em> <span>Kevin Daniels</span></li>
+                    </ul>
+                </td>
+                <td class="nk-tb-col tb-col-md">
+                    <span class="tb-status text-primary">In Progress</span>
+                </td>
+                <td class="nk-tb-col tb-col-lg">
+                    <span>Backend</span>
+                </td>
+                <td class="nk-tb-col tb-col-lg">
+                    <a href="/Projects/Details/4"><span class="tb-status text-primary">Example Project 6</span></a>
+                </td>
+                <td class="nk-tb-col tb-col-xxl">
+                    <ul class="list-status">
+                        <li><em class="icon ni ni-user-fill"></em>Jason Walker</li>
+                    </ul>
+                </td>
+                <td class="nk-tb-col tb-col-xxl" data-sort="03/25/2022 04:15PM">
+                    <span class="tb-status">Mar 25</span>
+                </td>
+                <td class="nk-tb-col tb-col-xxl" data-sort="Mar/28/2022">
+                    <span class="tb-status">Mar 28</span>
+                </td>
+                <td class="nk-tb-col ">
+                    <a class="btn btn-primary" href="/Tickets/Details/13"><span>View</span></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+</div>
+<div class="card-inner-sm border-top text-center d-sm-none">
+    <a href="#" class="btn btn-link btn-block">See History</a>
+</div>
+</div>
+</div>

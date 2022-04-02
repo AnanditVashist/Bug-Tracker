@@ -5,17 +5,17 @@ const Project=require('../models/project')
 const {isLoggedIn}=require('../middleware')
 const {grantAccess}=require('../middleware')
 
-router.get('/',isLoggedIn,async (req,res)=>{
+router.get('/',async (req,res)=>{
     const projects=await Project.find()
     res.render('projects/index',{projects})
 })
 
-router.get('/create',isLoggedIn,grantAccess('createAny','project'),(req,res)=>{
+router.get('/create',(req,res)=>{
   
     res.render('projects/create')
 })
 
-router.post('/create',isLoggedIn,async (req,res)=>{
+router.post('/create',async (req,res)=>{
     
     const project=new Project(req.body.project);
     await project.save();
@@ -24,23 +24,24 @@ router.post('/create',isLoggedIn,async (req,res)=>{
 })
 
 
-router.get('/details/:id',isLoggedIn,async (req,res)=>{
+router.get('/details/:id',async (req,res)=>{
     const project=await Project.findById(req.params.id)
-    res.render('projects/details',{project})
+    res.render('projects/details')
+
 })
 
-router.get('/edit/:id',isLoggedIn,async (req,res)=>{
+router.get('/edit/:id',async (req,res)=>{
     const project=await Project.findById(req.params.id)
     res.render('projects/edit',{project})
 })
 
-router.put('/edit/:id',isLoggedIn, async (req,res)=>{
+router.put('/edit/:id', async (req,res)=>{
     const {id}=req.params;
     const project=await Project.findByIdAndUpdate(id,{...req.body.project})
     res.redirect('/projects')
 })
 
-router.delete('/delete/:id',isLoggedIn, async (req,res)=>{
+router.delete('/delete/:id', async (req,res)=>{
     const {id}=req.params;
     const project=await Project.deleteOne({_id:id})
     res.redirect('/projects')

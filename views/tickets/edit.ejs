@@ -1,18 +1,185 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="/tickets/edit/<%=ticket._id%>?_method=PUT" method="POST">
-        <label for="Title">Title</label>
-        <input type="text" name="ticket[title]" value="<%= ticket.title %>" >
-        <label for="Description">Description</label>
-        <input type="text" name="ticket[description]" value="<%= ticket.description %>">
-        <button type="submit">Save Changes</button>
-    </form>
-</body>
-</html>
+<% layout('../views/layouts/boilerplate') %> 
+<div class="container-lg wide-lg">
+    <div class="nk-block nk-block-lg">
+        <div class="nk-block-head">
+            <div class="nk-block-head-sub">
+                <a class="text-soft back-to" href="/Tickets/Details/101%20"><em class="icon ni ni-arrow-left"> </em><span>Random 183: ticket generated automatically.</span></a>
+            </div>
+            <div class="nk-block-head-content">
+                <h3 class="nk-block-title page-title">Edit Ticket <strong class="text-primary small">#101 </strong></h3>
+                <div class="nk-block-des text-soft">
+                    <ul class="list-inline">
+                        <li>Submitted by <span class="text-base">Jason Walker</span> on <span class="text-base">Mar 20, 2022 04:15 PM</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="card card-bordered">
+            <div class="card-inner">
+                <div class="card-head">
+                    <h5 class="card-title">Edit Ticket</h5>
+                </div>
+                <form enctype="multipart/form-data" class="gy-3" action="/Tickets/Edit/101" method="post">
+                    
+                    <input type="hidden" data-val="true" data-val-required="The Id field is required." id="Id" name="Id" value="101" />
+                    <input type="hidden" data-val="true" data-val-required="The Created field is required." id="Created" name="Created" value="03/20/2022 16:15:11 &#x2B;00:00" />
+                    <input type="hidden" id="OwnerUserId" name="OwnerUserId" value="ef173e22-e447-4a6e-ab23-d9f05d9a8251" />
+
+                    <div class="row g-3 align-center">
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <label class="form-label" for="site-name">Title</label>
+                                <span class="form-note">Make this as meaningful as possible.</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="form-group">
+                                <div class="form-control-wrap">
+                                    <input class="form-control" type="text" data-val="true" data-val-length="The field Title must be a string with a maximum length of 50." data-val-length-max="50" data-val-required="The Title field is required." id="Title" maxlength="50" name="Title" value="Random 183: ticket generated automatically." />
+                                    <span class="text-danger field-validation-valid" data-valmsg-for="Title" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-3 align-center">
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <label class="form-label">Description</label>
+                                <span class="form-note">Explain the issue and please include any and all related error messages.</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="form-group">
+                                <div class="form-control-wrap">
+                                    <textarea class="form-control form-control-sm tinymce-basic" data-val="true" data-val-length="The field Description must be a string with a maximum length of 250." data-val-length-max="250" data-val-required="The Description field is required." id="Description" maxlength="250" name="Description">
+&lt;p&gt;This ticket was generated at random for demo purposes.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;183&lt;/strong&gt; uniquely identifies this ticket&lt;/p&gt;</textarea>
+                                    <span class="text-danger field-validation-valid" data-valmsg-for="Description" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-3 align-center">
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <label class="form-label">Project</label>
+                                <span class="form-note">Include the project that this ticket most likely belongs in.</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="form-group">
+                                <div class="form-control-wrap">
+                                    <select data-search="on" class="form-control form-select" data-val="true" data-val-required="The Project field is required." id="ProjectId" name="ProjectId"><option value="1">Example Project 9</option>
+<option value="2">Example Project 8</option>
+<option value="3">Example Project 7</option>
+<option value="4">Example Project 6</option>
+<option value="5">Example Project 5</option>
+<option value="6">Example Project 4</option>
+<option value="7">Example Project 3</option>
+<option selected="selected" value="8">Example Project 2</option>
+<option value="9">Example Project 1</option>
+<option value="10">Example Project 0</option>
+</select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-3 align-center">
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <label class="form-label">Ticket Type</label>
+                                <span class="form-note">Where is this error happening?</span> 
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="form-group">
+                                <div class="form-control-wrap">
+                                    <select data-search="on" class="form-control form-select" data-val="true" data-val-required="The Type field is required." id="TicketTypeId" name="TicketTypeId"><option selected="selected" value="1">UI</option>
+<option value="2">Backend</option>
+<option value="3">Runtime</option>
+</select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-3 align-center bg-warning-dim">
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <label class="form-label">Ticket Priority</label>
+                                <span class="form-note">How important is the ticket?</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="form-group">
+                                <div class="form-control-wrap">
+                                    <select data-search="on" class="form-control form-select" data-val="true" data-val-required="The Priority field is required." id="TicketPriorityId" name="TicketPriorityId"><option value="1">Pending</option>
+<option selected="selected" value="2">Low</option>
+<option value="3">Moderate</option>
+<option value="4">High</option>
+<option value="5">Urgent</option>
+</select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="row g-3 align-center">
+                            <div class="col-lg-5">
+                                <div class="form-group">
+                                    <label class="form-label">Ticket Status</label>
+                                    <span class="form-note">Where is the ticket in the pipeline</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="form-group">
+                                    <div class="form-control-wrap">
+                                        <select data-search="on" class="form-control form-select" data-val="true" data-val-required="The Status field is required." id="TicketStatusId" name="TicketStatusId"><option value="1">New</option>
+<option value="2">Reviewed</option>
+<option selected="selected" value="3">In Progress</option>
+<option value="4">Resolved</option>
+</select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-3 align-center">
+                            <div class="col-lg-5">
+                                <div class="form-group">
+                                    <label class="form-label">Assigned Developer</label>
+                                    <span class="form-note">Assign or change assigned developer for this ticket.</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="form-group">
+                                    <div class="form-control-wrap">
+                                        <div class="custom-file">
+                                            <select class="form-control form-select" data-search="on" id="DeveloperUserId" name="DeveloperUserId">
+                                                <option disabled selected>--- UNASSIGNED ---</option>
+                                            <option value="ba0f6329-a3c8-412e-9f50-35dc067f3d6b">Kim Williams</option>
+<option selected="selected" value="0e614981-e8f2-4951-94fe-49de987ff1c6">Kevin Daniels</option>
+<option value="ef173e22-e447-4a6e-ab23-d9f05d9a8251">Jason Walker</option>
+<option value="a7041a84-f945-4e8b-a408-17474108c9ae">Carlos Young</option>
+<option value="57cb70f5-7a87-4658-a175-331c1996889e">Jason Walker</option>
+<option value="bae61531-f22a-4440-be7d-79778931af6c">Kim Williams</option>
+<option value="d071e33b-7c08-4595-844c-0ce417fa48e2">Kevin Daniels</option>
+<option value="2c0d1937-6517-43f0-9467-4458502b2285">Carlos Young</option>
+<option value="2b632453-5d55-496f-a60c-bf86f1b6c430">Joshua2 Peters</option>
+<option value="7af0b493-edeb-4c96-b1e6-616af9d105b5">ret trer</option>
+<option value="a143495e-b8bd-41fb-a969-deebb8209572">Larr Perky</option>
+</select>
+                                            <span class="text-danger field-validation-valid" data-valmsg-for="DeveloperUserId" data-valmsg-replace="true"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="row g-3">
+                        <div class="col-lg-7 offset-lg-5">
+                            <div class="form-group mt-2">
+                                <button type="submit" class="btn btn-lg btn-primary">Save Changes</button>
+                            </div>
+                        </div>
+                    </div>
+                <input name="__RequestVerificationToken" type="hidden" value="CfDJ8GG61DbYsKhNnCx8U1WKFB2t4-QjQIhoeD08V2OYAatWqylKgUY5zjRz4Ijknm-avIMRdRURs410lIG7H-pb9wDSCDvjMN2AkjjHX6XlNHO6F3vKDOu-D8DXglEzR1vLT-GBh1Kz24LqhUdkCTHaBBPqVRITPD7Y1ar6RB_P0dEuqfRUycYAWhlOcwCBqDwn4A" /></form>
+            </div>
+        </div>
+    </div>
+</div>
