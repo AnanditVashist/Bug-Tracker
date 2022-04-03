@@ -7,7 +7,7 @@ const {grantAccess}=require('../middleware')
 
 router.get('/',async (req,res)=>{
     const projects=await Project.find()
-    res.render('projects/index',{projects})
+    res.render('projects',{projects})
 })
 
 router.get('/create',(req,res)=>{

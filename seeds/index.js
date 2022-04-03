@@ -20,8 +20,8 @@ const seedDb=async()=>{
     await Project.deleteMany({})
     for (let i = 0; i < 50; i++) {
         let project=new Project({
-            name: `Project ${i}`,
-            description: `This project is really important for the team ${i}`
+            name: `Example Project ${i}`,
+            description: `This is an example project. Here you can have a short description to explain the project.`
         })
 
         await project.save();

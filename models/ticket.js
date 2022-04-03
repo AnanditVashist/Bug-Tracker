@@ -1,5 +1,6 @@
 const mongoose=require('mongoose')
 const Projet=require('../models/project')
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const ticketSchema=new mongoose.Schema({
     title:String,
@@ -22,8 +23,23 @@ const ticketSchema=new mongoose.Schema({
     project:{
         type: mongoose.Schema.Types.ObjectId,
         ref:'Project'
+    },
+    submitter:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'User'
+    },
+    asignee:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'User'
+    },
+    comments: String,
+
+    },
+        {
+    timestamps: true
     }
+)
 
-})
-
+//a unique identifier for tickets wwhich can be displayed to user
+ticketSchema.plugin(AutoIncrement,{inc_field: 'uId'})
 module.exports=mongoose.model('Ticket',ticketSchema)
