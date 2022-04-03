@@ -23,14 +23,10 @@ const UserSchema=new Schema({
         type: String,
         default: 'newUser',
         enum: ["admin", "manager","developer","submitter","newUser"],
-    },
-    accessToke:{
-        type: String
     }
 })
 
 
-UserSchema.plugin(passportLocalMongoose,
-    { usernameField : 'email'});
+UserSchema.plugin(passportLocalMongoose);
 
 module.exports=mongoose.model('User',UserSchema)
