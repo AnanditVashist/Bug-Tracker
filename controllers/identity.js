@@ -37,7 +37,6 @@ router.post('/login',passport.authenticate('local', {  failureRedirect: '/identi
 router.get('/logout',(req,res)=>{
 
     req.logout()
-    console.log(req.user)
     res.redirect('/')
 })
 
