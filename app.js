@@ -10,10 +10,8 @@ const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 
 
-const projectsController=require('./controllers/projects')
-const ticketsController=require('./controllers/tickets')
-const identityController=require('./controllers/identity')
-const homeController=require('./controllers/home')
+
+
 
 mongoose.connect('mongodb://localhost:27017/trackii',{
     useNewUrlParser: true,	
@@ -54,24 +52,26 @@ const sessionConfig = {
 }
 
 app.use(session(sessionConfig))
+app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
-
 passport.use(new LocalStrategy(User.authenticate()));
-
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
-    console.log(req.session)
     res.locals.currentUser = req.user;
-    //res.locals.success = req.flash('success');
-    //res.locals.error = req.flash('error');
-    console.log(req.user)
     next();
 })
+
+
+
+const projectsController=require('./controllers/projects')
+const ticketsController=require('./controllers/tickets')
+const identityController=require('./controllers/identity')
+const homeController=require('./controllers/home')
 
 app.use('/projects', projectsController)
 app.use('/tickets', ticketsController)
