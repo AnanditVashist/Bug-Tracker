@@ -1,0 +1,91 @@
+<% layout('../views/layouts/boilerplate') -%>
+
+<form id="assign-users" method="post" action="/Projects/AssignUsers/<%= assignUsersViewModel.Project._id %> "><input name="__RequestVerificationToken" type="hidden" value="CfDJ8ClbCOxv99NOnpZWHRtDo1aHnID0vJI_VNcqoVZofjPC-eIleTe8b_ZRFW3kVe0F2oktar82EvaBFpWTWQF1DSXyS10QSPAEcOHmgiM8LrAKvyx6jTM_Dh-ZUNYmEQcVKBGkZztwxojDcfA2m0vifNvCnCBNFFirLl31LRdCvFPl1xHHALpB7g09mfLcL7VgWw" /></form>
+
+
+<div class="container-lg wide-lg">
+    <div class="nk-block-head nk-block-head-sm">
+        <div class="nk-block-head-sub">
+            <a class="text-soft back-to" href="/Projects/Details/<%= assignUsersViewModel.Project._id %>"><em class="icon ni ni-arrow-left"> </em><span><%= assignUsersViewModel.Project.name %></span></a>
+        </div>
+        <div class="nk-block-between g-3">
+            <div class="nk-block-head-content">
+                <h3 class="ff-base fw-medium">Assign Users <small class="text-soft"><%= assignUsersViewModel.Project.name %></small></h3>
+                <div class="nk-block-des text-soft">
+                    <p>You have <%= assignUsersViewModel.Users.length %> Users</p>
+                </div>
+            </div>
+            <div class="nk-block-head-content">
+                <button onclick="javascript: document.getElementById('assign-users').submit()" class="btn btn-lg btn-primary">Assign Users</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="nk-block">
+        <div class="card card-bordered card-stretch">
+            <div class="card-inner-group">
+                <div class="card-inner">
+                    <div class="card-title-group">
+                        <div class="card-title">
+                            <h5 class="title">Users</h5>
+                        </div>
+                        <div class="card-search search-wrap" data-search="search">
+                            <div class="search-content">
+                                <a href="#" class="search-back btn btn-icon toggle-search" data-target="search"><em class="icon ni ni-arrow-left"></em></a>
+                                <input type="text" class="form-control form-control-sm border-transparent form-focus-none" placeholder="Quick search by order id">
+                                <button class="search-submit btn btn-icon"><em class="icon ni ni-search"></em></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-inner">
+                    <table class="datatable-init nk-tb-list nk-tb-ulist" data-auto-responsive="false">
+                        <thead>
+                            <tr class="nk-tb-item nk-tb-head">
+                                <th class="nk-tb-col nk-tb-col-check">
+                                    <div class="custom-control custom-control-sm custom-checkbox notext">
+                                        <input type="checkbox" class="custom-control-input" id="uid">
+                                        <label class="custom-control-label" for="uid"></label>
+                                    </div>
+                                </th>
+                                <th class="nk-tb-col"><span class="sub-text">User</span></th>
+                                <th class="nk-tb-col">Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% assignUsersViewModel.Users.forEach((user) => { %>
+                                <tr class="nk-tb-item">
+                                    <td class="nk-tb-col nk-tb-col-check">
+                                        <div class="custom-control custom-control-sm custom-checkbox notext">
+                                                <input type="checkbox" class="custom-control-input" name="InProject" id="<%= user._id %>"
+                                                 value="<%= user._id%>"  form="assign-users" 
+                                                 <% if (assignUsersViewModel.Project.team.includes(user._id)) { %> checked <% } %>
+                                                 />
+                                                <label class="custom-control-label" for="<%= user._id %>"></label>
+                                        </div>
+                                    </td>
+                                    <td class="nk-tb-col">
+                                        <div class="user-card">
+                                            <div class="user-avatar bg-dim-primary d-none d-sm-flex">
+                                                <span>KW</span>
+                                            </div>
+                                            <div class="user-info">
+                                                <span class="tb-lead"><%= user.name %>  <span class="dot dot-success d-md-none ml-1"></span></span>
+                                                <span><%= user.email %></span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="nk-tb-col">
+                                        <span class="badge badge-sm badge-pill badge-primary"><%= user.role %></span>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+ 

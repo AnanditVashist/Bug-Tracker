@@ -12,12 +12,12 @@ const UserSchema=new Schema({
     firstName:{
         type: String,
         required: true,
-        unique: true
+        unique: false
     },
     lastName:{
         type: String,
         required: true,
-        unique: true
+        unique: false
     },
     role: {
         type: String,
@@ -29,4 +29,4 @@ const UserSchema=new Schema({
 
 UserSchema.plugin(passportLocalMongoose);
 
-module.exports=mongoose.model('User',UserSchema)
+module.exports= mongoose.models.User ||mongoose.model('User',UserSchema)

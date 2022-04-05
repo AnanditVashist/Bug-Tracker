@@ -17,15 +17,24 @@ db.once("open",()=>{
 });
 
 const seedDb=async()=>{
-    await Project.deleteMany({})
-    for (let i = 0; i < 50; i++) {
-        let project=new Project({
-            name: `Example Project ${i}`,
-            description: `This is an example project. Here you can have a short description to explain the project.`
-        })
+        let projects=await Project.find();
+        for(project of projects){
+            let ticket=new Ticket({
+                title:`Random ${Math.floor(1000 + Math.random() * 9000)}: ticket generated automatically.`,
+                description: `This ticket was generated for demo purposes ${Math.floor(1000 + Math.random() * 9000)} uniquely identifies this ticket.`,
+                type:'UI',
+                priority:'Pending',
+                status:'New',
+                project: project._id,
+                submitter: '624a6ff5b99bf14d17a4adf1',
+                asignee:'624a7018b99bf14d17a4adf7',
+            });
 
-        await project.save();
-    }
+            await ticket.save()
+        }
+       
+
+}
     // for (let i = 1; i < 10; i+=2) {
     //     let ticket=new ticket({
     //         title: `Title ${i}`,
@@ -36,7 +45,6 @@ const seedDb=async()=>{
     //     await project.save();
     // }
 
-}
 
 
 seedDb()

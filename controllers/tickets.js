@@ -3,6 +3,7 @@ const router = express.Router()
 const mongoose=require('mongoose')
 const Ticket=require('../models/ticket')
 const Project = require('../models/Project')
+const User = require('../models/User')
 const {isLoggedIn}=require('../middleware')
 
 router.get('/',async (req,res)=>{
@@ -11,25 +12,30 @@ router.get('/',async (req,res)=>{
 })
 
 router.get('/create',async (req,res)=>{
-       const projects= await Project.find({})
-       res.render('tickets/create',{projects})
+    const createTicketViewModel={};
+    createTicketViewModel.projects=await Project.find()
+    createTicketViewModel.users=await User.find()
+    res.render('tickets/create',{createTicketViewModel})
 })
 
 router.post('/create',async (req,res)=>{
     const ticket=new Ticket(req.body.ticket)
+    ticket.submitter=req.user.id;
     await ticket.save()
-    res.send('ok')
+    res.render('/tickets')
 })
 
 
 router.get('/details/:id',async (req,res)=>{
-    const ticket=await Ticket.findById(req.params.id)
-    res.render('tickets/details',{ticket})
+    
 })
 
 router.get('/edit/:id',async (req,res)=>{
-    const ticket=await Ticket.findById(req.params.id)
-    res.render('tickets/edit',{ticket})
+    const editTicketViewModel={};
+    editTicketViewModel.projects=await Project.find()
+    editTicketViewModel.users=await User.find()
+    editTicketViewModel.ticket=await Ticket.findById(req.params.id)
+    res.render('tickets/edit',{editTicketViewModel})
 })
 
 router.put('/edit/:id', async (req,res)=>{

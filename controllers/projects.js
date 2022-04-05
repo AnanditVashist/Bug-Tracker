@@ -2,12 +2,15 @@ const express = require('express')
 const router = express.Router()
 const mongoose=require('mongoose')
 const Project=require('../models/project')
+const User=require('../models/user')
 const {isLoggedIn}=require('../middleware')
 const {grantAccess}=require('../middleware')
 
 router.get('/',async (req,res)=>{
-    const projects=await Project.find()
-    res.render('projects',{projects})
+    const projectDashboardViewModel={
+        projects: await Project.find(),
+    }
+    res.render('projects',{projectDashboardViewModel})
 })
 
 router.get('/create',(req,res)=>{
@@ -17,16 +20,19 @@ router.get('/create',(req,res)=>{
 
 router.post('/create',async (req,res)=>{
     
-    const project=new Project(req.body.project);
+    const project=new Project()
+    project.name= req.body['name'];
+    project.description= req.body['description'];
+    project.team.push(req.user.id)
     await project.save();
-    res.redirect('projects')
+    res.redirect('/projects')
 
 })
 
 
 router.get('/details/:id',async (req,res)=>{
     const project=await Project.findById(req.params.id)
-    res.render('projects/details')
+    res.render('projects/details',{project})
 
 })
 
@@ -48,6 +54,20 @@ router.delete('/delete/:id', async (req,res)=>{
 })
 
 
+router.get('/AssignUsers/:id', async(req,res)=>{
+    const assignUsersViewModel={};
+    assignUsersViewModel.Project= await Project.findById(req.params.id)
+    assignUsersViewModel.Users= await User.find()
+    res.render('projects/assignUsers',{assignUsersViewModel})
+})
+
+router.post('/AssignUsers/:id', async(req,res)=>{
+    const projectInDb=await Project.findById(req.params.id)
+    await projectInDb.set({team: req.body.InProject})
+    await projectInDb.save();
+    res.redirect(`/projects/AssignUsers/${req.params.id}`)
+
+})
 
 
 module.exports=router
