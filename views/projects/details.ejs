@@ -5,18 +5,18 @@
         <div class="nk-block-head-sub"><a class="text-soft back-to" href="/Projects"><em class="icon ni ni-arrow-left"> </em><span>Projects</span></a></div>
         <div class="nk-block-between-md g-4">
             <div class="nk-block-head-content">
-                <h2 class="nk-block-title fw-normal">Example Project 9</h2>
+                <h2 class="nk-block-title fw-normal"><%= project.name %></h2>
                 <div class="nk-block-des">
-                        <p>08 Apr, 2021 <span class="badge badge-outline badge-success">Active</span></p>
+                        <p><%= project.createdAt %> <span class="badge badge-outline badge-success">Active</span></p>
 
                 </div>
             </div>
             <div class="nk-block-head-content">
                 <ul class="nk-block-tools gx-3">
-                        <li class="order-md-last"><a class="btn btn-primary" href="/Projects/Edit/1"><span>Edit</span> </a></li>
-                        <li class="order-md-last"><a class="btn btn-primary" href="/Projects/AssignUsers/1"><span>Assign Users</span> </a></li>
+                        <li class="order-md-last"><a class="btn btn-primary" href="/Projects/Edit/<%= project._id %>"><span>Edit</span> </a></li>
+                        <li class="order-md-last"><a class="btn btn-primary" href="/Projects/AssignUsers/<%= project._id %>"><span>Assign Users</span> </a></li>
                         <li class="order-md-last"><button type="button" data-toggle="modal" data-target="#archiveProjectModal" class="btn btn-danger"><em class="icon ni ni-cross"></em> <span>Archive</span> </button></li>
-                    <li><a class="btn btn-icon btn-light" href="/Projects/Details/1"><em class="icon ni ni-reload"></em></a></li>
+                    <li><a class="btn btn-icon btn-light" href="/Projects/Details/<%= project._id %>"><em class="icon ni ni-reload"></em></a></li>
                 </ul>
             </div>
         </div>

@@ -2,7 +2,7 @@
 <div class="components-preview wide-md mx-auto">
     <div class="nk-block-head nk-block-head-lg wide-sm">
         <div class="nk-block-head-content">
-            <div class="nk-block-head-sub"><a class="back-to" href="/Projects/Details/1"><em class="icon ni ni-arrow-left"></em><span>Example Project 9</span></a></div>
+            <div class="nk-block-head-sub"><a class="back-to" href="/Projects/Details/<%= project._id %>"><em class="icon ni ni-arrow-left"></em><span><%= project.name %> </span></a></div>
             <h2 class="nk-block-title fw-normal">Edit Project</h2>
             <div class="nk-block-des">
                 <p class="lead">Make any changes to project. This will not effect any existing tickets.</p>
@@ -12,7 +12,7 @@
     <div class="nk-block nk-block-lg">
         <div class="card card-preview">
             <div class="card-inner">
-                <form class="form-validate is-alter" enctype="multipart/form-data" action="/Projects/Edit/1" method="post">
+                <form class="form-validate is-alter" enctype="application/x-www-form-urlencoded" action="/Projects/Edit/<%= project._id %>?_method=PUT" method="post" name="project">
                     
                     <input type="hidden" id="FileData" name="FileData" value="" />
                     <input type="hidden" id="FileName" name="FileName" value="" />
@@ -21,14 +21,13 @@
                     <div class="form-group">
                         <label class="form-label" for="Name">Name</label>
                         <div class="form-control-wrap">
-                            <input type="text" class="form-control" required data-val="true" data-val-length="The field Project Name must be a string with a maximum length of 50." data-val-length-max="50" data-val-required="The Project Name field is required." id="Name" maxlength="50" name="Name" value="Example Project 9">
+                            <input type="text" class="form-control" required data-val="true" data-val-length="The field Project Name must be a string with a maximum length of 50." data-val-length-max="50" data-val-required="The Project Name field is required." id="Name" maxlength="50" name="project[name]" value="<%= project.name %> ">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="Name">Name</label>
+                        <label class="form-label" for="Description">Description</label>
                         <div class="form-control-wrap">
-                            <textarea type="text" class="form-control" required data-val="true" data-val-length="The field Short Description must be a string with a maximum length of 100." data-val-length-max="100" id="Description" maxlength="100" name="Description">
-This is an example project. Here you can have a short description to explain the project.</textarea>
+                            <textarea type="text" class="form-control" required data-val="true" data-val-length="The field Short Description must be a string with a maximum length of 100." data-val-length-max="100" id="Description" maxlength="100" name="project[description]"><%= project.description %> </textarea>
                         </div>
                     </div>
                     <div class="form-group">

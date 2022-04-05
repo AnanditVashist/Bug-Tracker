@@ -13,7 +13,11 @@ const ProjectSchema=new Schema({
                 type: Schema.Types.ObjectId,
                 ref:'User'
         }],
-        dateCreated: Date
-})
+
+},
+{
+        timestamps: true
+        }
+)
 
 module.exports= mongoose.models.Project ||mongoose.model('Project',ProjectSchema);

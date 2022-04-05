@@ -15,8 +15,6 @@
                     <h5 class="card-title">New Ticket</h5>
                 </div>
                 <form class="gy-3" action="/Tickets/Create" method="post">
-                    <input type="hidden" data-val="true" data-val-required="The Created field is required." id="Created" name="Created" value="" />
-                    <input type="hidden" id="Updated" name="Updated" value="" />
 
                     <div class="row g-3 align-center">
                         <div class="col-lg-5">
@@ -28,8 +26,13 @@
                         <div class="col-lg-7">
                             <div class="form-group">
                                 <div class="form-control-wrap">
-                                    <input class="form-control" type="text" data-val="true" data-val-length="The field Title must be a string with a maximum length of 50." data-val-length-max="50" data-val-required="The Title field is required." id="Title" maxlength="50" name="Title" value="" />
-                                    <span class="text-danger field-validation-valid" data-valmsg-for="Title" data-valmsg-replace="true"></span>
+                                    <input class="form-control" type="text" data-val="true" 
+                                    data-val-length="The field Title must be a string with a maximum length of 50." 
+                                    data-val-length-max="50" data-val-required="The Title field is required." 
+                                    id="Title" maxlength="50" name="ticket[title]" value="" />
+
+                                    <span class="text-danger field-validation-valid" 
+                                    data-valmsg-for="Title" data-valmsg-replace="true"></span>
                                 </div>
                             </div>
                         </div>
@@ -38,14 +41,17 @@
                         <div class="col-lg-5">
                             <div class="form-group">
                                 <label class="form-label">Description</label>
-                                <span class="form-note">Explain the issue and please include all related error messages.</span>
+                                <span class="form-note">Explain the issue and please include all related error messages.
+                                </span>
                             </div>
                         </div>
                         <div class="col-lg-7">
                             <div class="form-group">
                                 <div class="form-control-wrap">
-                                    <textarea class="form-control form-control-sm tinymce-basic" data-val="true" data-val-length="The field Description must be a string with a maximum length of 250." data-val-length-max="250" data-val-required="The Description field is required." id="Description" maxlength="250" name="Description">
-</textarea>
+                                    <textarea class="form-control form-control-sm tinymce-basic" data-val="true" 
+                                    data-val-length="The field Description must be a string with a maximum length of 250." data-val-length-max="250" 
+                                    data-val-required="The Description field is required." 
+                                    id="Description" maxlength="250" name="ticket[description]"></textarea>
                                     <span class="text-danger field-validation-valid" data-valmsg-for="Description" data-valmsg-replace="true"></span>
                                 </div>
                             </div>
@@ -61,17 +67,13 @@
                         <div class="col-lg-7">
                             <div class="form-group">
                                 <div class="form-control-wrap">
-                                    <select data-search="on" class="form-control form-select" data-val="true" data-val-required="The Project field is required." id="ProjectId" name="ProjectId"><option value="1">Example Project 9</option>
-<option value="2">Example Project 8</option>
-<option value="3">Example Project 7</option>
-<option value="4">Example Project 6</option>
-<option value="5">Example Project 5</option>
-<option value="6">Example Project 4</option>
-<option value="7">Example Project 3</option>
-<option value="8">Example Project 2</option>
-<option value="9">Example Project 1</option>
-<option value="10">Example Project 0</option>
-</select>
+                                    <select data-search="on" class="form-control form-select" data-val="true" 
+                                    data-val-required="The Project field is required." id="ProjectId" name="ticket[project]">
+                                        <option disabled selected>--- CHOOSE ---</option>
+                                        <% createTicketViewModel.projects.forEach(project => { %>
+                                                <option value='<%= project._id %>'><%= project.name%> </option>%> 
+                                        <% }) %>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -86,10 +88,12 @@
                         <div class="col-lg-7">
                             <div class="form-group">
                                 <div class="form-control-wrap">
-                                    <select data-search="on" class="form-control form-select" data-val="true" data-val-required="The Type field is required." id="TicketTypeId" name="TicketTypeId"><option value="1">UI</option>
-<option value="2">Backend</option>
-<option value="3">Runtime</option>
-</select>
+                                    <select data-search="on" class="form-control form-select" data-val="true" 
+                                    data-val-required="The Type field is required." id="TicketTypeId" name="ticket[type]">
+                                        <option value="UI">UI</option>
+                                        <option value="Backend">Backend</option>
+                                        <option value="Runtime">Runtime</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -104,12 +108,14 @@
                             <div class="col-lg-7">
                                 <div class="form-group">
                                     <div class="form-control-wrap">
-                                        <select data-search="on" class="form-control form-select" data-val="true" data-val-required="The Priority field is required." id="TicketPriorityId" name="TicketPriorityId"><option value="1">Pending</option>
-<option value="2">Low</option>
-<option value="3">Moderate</option>
-<option value="4">High</option>
-<option value="5">Urgent</option>
-</select>
+                                        <select data-search="on" class="form-control form-select" data-val="true" 
+                                        data-val-required="The Priority field is required." id="TicketPriorityId" name="ticket[priority]">
+                                            <option value="Pending">Pending</option>
+                                            <option value="Low">Low</option>
+                                            <option value="Moderate">Moderate</option>
+                                            <option value="High">High</option>
+                                            <option value="Urgent">Urgent</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -124,11 +130,14 @@
                             <div class="col-lg-7">
                                 <div class="form-group">
                                     <div class="form-control-wrap">
-                                        <select data-search="on" class="form-control form-select" data-val="true" data-val-required="The Status field is required." id="TicketStatusId" name="TicketStatusId"><option value="1">New</option>
-<option value="2">Reviewed</option>
-<option value="3">In Progress</option>
-<option value="4">Resolved</option>
-</select>
+                                        <select data-search="on" class="form-control form-select" 
+                                        data-val="true" data-val-required="The Status field is required." 
+                                        id="TicketStatusId" name="ticket[status]">
+                                                <option value="New">New</option>
+                                                <option value="Reviewed">Reviewed</option>
+                                                <option value="In Progress">In Progress</option>
+                                                <option value="Resolved">Resolved</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -137,27 +146,19 @@
                             <div class="col-lg-5">
                                 <div class="form-group">
                                     <label class="form-label">Assigned Developer</label>
-                                    <span class="form-note">Assign or change assigned developer for this ticket.</span>
+                                    <span class="form-note">Assign a developer for this ticket.</span>
                                 </div>
                             </div>
                             <div class="col-lg-7">
                                 <div class="form-group">
                                     <div class="form-control-wrap">
                                         <div class="custom-file">
-                                            <select data-search="on" class="form-control form-select" id="DeveloperUserId" name="DeveloperUserId">
+                                            <select data-search="on" class="form-control form-select" id="DeveloperUserId" name="ticket[asignee]">
                                                 <option disabled selected>--- UNASSIGNED ---</option>
-                                            <option value="ba0f6329-a3c8-412e-9f50-35dc067f3d6b">Kim Williams</option>
-<option value="0e614981-e8f2-4951-94fe-49de987ff1c6">Kevin Daniels</option>
-<option value="ef173e22-e447-4a6e-ab23-d9f05d9a8251">Jason Walker</option>
-<option value="a7041a84-f945-4e8b-a408-17474108c9ae">Carlos Young</option>
-<option value="57cb70f5-7a87-4658-a175-331c1996889e">Jason Walker</option>
-<option value="bae61531-f22a-4440-be7d-79778931af6c">Kim Williams</option>
-<option value="d071e33b-7c08-4595-844c-0ce417fa48e2">Kevin Daniels</option>
-<option value="2c0d1937-6517-43f0-9467-4458502b2285">Carlos Young</option>
-<option value="2b632453-5d55-496f-a60c-bf86f1b6c430">Joshua2 Peters</option>
-<option value="7af0b493-edeb-4c96-b1e6-616af9d105b5">ret trer</option>
-<option value="a143495e-b8bd-41fb-a969-deebb8209572">Larr Perky</option>
-</select>
+                                                <% createTicketViewModel.users.forEach(user => { %>
+                                                    <option value="<%=user._id%>"><%=user.firstName%> <%=user.lastName%> </option>
+                                                <% }) %>
+                                            </select>
                                             <span class="text-danger field-validation-valid" data-valmsg-for="DeveloperUserId" data-valmsg-replace="true"></span>
                                         </div>
                                     </div>
