@@ -22,7 +22,8 @@ const UserSchema=new Schema({
     role: {
         type: String,
         default: 'newUser',
-        enum: ["admin", "manager","developer","submitter","newUser"],
+        enum: ["admin", "manager","developer","submitter","newUser",
+                'Admin-Demo','Manager-Demo','Developer-Demo','Submitter-Demo']
     }
 })
 

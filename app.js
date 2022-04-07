@@ -8,6 +8,7 @@ const methodOverride = require('method-override');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
+const moment=require('moment')
 
 
 
@@ -65,6 +66,8 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
+    res.locals.moment=moment;
+    res.locals.userRolesArray=["admin", "manager","developer","submitter","newUser"]
     next();
 })
 
@@ -74,11 +77,15 @@ const projectsController=require('./controllers/projects')
 const ticketsController=require('./controllers/tickets')
 const identityController=require('./controllers/identity')
 const homeController=require('./controllers/home')
+const userRolesController=require('./controllers/userRoles')
+
 
 app.use('/projects', projectsController)
 app.use('/tickets', ticketsController)
 app.use('/identity', identityController)
 app.use('/home', homeController)
+app.use('/userRoles', userRolesController)
+
 
 
 

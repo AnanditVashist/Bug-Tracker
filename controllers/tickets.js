@@ -4,10 +4,14 @@ const mongoose=require('mongoose')
 const Ticket=require('../models/ticket')
 const Project = require('../models/Project')
 const User = require('../models/User')
+var moment = require('moment');
 const {isLoggedIn}=require('../middleware')
 
 router.get('/',async (req,res)=>{
     const tickets=await Ticket.find()
+                        .populate('asignee')
+                        .populate('submitter')
+                        .populate('project')
     res.render('tickets/index',{tickets})
 })
 
@@ -27,7 +31,11 @@ router.post('/create',async (req,res)=>{
 
 
 router.get('/details/:id',async (req,res)=>{
-    
+    const ticket=await Ticket.findById(req.params.id)
+                            .populate('asignee')
+                            .populate('project')
+                            .populate('submitter')
+    res.render('tickets/details',{ticket})
 })
 
 router.get('/edit/:id',async (req,res)=>{

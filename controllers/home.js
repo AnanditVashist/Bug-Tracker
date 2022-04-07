@@ -9,4 +9,7 @@ router.get('/welcome',(req,res)=>{
     res.render('home/welcome')
 })
 
+router.get('/dashboard',(req,res)=>{
+    res.render('home/dashboard')
+})
 module.exports=router;

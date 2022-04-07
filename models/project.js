@@ -13,6 +13,11 @@ const ProjectSchema=new Schema({
                 type: Schema.Types.ObjectId,
                 ref:'User'
         }],
+        status: {
+                type: String,
+                default: 'active',
+                enum: ["active", "archived"],
+            }
 
 },
 {

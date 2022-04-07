@@ -6,10 +6,11 @@
         </div>
         <div class="nk-block-between g-3">
             <div class="nk-block-head-content">
-                <h3 class="nk-block-title page-title">Ticket <strong class="text-primary small">#101 </strong></h3>
+                <h3 class="nk-block-title page-title">Ticket <strong class="text-primary small">#<%= ticket.uId %>  </strong></h3>
                 <div class="nk-block-des text-soft">
                     <ul class="list-inline">
-                        <li>Submitted by <span class="text-base">Jason Walker</span> on <span class="text-base">Mar 20, 2022 04:15 PM</span></li>
+                        <li>Submitted by <span class="text-base"><%= ticket.submitter.firstName %> <%= ticket.submitter.lastName %></span>
+                             on <span class="text-base"><%= moment(ticket.createdAt).format('MMM D, YYYY') %></span></li>
                     </ul>
                 </div>
             </div>
@@ -32,11 +33,11 @@
                     <div class="row">
                         <div class="col">
                             <div class="invoice-desc w-100">
-                                <h3 class="title">Random 183: ticket generated automatically.</h3>
+                                <h3 class="title"><%= ticket.title %> </h3>
                                 <ul class="list-plain">
-                                    <li class="invoice-id"><span>Ticket Id</span>:<span>#101 </span></li>
-                                    <li class="invoice-date"><span>Date</span>:<span>20 Mar, 2022</span></li>
-                                    <li class="invoice-date"><span>Updated</span>:<span>28 Mar, 2022 </span></li>
+                                    <li class="invoice-id"><span>Ticket Id</span>:<span>#<%= ticket.uId %>  </span></li>
+                                    <li class="invoice-date"><span>Date</span>:<span><%= moment(ticket.createdAt).format('MMM D, YYYY') %> </span></li>
+                                    <li class="invoice-date"><span>Updated</span>:<span><%= moment(ticket.updatedAt).format('MMM D, YYYY') %>  </span></li>
                                 </ul>
                             </div>
                         </div>
@@ -44,11 +45,12 @@
                             <div class="invoice-contact">
                                 <span class="overline-title">Assigned To</span>
                                 <div class="invoice-contact-info">
-                                        <h4 class="title">Kevin Daniels</h4>
+                                        <h4 class="title"><%= ticket.asignee.firstName %> <%= ticket.asignee.lastName %></h4>
 
                                     <ul class="list-plain">
-                                        <li><em class="icon ni ni-folder-fill"></em><span>Example Project 2</span></li>
-                                        <li><em class="icon ni ni-user-fill"></em><span>Jason Walker</span></li>
+                                        <li><em class="icon ni ni-folder-fill"></em><span><%= ticket.project.name %> </span></li>
+                                        <li><em class="icon ni ni-user-fill"></em><span>
+                                            <%= ticket.submitter.firstName %> <%= ticket.submitter.lastName %></span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -58,13 +60,15 @@
                         <div class="col-12 p-0">
                             <div class="card-inner card-bordered p-3 bg-azure-dim">
                                 <p>This ticket was generated at random for demo purposes.</p>
-<p><strong>183</strong> uniquely identifies this ticket</p>
+                                <p><strong><%= ticket.uId %> </strong> uniquely identifies this ticket</p>
                             </div>
                         </div>
                     </div>
 
                 </div>
             </div>
+
+
             <div class="col-lg-8 col-md-12">
                 <div class="card card-bordered h-100">
                     <div class="card-inner border-bottom">
@@ -79,11 +83,11 @@
                             <ul class="timeline-list is-scrollable h-max-300px">
                                 <li class="timeline-item">
                                     <div class="timeline-status bg-teal"></div>
-                                    <div class="timeline-date">20 Mar <em class="icon ni ni-alarm-alt"></em></div>
+                                    <div class="timeline-date"><%= moment(ticket.createdAt).format('MMM D, YYYY') %>    <em class="icon ni ni-alarm-alt"></em></div>
                                     <div class="timeline-data">
-                                        <h6 class="timeline-title">Submitted by Jason Walker</h6>
+                                        <h6 class="timeline-title">Submitted by <%= ticket.submitter.firstName %> <%= ticket.submitter.lastName %></h6>
                                         <div class="timeline-des">
-                                            <span class="time">04:15 PM</span>
+                                            <span class="time"><%= moment(ticket.createdAt).format('MMM D, YYYY') %></span>
                                         </div>
                                     </div>
                                 </li>
@@ -98,7 +102,7 @@
                     <div class="card-inner">
                         <div class="card-title-group">
                             <div class="card-title card-title-sm">
-                                <h6 class="title">Status History Breakdown</h6>
+                                <h6 class="title">Status History Breakdown <span class="badge badge-danger badge-pill">Beta</span></h6>
                             </div>
                         </div>
                         <div class="traffic-channel">
@@ -106,12 +110,19 @@
                                 <canvas class="analytics-doughnut" id="ticket-status-timeline"></canvas>
                             </div>
                             <div class="traffic-channel-group g-2" id="ticket-status-timeline-details">
-                                
+                                <div class="traffic-channel-data">
+                                    <div class="title"><span class="dot dot-lg sq bg-primary" data-bg="#9cabff"></span><span>10 days</span></div>
+                                    <div class="amount">In Progress</div>
+                                    <div class="title"><span class="dot dot-lg sq bg-primary" data-bg="#9cabff"></span><span>2 days</span></div>
+                                    <div class="amount">New</div>
+                                </div>
                             </div><!-- .traffic-channel-group -->
                         </div><!-- .traffic-channel -->
                     </div>
                 </div><!-- .card -->
             </div>
+
+
             <div class="col-md-12">
                 <div class="card card-inner-group card-bordered">
                     <div class="card-inner border-bottom">
@@ -124,7 +135,7 @@
                     <div class="card-inner">
                         <div class="col-md-12">
 
-<form action="/Tickets/CreateComment" method="post">
+<form action="#" method="post">
     <input type="hidden" data-val="true" data-val-required="The TicketId field is required." id="TicketId" name="TicketId" value="101" />
     <div class="form-group">
         <div class="form-control-wrap">
@@ -145,7 +156,7 @@
     </div><!-- .invoice -->
 </div>
 
-<div class="modal fade" tabindex="-1" id="addAttachment">
+<!-- <div class="modal fade" tabindex="-1" id="addAttachment">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -181,10 +192,10 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <!-- Modal Tabs -->
-<div class="modal fade" tabindex="-1" role="dialog" id="ticketHistory">
+<!-- <div class="modal fade" tabindex="-1" role="dialog" id="ticketHistory">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <a href="#" class="close" data-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
@@ -193,4 +204,90 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        function ticketAnalyticsDoughnut(chartid, set_data) {
+            var selectCanvas = document.getElementById(chartid).getContext("2d");
+            var chart_data = [];
+        
+            for (var i = 0; i < set_data.datasets.length; i++) {
+                chart_data.push({
+                    backgroundColor: set_data.datasets[i].background,
+                    borderWidth: 2,
+                    borderColor: set_data.datasets[i].borderColor,
+                    hoverBorderColor: set_data.datasets[i].borderColor,
+                    data: set_data.datasets[i].data,
+                    timeLabel: set_data.datasets[i].timeLabel,
+                });
+            }
+            var chart = new Chart(selectCanvas, {
+                type: 'doughnut',
+                data: {
+                    labels: set_data.labels,
+                    datasets: chart_data,
+                },
+                options: {
+                    legend: {
+                        display: (set_data.legend) ? set_data.legend : false,
+                        labels: {
+                            boxWidth: 12,
+                            padding: 20,
+                            fontColor: '#6783b8',
+                        }
+                    },
+                    rotation: -1.5,
+                    cutoutPercentage: 70,
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        enabled: true,
+                        callbacks: {
+                            title: function (tooltipItem, data) {
+                                //return "HEY MAN"
+                                return data['labels'][tooltipItem[0]['index']];
+                            },
+                            label: function (tooltipItem, data) {
+                                //return set_data.timeLabel;
+                                //return data.datasets[tooltipItem.datasetIndex]['data'][tooltipItem['index']].timeLabel + ' ' + set_data.dataUnit;
+                                return data.datasets[tooltipItem.datasetIndex]['timeLabel'][tooltipItem['index']];
+        
+                            }
+                        },
+                        backgroundColor: '#fff',
+                        borderColor: '#eff6ff',
+                        borderWidth: 2,
+                        titleFontSize: 13,
+                        titleFontColor: '#6783b8',
+                        titleMarginBottom: 6,
+                        bodyFontColor: '#9eaecf',
+                        bodyFontSize: 12,
+                        bodySpacing: 4,
+                        yPadding: 10,
+                        xPadding: 10,
+                        footerMarginTop: 0,
+                        displayColors: false
+                    },
+                }
+            });
+            return chart;
+        }
+        const ticketDoughnutDatadata = {
+            labels: [
+              'In Progress',
+              'New'
+            ],
+            dataUnit:'',
+            legend: false,
+            datasets: [{
+              borderColor: "#fff",
+              background: ["#9cabff", "#f4aaa4", "#8feac5"],
+              data:[80,20],
+              timeLabel: ['10 days','2 days']
+          }]
+          };
+        ticketAnalyticsDoughnut("ticket-status-timeline", ticketDoughnutDatadata);
+})
+    
+
+</script>
+

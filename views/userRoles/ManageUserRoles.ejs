@@ -1,4 +1,4 @@
-<%layout('../views/layouts/boilerplate')
+<%layout('../views/layouts/boilerplate')%>
 <div class="nk-content-wrap">
     <div class="nk-block-head nk-block-head-lg">
         <div class="nk-block-head-sub"><span>Team Members</span></div>
@@ -31,16 +31,17 @@
                     </tr>
                 </thead>
                 <tbody class="tb-member-body">
+                    <% users.forEach(function(user,i) { %>
                         <tr class="tb-member-item">
 
                             <td class="tb-member-info">
                                 <div class="user-card">
                                     <div class="user-avatar bg-success">
-                                        <span>KW</span>
+                                        <span><%=user.firstName.charAt(0)%><%=user.lastName.charAt(0)%></span>
                                     </div>
                                     <div class="user-info">
-                                        <span class="lead-text">Kim Williams </span>
-                                        <span class="sub-text">projectmanager@mailinator.com </span>
+                                        <span class="lead-text"><%=user.firstName%> <%=user.lastName%> </span>
+                                        <span class="sub-text"><%=user.email%></span>
                                     </div>
                                 </div>
                             </td>
@@ -48,23 +49,24 @@
                                     <span>Normal</span>
                             </td>
                             <td class="tb-member-role tb-col-md">
-                                <form method="post" id="form-0" action="/UserRoles/ManageUserRoles">
+                                <form method="post" id="form-<%= i %>" action="/UserRoles/ManageUserRoles/<%= user._id %>">
                                     
-                                    <input type="hidden" id="btuser_User_Id" name="btuser.User.Id" value="ba0f6329-a3c8-412e-9f50-35dc067f3d6b">
                                     <div class="form">
-                                                <select class="form-select" id="0 " data-search="off" data-ui="clean" name="btuser.SelectedRole"><option value="Admin">Admin</option>
-<option selected="selected" value="ProjectManager">ProjectManager</option>
-<option value="Developer">Developer</option>
-<option value="Submitter">Submitter</option>
-<option value="NewUser">NewUser</option>
-<option value="Demo">Demo</option>
-</select>
+                                                <select class="form-select" id="<%= i %>" data-search="off" data-ui="clean" name="selectedRole">
+                                                    <% userRolesArray.forEach(role => {%>
+                                                        <option value="<%=role%>" 
+                                                            <% if(user.role == role) {%>
+                                                                selected <% } %> 
+                                                            ><%=role%></option>
+                                                    <%}); %> 
+                                                    
+                                                </select>
                                     </div>
                                 <input name="__RequestVerificationToken" type="hidden" value="CfDJ8GG61DbYsKhNnCx8U1WKFB3cbfTgNuJS8LY63n7U60JIi-BWf2usJTx4lwZ_ZBz3CfOcM3YdoV8YqQX4vrrM9e_YROxZEdJquyDrv8BRy_ir-tUi3YhODkyqrMc8cU_Vif6lC1KK2PfrooYZDtbDC-8B-VUSR_eFhfVzcoIwfJcB-07hi3f41Hvwr_iS3bTi4w" /></form>
                             </td>
                             <td class="tb-member-action">
                                 <div class="d-none d-md-inline">
-                                    <button class="btn btn-primary" onclick="javascript: document.getElementById('form-0').submit()">Assign</button>
+                                    <button class="btn btn-primary" onclick="javascript: document.getElementById('form-<%= i %>').submit()">Assign</button>
                                 </div>
                                 <div class="dropdown d-md-none">
                                     <a class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-v"></em></a>
@@ -77,238 +79,22 @@
                                 </div>
                             </td>
                         </tr><!-- .tb-member-item -->
-                        <tr class="tb-member-item">
-
-                            <td class="tb-member-info">
-                                <div class="user-card">
-                                    <div class="user-avatar bg-success">
-                                        <span>KD</span>
-                                    </div>
-                                    <div class="user-info">
-                                        <span class="lead-text">Kevin Daniels </span>
-                                        <span class="sub-text">developer@mailinator.com </span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="tb-member-type tb-col-sm">
-                                    <span>Normal</span>
-                            </td>
-                            <td class="tb-member-role tb-col-md">
-                                <form method="post" id="form-1" action="/UserRoles/ManageUserRoles">
-                                    
-                                    <input type="hidden" id="btuser_User_Id" name="btuser.User.Id" value="0e614981-e8f2-4951-94fe-49de987ff1c6">
-                                    <div class="form">
-                                                <select class="form-select" id="1 " data-search="off" data-ui="clean" name="btuser.SelectedRole"><option value="Admin">Admin</option>
-<option value="ProjectManager">ProjectManager</option>
-<option selected="selected" value="Developer">Developer</option>
-<option value="Submitter">Submitter</option>
-<option value="NewUser">NewUser</option>
-<option value="Demo">Demo</option>
-</select>
-                                    </div>
-                                <input name="__RequestVerificationToken" type="hidden" value="CfDJ8GG61DbYsKhNnCx8U1WKFB3cbfTgNuJS8LY63n7U60JIi-BWf2usJTx4lwZ_ZBz3CfOcM3YdoV8YqQX4vrrM9e_YROxZEdJquyDrv8BRy_ir-tUi3YhODkyqrMc8cU_Vif6lC1KK2PfrooYZDtbDC-8B-VUSR_eFhfVzcoIwfJcB-07hi3f41Hvwr_iS3bTi4w" /></form>
-                            </td>
-                            <td class="tb-member-action">
-                                <div class="d-none d-md-inline">
-                                    <button class="btn btn-primary" onclick="javascript: document.getElementById('form-1').submit()">Assign</button>
-                                </div>
-                                <div class="dropdown d-md-none">
-                                    <a class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-v"></em></a>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
-                                        <ul class="link-list-plain no-bdr">
-                                            <li class="active"><a class="link link-sm" href="#">Edit</a></li>
-                                            <li><a class="link link-sm link-danger" href="#">Remove</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr><!-- .tb-member-item -->
-                        <tr class="tb-member-item">
-
-                            <td class="tb-member-info">
-                                <div class="user-card">
-                                    <div class="user-avatar bg-success">
-                                        <span>JW</span>
-                                    </div>
-                                    <div class="user-info">
-                                        <span class="lead-text">Jason Walker </span>
-                                        <span class="sub-text">submitter@mailinator.com </span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="tb-member-type tb-col-sm">
-                                    <span>Normal</span>
-                            </td>
-                            <td class="tb-member-role tb-col-md">
-                                <form method="post" id="form-2" action="/UserRoles/ManageUserRoles">
-                                    
-                                    <input type="hidden" id="btuser_User_Id" name="btuser.User.Id" value="ef173e22-e447-4a6e-ab23-d9f05d9a8251">
-                                    <div class="form">
-                                                <select class="form-select" id="2 " data-search="off" data-ui="clean" name="btuser.SelectedRole"><option value="Admin">Admin</option>
-<option value="ProjectManager">ProjectManager</option>
-<option value="Developer">Developer</option>
-<option selected="selected" value="Submitter">Submitter</option>
-<option value="NewUser">NewUser</option>
-<option value="Demo">Demo</option>
-</select>
-                                    </div>
-                                <input name="__RequestVerificationToken" type="hidden" value="CfDJ8GG61DbYsKhNnCx8U1WKFB3cbfTgNuJS8LY63n7U60JIi-BWf2usJTx4lwZ_ZBz3CfOcM3YdoV8YqQX4vrrM9e_YROxZEdJquyDrv8BRy_ir-tUi3YhODkyqrMc8cU_Vif6lC1KK2PfrooYZDtbDC-8B-VUSR_eFhfVzcoIwfJcB-07hi3f41Hvwr_iS3bTi4w" /></form>
-                            </td>
-                            <td class="tb-member-action">
-                                <div class="d-none d-md-inline">
-                                    <button class="btn btn-primary" onclick="javascript: document.getElementById('form-2').submit()">Assign</button>
-                                </div>
-                                <div class="dropdown d-md-none">
-                                    <a class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-v"></em></a>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
-                                        <ul class="link-list-plain no-bdr">
-                                            <li class="active"><a class="link link-sm" href="#">Edit</a></li>
-                                            <li><a class="link link-sm link-danger" href="#">Remove</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr><!-- .tb-member-item -->
-                        <tr class="tb-member-item">
-
-                            <td class="tb-member-info">
-                                <div class="user-card">
-                                    <div class="user-avatar bg-success">
-                                        <span>CY</span>
-                                    </div>
-                                    <div class="user-info">
-                                        <span class="lead-text">Carlos Young </span>
-                                        <span class="sub-text">newuser@mailinator.com </span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="tb-member-type tb-col-sm">
-                                    <span>Normal</span>
-                            </td>
-                            <td class="tb-member-role tb-col-md">
-                                <form method="post" id="form-3" action="/UserRoles/ManageUserRoles">
-                                    
-                                    <input type="hidden" id="btuser_User_Id" name="btuser.User.Id" value="a7041a84-f945-4e8b-a408-17474108c9ae">
-                                    <div class="form">
-                                                <select class="form-select" id="3 " data-search="off" data-ui="clean" name="btuser.SelectedRole"><option value="Admin">Admin</option>
-<option value="ProjectManager">ProjectManager</option>
-<option value="Developer">Developer</option>
-<option value="Submitter">Submitter</option>
-<option selected="selected" value="NewUser">NewUser</option>
-<option value="Demo">Demo</option>
-</select>
-                                    </div>
-                                <input name="__RequestVerificationToken" type="hidden" value="CfDJ8GG61DbYsKhNnCx8U1WKFB3cbfTgNuJS8LY63n7U60JIi-BWf2usJTx4lwZ_ZBz3CfOcM3YdoV8YqQX4vrrM9e_YROxZEdJquyDrv8BRy_ir-tUi3YhODkyqrMc8cU_Vif6lC1KK2PfrooYZDtbDC-8B-VUSR_eFhfVzcoIwfJcB-07hi3f41Hvwr_iS3bTi4w" /></form>
-                            </td>
-                            <td class="tb-member-action">
-                                <div class="d-none d-md-inline">
-                                    <button class="btn btn-primary" onclick="javascript: document.getElementById('form-3').submit()">Assign</button>
-                                </div>
-                                <div class="dropdown d-md-none">
-                                    <a class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-v"></em></a>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
-                                        <ul class="link-list-plain no-bdr">
-                                            <li class="active"><a class="link link-sm" href="#">Edit</a></li>
-                                            <li><a class="link link-sm link-danger" href="#">Remove</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr><!-- .tb-member-item -->
-                        <tr class="tb-member-item">
-
-                            <td class="tb-member-info">
-                                <div class="user-card">
-                                    <div class="user-avatar bg-success">
-                                        <span>JP</span>
-                                    </div>
-                                    <div class="user-info">
-                                        <span class="lead-text">Joshua2 Peters </span>
-                                        <span class="sub-text">admin@mailinator.com </span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="tb-member-type tb-col-sm">
-                                    <span>Normal</span>
-                            </td>
-                            <td class="tb-member-role tb-col-md">
-                                <form method="post" id="form-4" action="/UserRoles/ManageUserRoles">
-                                    
-                                    <input type="hidden" id="btuser_User_Id" name="btuser.User.Id" value="2b632453-5d55-496f-a60c-bf86f1b6c430">
-                                    <div class="form">
-                                            <select disabled class="form-select" id="4 " data-search="off" data-ui="clean" name="btuser.SelectedRole"><option selected="selected" value="Admin">Admin</option>
-<option value="ProjectManager">ProjectManager</option>
-<option value="Developer">Developer</option>
-<option value="Submitter">Submitter</option>
-<option value="NewUser">NewUser</option>
-<option value="Demo">Demo</option>
-</select>
-                                    </div>
-                                <input name="__RequestVerificationToken" type="hidden" value="CfDJ8GG61DbYsKhNnCx8U1WKFB3cbfTgNuJS8LY63n7U60JIi-BWf2usJTx4lwZ_ZBz3CfOcM3YdoV8YqQX4vrrM9e_YROxZEdJquyDrv8BRy_ir-tUi3YhODkyqrMc8cU_Vif6lC1KK2PfrooYZDtbDC-8B-VUSR_eFhfVzcoIwfJcB-07hi3f41Hvwr_iS3bTi4w" /></form>
-                            </td>
-                            <td class="tb-member-action">
-                                <div class="d-none d-md-inline">
-                                    <button class="btn btn-primary" onclick="javascript: document.getElementById('form-4').submit()">Assign</button>
-                                </div>
-                                <div class="dropdown d-md-none">
-                                    <a class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-v"></em></a>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
-                                        <ul class="link-list-plain no-bdr">
-                                            <li class="active"><a class="link link-sm" href="#">Edit</a></li>
-                                            <li><a class="link link-sm link-danger" href="#">Remove</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr><!-- .tb-member-item -->
-                        <tr class="tb-member-item">
-
-                            <td class="tb-member-info">
-                                <div class="user-card">
-                                    <div class="user-avatar bg-success">
-                                        <span>rt</span>
-                                    </div>
-                                    <div class="user-info">
-                                        <span class="lead-text">ret trer </span>
-                                        <span class="sub-text">123@gmail.com </span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="tb-member-type tb-col-sm">
-                                    <span>Normal</span>
-                            </td>
-                            <td class="tb-member-role tb-col-md">
-                                <form method="post" id="form-5" action="/UserRoles/ManageUserRoles">
-                                    
-                                    <input type="hidden" id="btuser_User_Id" name="btuser.User.Id" value="7af0b493-edeb-4c96-b1e6-616af9d105b5">
-                                    <div class="form">
-                                                <select class="form-select" id="5 " data-search="off" data-ui="clean" name="btuser.SelectedRole"><option value="Admin">Admin</option>
-<option value="ProjectManager">ProjectManager</option>
-<option value="Developer">Developer</option>
-<option value="Submitter">Submitter</option>
-<option selected="selected" value="NewUser">NewUser</option>
-<option value="Demo">Demo</option>
-</select>
-                                    </div>
-                                <input name="__RequestVerificationToken" type="hidden" value="CfDJ8GG61DbYsKhNnCx8U1WKFB3cbfTgNuJS8LY63n7U60JIi-BWf2usJTx4lwZ_ZBz3CfOcM3YdoV8YqQX4vrrM9e_YROxZEdJquyDrv8BRy_ir-tUi3YhODkyqrMc8cU_Vif6lC1KK2PfrooYZDtbDC-8B-VUSR_eFhfVzcoIwfJcB-07hi3f41Hvwr_iS3bTi4w" /></form>
-                            </td>
-                            <td class="tb-member-action">
-                                <div class="d-none d-md-inline">
-                                    <button class="btn btn-primary" onclick="javascript: document.getElementById('form-5').submit()">Assign</button>
-                                </div>
-                                <div class="dropdown d-md-none">
-                                    <a class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-v"></em></a>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
-                                        <ul class="link-list-plain no-bdr">
-                                            <li class="active"><a class="link link-sm" href="#">Edit</a></li>
-                                            <li><a class="link link-sm link-danger" href="#">Remove</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr><!-- .tb-member-item -->
+                        <% }) %> 
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        function selectUserInDb() {
+        document.getElementsByClassName("form-select").forEach(select => {
+            select.forEach(option=>{
+                console.log(option.text);
+            })
+        });;
+}
+selectUserInDb()
+
+    });
+</script>

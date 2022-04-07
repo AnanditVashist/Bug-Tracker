@@ -1,4 +1,3 @@
-// import {typeStrings,priorityStrings,statusStrings} from '../utilities/ticketUtility'
 const mongoose=require('mongoose');
 const Project = require('../models/project');
 const Ticket = require('../models/ticket');
@@ -18,23 +17,26 @@ db.once("open",()=>{
 
 const seedDb=async()=>{
         let projects=await Project.find();
-        for(project of projects){
+        for(projectInDb of projects){
+            for(i=0;i<6;i++){
             let ticket=new Ticket({
                 title:`Random ${Math.floor(1000 + Math.random() * 9000)}: ticket generated automatically.`,
                 description: `This ticket was generated for demo purposes ${Math.floor(1000 + Math.random() * 9000)} uniquely identifies this ticket.`,
-                type:'UI',
-                priority:'Pending',
-                status:'New',
-                project: project._id,
-                submitter: '624a6ff5b99bf14d17a4adf1',
-                asignee:'624a7018b99bf14d17a4adf7',
+                type:'Backend',
+                priority:'Low',
+                status:'In Progress',
+                project: projectInDb._id,
+                submitter: '624a7018b99bf14d17a4adf7',
+                asignee:'624a6ff5b99bf14d17a4adf1',
             });
-
             await ticket.save()
+        }
         }
        
 
 }
+// 624a7044b99bf14d17a4adfd
+// 624a6faab99bf14d17a4adeb
     // for (let i = 1; i < 10; i+=2) {
     //     let ticket=new ticket({
     //         title: `Title ${i}`,
