@@ -66,10 +66,10 @@
                                                         <label class="overline-title overline-title-alt">Type</label>
                                                         <select class="form-select form-select-sm" name="Type">
                                                             <option selected disabled value="select">Select</option>
-                                                        <option value="UI">UI</option>
-<option value="Backend">Backend</option>
-<option value="Runtime">Runtime</option>
-</select>
+                                                            <option value="UI">UI</option>
+                                                            <option value="Runtime">Runtime</option>
+                                                            <option value="Backend">Backend</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
@@ -77,11 +77,11 @@
                                                         <label class="overline-title overline-title-alt">Status</label>
                                                         <select class="form-select form-select-sm" name="Status">
                                                             <option selected disabled value="select">Select</option>
-                                                        <option value="New">New</option>
-<option value="Reviewed">Reviewed</option>
-<option value="In Progress">In Progress</option>
-<option value="Resolved">Resolved</option>
-</select>
+                                                            <option value="New">New</option>
+                                                            <option value="Reviewed">Reviewed</option>
+                                                            <option value="In Progress">In Progress</option>
+                                                            <option value="Resolved">Resolved</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
@@ -89,12 +89,12 @@
                                                         <label class="overline-title overline-title-alt">Priority</label>
                                                         <select class="form-select form-select-sm" name="Priority">
                                                             <option selected disabled value="select">Select</option>
-                                                        <option value="Pending">Pending</option>
-<option value="Low">Low</option>
-<option value="Moderate">Moderate</option>
-<option value="High">High</option>
-<option value="Urgent">Urgent</option>
-</select>
+                                                            <option value="Pending">Pending</option>
+                                                            <option value="Low">Low</option>
+                                                            <option value="Moderate">Moderate</option>
+                                                            <option value="High">High</option>
+                                                            <option value="Urgent">Urgent</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
@@ -144,83 +144,50 @@
         </tr>
     </thead>
     <tbody>
+        <% tickets.forEach(ticket => { %>
             <tr class="nk-tb-item">
                 <td class="nk-tb-col tb-col-xxl">
-                    <span><a href="/Tickets/Details/12?source=controller">#12</a></span>
+                    <span><a href="#"></a></span>
                 </td>
                 <td class="nk-tb-col">
-                    <h6 class="text-wrap">Random 157: ticket generated automatically.</h6>
+                    <h6 class="text-wrap"><%= ticket.title %></h6>
                 </td>
                 <td class="nk-tb-col" data-order="0" style="color:#8091a7">
-                    <span class="badge badge-dot">Pending</span>
+                    <span class="badge badge-dot"><%= ticket.priority %></span>
                 </td>
                 <td class="nk-tb-col tb-col-md">
                     <ul class="list-status">
-                        <li><em class="icon text-success ni ni-check-circle"></em> <span>Kevin Daniels</span></li>
+                        <li><em class="icon text-success ni ni-check-circle"></em> 
+                            <span><%= ticket.asignee.firstName %> <%= ticket.asignee.lastName %></span></li>
                     </ul>
                 </td>
                 <td class="nk-tb-col tb-col-md">
-                    <span class="tb-status text-primary">In Progress</span>
+                    <span class="tb-status text-primary"><%= ticket.status %></span>
                 </td>
                 <td class="nk-tb-col tb-col-lg">
                     <span>Backend</span>
                 </td>
                 <td class="nk-tb-col tb-col-lg">
-                    <a href="/Projects/Details/4"><span class="tb-status text-primary">Example Project 6</span></a>
+                    <a href="/Projects/Details/4"><span class="tb-status text-primary"><%= ticket.project.name %></span></a>
                 </td>
                 <td class="nk-tb-col tb-col-xxl">
                     <ul class="list-status">
-                        <li><em class="icon ni ni-user-fill"></em>Jason Walker</li>
+                        <li><em class="icon ni ni-user-fill">
+                            </em><%= ticket.submitter.firstName %> <%= ticket.submitter.lastName %></li>
                     </ul>
                 </td>
                 <td class="nk-tb-col tb-col-xxl" data-sort="03/21/2022 04:15PM">
                     <span class="tb-status">Mar 21</span>
                 </td>
                 <td class="nk-tb-col tb-col-xxl" data-sort="Mar/28/2022">
-                    <span class="tb-status">Mar 28</span>
+                    <span class="tb-status"><%= ticket.createdAt %> </span>
                 </td>
                 <td class="nk-tb-col ">
-                    <a class="btn btn-primary" href="/Tickets/Details/12"><span>View</span></a>
+                    <a class="btn btn-primary" href="/Tickets/Details/<%= ticket._id %>"><span>View</span></a>
                 </td>
-            </tr>            <tr class="nk-tb-item">
-                <td class="nk-tb-col tb-col-xxl">
-                    <span><a href="/Tickets/Details/13?source=controller">#13</a></span>
-                </td>
-                <td class="nk-tb-col">
-                    <h6 class="text-wrap">Random 193: ticket generated automatically.</h6>
-                </td>
-                <td class="nk-tb-col" data-order="-4" style="color:#e85347">
-                    <span class="badge badge-dot">Urgent</span>
-                </td>
-                <td class="nk-tb-col tb-col-md">
-                    <ul class="list-status">
-                        <li><em class="icon text-success ni ni-check-circle"></em> <span>Kevin Daniels</span></li>
-                    </ul>
-                </td>
-                <td class="nk-tb-col tb-col-md">
-                    <span class="tb-status text-primary">In Progress</span>
-                </td>
-                <td class="nk-tb-col tb-col-lg">
-                    <span>Backend</span>
-                </td>
-                <td class="nk-tb-col tb-col-lg">
-                    <a href="/Projects/Details/4"><span class="tb-status text-primary">Example Project 6</span></a>
-                </td>
-                <td class="nk-tb-col tb-col-xxl">
-                    <ul class="list-status">
-                        <li><em class="icon ni ni-user-fill"></em>Jason Walker</li>
-                    </ul>
-                </td>
-                <td class="nk-tb-col tb-col-xxl" data-sort="03/25/2022 04:15PM">
-                    <span class="tb-status">Mar 25</span>
-                </td>
-                <td class="nk-tb-col tb-col-xxl" data-sort="Mar/28/2022">
-                    <span class="tb-status">Mar 28</span>
-                </td>
-                <td class="nk-tb-col ">
-                    <a class="btn btn-primary" href="/Tickets/Details/13"><span>View</span></a>
-                </td>
-            </tr>
+            </tr> 
+        <% }) %>
+                    
         </tbody>
     </table>
     

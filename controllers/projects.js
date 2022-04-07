@@ -2,15 +2,14 @@ const express = require('express')
 const router = express.Router()
 const mongoose=require('mongoose')
 const Project=require('../models/project')
+const Ticket=require('../models/ticket')
 const User=require('../models/user')
 const {isLoggedIn}=require('../middleware')
 const {grantAccess}=require('../middleware')
 
 router.get('/',async (req,res)=>{
-    const projectDashboardViewModel={
-        projects: await Project.find(),
-    }
-    res.render('projects',{projectDashboardViewModel})
+        const projects= await Project.find().populate({path:'team'})
+        res.render('projects',{projects})
 })
 
 router.get('/create',(req,res)=>{
@@ -31,8 +30,11 @@ router.post('/create',async (req,res)=>{
 
 
 router.get('/details/:id',async (req,res)=>{
-    const project=await Project.findById(req.params.id)
-    res.render('projects/details',{project})
+    const projectDetailsViewModel={
+        project:await Project.findById(req.params.id).populate({path:'team'}),
+        tickets: await Ticket.find({project:req.params.id}).populate({path:'asignee'})
+    }
+    res.render('projects/details',{projectDetailsViewModel})
 
 })
 
@@ -69,5 +71,22 @@ router.post('/AssignUsers/:id', async(req,res)=>{
 
 })
 
+router.post('/ArchiveProject/:id',async(req,res)=>{
+    await Project.findByIdAndUpdate(req.params.id,{status:'Archived'})
+    
+    res.redirect(`/projects/details/${req.params.id}`)
+})
+
+router.get('/ArchivedProjects',async(req,res)=>{
+    const projects=await Project.find({status:'Archived'}).exec()
+    
+    res.render('projects/index',{projects})
+})
+
+// router.get('/MyProjects',async(req,res)=>{
+//     const projects=await Project.findById(currentUser.id)
+    
+//     res.render('projects/index',{projects})
+// })
 
 module.exports=router
