@@ -31,7 +31,7 @@ router.get('/login',(req,res)=>{
 // 
 
 router.post('/login',passport.authenticate('local', {  failureRedirect: '/identity/login' }),(req,res)=>{
-    res.redirect('/projects')
+    res.redirect('/home/dashboard')
 })
 
 router.get('/logout',(req,res)=>{

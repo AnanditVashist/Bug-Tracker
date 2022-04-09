@@ -3,22 +3,38 @@ const ac = new AccessControl();
  
 module.exports.roles = (function() {
 ac.grant("newUser")
+ 
+ac.grant("submitter")
  .readOwn("project")
- .updateOwn("project")
- 
-ac.grant("developer")
- .extend("newUser")
- .readAny("project")
+ .readOwn('ticket')
+ .createOwn('ticket')
+ .updateOwn('ticket')
 
-ac.grant('manager')
-    .extend('developer')
+ac.grant('developer')
+    .extend('submitter')
+ 
+ac.grant("manager")
+ .createAny("project")
+ .readAny('project')
+ .updateOwn('project')
+ .deleteOwn('project')
+ .createAny('ticket')
+ .readAny('')
+ .updateAny('ticket')
+ .deleteAny("ticket")
+ 
+ ac.grant('admin')
+    .createAny('project')
+    .updateAny('project')
     .readAny('project')
- 
-ac.grant("admin")
- .extend("newUser")
- .extend("developer")
- .updateAny("project")
- .deleteAny("project")
- 
+    .deleteAny('project')
+    .createAny('ticket')
+    .updateAny('ticket')
+    .readAny('ticket')
+    .deleteAny('ticket')
+    .createAny('user')
+    .updateAny('user')
+    .readAny('user')
+    .deleteAny('user')
 return ac;
 })();

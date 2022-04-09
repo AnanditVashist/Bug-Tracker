@@ -1,216 +1,178 @@
 <% layout('../views/layouts/boilerplate') %> 
-<div class="nk-block-between">
-    <div class="nk-block-head-content">
-        <h3 class="nk-block-title page-title">Overview</h3>
-        <div class="nk-block-des text-soft">
-            <p>Welcome to the Trackii Dashboard.</p>
-        </div>
-    </div><!-- .nk-block-head-content -->
-    <div class="nk-block-head-content">
-        <div class="toggle-wrap nk-block-tools-toggle">
-            <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
-            <div class="toggle-expand-content" data-content="pageMenu">
-                <ul class="nk-block-tools g-3">
-                        <li><a class="btn btn-white btn-dim btn-outline-primary" href="/Projects/Create"><em class="icon ni ni-plus"></em><span>New Project</span></a></li>
-                        <li><a class="btn btn-white btn-dim btn-outline-primary" href="/Tickets/Create"><em class="icon ni ni-plus"></em><span>New Ticket</span></a></li>
-                </ul>
+<div class="nk-block-head nk-block-head-sm">
+    <div class="nk-block-between">
+        <div class="nk-block-head-content">
+            <h3 class="nk-block-title page-title">Overview</h3>
+            <div class="nk-block-des text-soft">
+                <p>Welcome to the Jovi Dashboard.</p>
+            </div>
+        </div><!-- .nk-block-head-content -->
+        <div class="nk-block-head-content">
+            <div class="toggle-wrap nk-block-tools-toggle">
+                <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                <div class="toggle-expand-content" data-content="pageMenu">
+                    <ul class="nk-block-tools g-3">
+                            <li><a class="btn btn-white btn-dim btn-outline-primary" href="/Tickets/Create"><em class="icon ni ni-plus"></em><span>New Ticket</span></a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 <div class="nk-block">
-<div class="row g-gs">
-    <div class="col">
-        <div class="card card-bordered h-100">
-            <div class="card-inner">
-                <div class="card-title-group align-start mb-3">
-                    <div class="card-title">
-                            <h6 class="title">Tickets Overview</h6>
-                        <p>Tickets created and resolved in the last 15 days.</p>
-                    </div>
-                </div>
-                <div class="nk-order-ovwg">
-                    <div class="row g-4 align-end">
-                        <div class="col-xxl-8">
-                            <div class="nk-order-ovwg-ck">
-                                <canvas class="tickets-overview-chart" id="ticketsOverview"></canvas>
-                            </div>
-                        </div>
-                        <div class="col-xxl-4">
-                            <div class="row g-4">
-                                <div class="col-sm-6 col-xxl-12">
-                                    <div class="nk-order-ovwg-data buy">
-                                        <div class="amount"><span id="resolved-ticket-count">---</span> <small class="currenct currency-usd">Resolved</small></div>
-                                        <div class="info">From <strong>Mar 17, 2022</strong> to today</div>
-                                        <div class="title"><em class="icon ni ni-arrow-down-left"></em> Resolved</div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-xxl-12">
-                                    <div class="nk-order-ovwg-data sell">
-                                        <div class="amount"><span id="new-ticket-count">---</span> <small class="currenct currency-usd">Created</small></div>
-                                        <div class="info">From <strong>Mar 17, 2022 </strong> to today</div>
-                                        <div class="title"><em class="icon ni ni-arrow-up-left"></em> Created</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-        <div class="col-lg-3">
+    <div class="row g-gs">
+        <div class="col">
             <div class="card card-bordered h-100">
-                <div class="card-inner-group">
-                    <div class="card-inner card-inner-md">
-                        <div class="card-title-group">
-                            <div class="card-title">
-                                <h6 class="title">Action Center</h6>
+                <div class="card-inner">
+                    <div class="card-title-group align-start mb-3">
+                        <div class="card-title">
+                                <h6 class="title">Tickets Overview</h6>
+                            <p>Tickets created and resolved in the last 15 days.</p>
+                        </div>
+                    </div>
+                    <div class="nk-order-ovwg">
+                        <div class="row g-4 align-end">
+                            <div class="col-xxl-8">
+                                <div class="nk-order-ovwg-ck">
+                                    <canvas class="tickets-overview-chart" id="ticketsOverview"></canvas>
+                                </div>
                             </div>
-                            <div class="card-tools mr-n1 p-3">
+                            <div class="col-xxl-4">
+                                <div class="row g-4">
+                                    <div class="col-sm-6 col-xxl-12">
+                                        <div class="nk-order-ovwg-data buy">
+                                            <div class="amount"><span id="resolved-ticket-count">---</span> <small class="currenct currency-usd">Resolved</small></div>
+                                            <div class="info">From <strong>Mar 25, 2022</strong> to today</div>
+                                            <div class="title"><em class="icon ni ni-arrow-down-left"></em> Resolved</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-xxl-12">
+                                        <div class="nk-order-ovwg-data sell">
+                                            <div class="amount"><span id="new-ticket-count">---</span> <small class="currenct currency-usd">Created</small></div>
+                                            <div class="info">From <strong>Mar 25, 2022 </strong> to today</div>
+                                            <div class="title"><em class="icon ni ni-arrow-up-left"></em> Created</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                            <div class="card-inner bg-warning-dim">
-                                <div class="nk-wg-action">
-                                    <div class="nk-wg-action-content">
-                                        <em class="icon ni ni-property-remove"></em>
-                                        <div class="title">Ticket Assignment</div>
-                                        <p>You have 1 unassigned ticket</p>
-                                    </div>
-                                    <a class="btn btn-icon btn-trigger mr-n2" href="/Tickets?unassigned=true"><em class="icon ni ni-forward-ios"></em></a>
-                                </div>
-                            </div><!-- .card-inner -->
-                            <div class="card-inner bg-warning-dim">
-                                <div class="nk-wg-action">
-                                    <div class="nk-wg-action-content">
-                                        <em class="icon ni ni-user-cross"></em>
-                                        <div class="title">User Role Assignment</div>
-                                        <p>You have 2 new users who need to be approved.</p>
-                                    </div>
-                                    <a class="btn btn-icon btn-trigger mr-n2" href="/UserRoles/ManageUserRoles"><em class="icon ni ni-forward-ios"></em></a>
-                                </div>
-                            </div>
                 </div>
             </div>
         </div>
-</div>
 
-<div class="row g-gs">
-    <div class="col-4">
-        <div class="card card-bordered w-100 h-100">
-            <div class="card-inner">
-                <div class="card-title-group">
-                    <div class="card-title card-title-sm">
-                        <h6 class="title">Tickets By Type</h6>
+    </div>
+
+    <div class="row g-gs">
+        <div class="col-4">
+            <div class="card card-bordered w-100 h-100">
+                <div class="card-inner">
+                    <div class="card-title-group">
+                        <div class="card-title card-title-sm">
+                            <h6 class="title">Tickets By Type</h6>
+                        </div>
+                    </div>
+                    <div class="traffic-channel-doughnut-ck">
+                        <canvas class="analytics-doughnut" id="TicketTypeDoughnut"></canvas>
                     </div>
                 </div>
-                <div class="traffic-channel-doughnut-ck">
-                    <canvas class="analytics-doughnut" id="TicketTypeDoughnut"></canvas>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card card-bordered w-100 h-100">
+                <div class="card-inner">
+                    <div class="card-title-group">
+                        <div class="card-title card-title-sm">
+                            <h6 class="title">Ticket By Status</h6>
+                        </div>
+                    </div>
+                    <div class="traffic-channel-doughnut-ck">
+                        <canvas class="analytics-doughnut" id="TicketStatusDoughnut"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card card-bordered w-100 h-100">
+                <div class="card-inner">
+                    <div class="card-title-group">
+                        <div class="card-title card-title-sm">
+                            <h6 class="title">Tickets By Priority</h6>
+                        </div>
+                    </div>
+                    <div class="traffic-channel-doughnut-ck">
+                        <canvas class="analytics-doughnut" id="TicketPriorityDoughnut"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-4">
-        <div class="card card-bordered w-100 h-100">
-            <div class="card-inner">
-                <div class="card-title-group">
-                    <div class="card-title card-title-sm">
-                        <h6 class="title">Ticket By Status</h6>
+
+    <div class="row g-gs">
+        <div class="col">
+            <div class="card card-bordered card-full">
+                <div class="card-inner">
+                    <div class="card-title-group">
+                        <div class="card-title">
+                            <h6 class="title"><span class="mr-2">New Tickets</span> <a class="link d-none d-sm-inline" href="/Tickets">See Tickets</a></h6>
+                        </div>
                     </div>
-                </div>
-                <div class="traffic-channel-doughnut-ck">
-                    <canvas class="analytics-doughnut" id="TicketStatusDoughnut"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-4">
-        <div class="card card-bordered w-100 h-100">
-            <div class="card-inner">
-                <div class="card-title-group">
-                    <div class="card-title card-title-sm">
-                        <h6 class="title">Tickets By Priority</h6>
-                    </div>
-                </div>
-                <div class="traffic-channel-doughnut-ck">
-                    <canvas class="analytics-doughnut" id="TicketPriorityDoughnut"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row g-gs">
-    <div class="col">
-        <div class="card card-bordered card-full">
-            <div class="card-inner">
-                <div class="card-title-group">
-                    <div class="card-title">
-                        <h6 class="title"><span class="mr-2">New Tickets</span> <a class="link d-none d-sm-inline" href="/Tickets">See Tickets</a></h6>
-                    </div>
-                </div>
-            </div><!-- .card-inner -->
-            <div class="card-inner card border-top">
-                
+                </div><!-- .card-inner -->
+                <div class="card-inner card border-top">
+                    
 <table class="datatable-init nk-tb-list nk-tb-ulist" data-auto-responsive="false">
-<thead>
-    <tr class="nk-tb-item nk-tb-head">
-        <th class="nk-tb-col tb-col-xxl"><span>Id</span></th>
-        <th class="nk-tb-col"><span class="sub-text">Title</span></th>
-        <th class="nk-tb-col"><span class="sub-text">Priority</span></th>
-        <th class="nk-tb-col tb-col-md"><span class="sub-text">Assigned To</span></th>
-        <th class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></th>
-        <th class="nk-tb-col tb-col-lg"><span class="sub-text">Type</span></th>
-        <th class="nk-tb-col tb-col-lg"><span class="sub-text">Project</span></th>
-        <th class="nk-tb-col tb-col-xxl"><span class="sub-text">Owner</span></th>
-        <th class="nk-tb-col tb-col-xxl"><span class="sub-text">Created</span></th>
-        <th class="nk-tb-col tb-col-xxl"><span class="sub-text">Updated</span></th>
-        <th class="nk-tb-col nk-tb-col-tools text-right">
-        </th>
-    </tr>
-</thead>
-<tbody>
-        <tr class="nk-tb-item">
-            <td class="nk-tb-col tb-col-xxl">
-                <span><a href="/Tickets/Details/12?source=controller">#12</a></span>
-            </td>
-            <td class="nk-tb-col">
-                <h6 class="text-wrap">Random 157: ticket generated automatically.</h6>
-            </td>
-            <td class="nk-tb-col" data-order="0" style="color:#8091a7">
-                <span class="badge badge-dot">Pending</span>
-            </td>
-            <td class="nk-tb-col tb-col-md">
-                <ul class="list-status">
-                    <li><em class="icon text-success ni ni-check-circle"></em> <span>Kevin Daniels</span></li>
-                </ul>
-            </td>
-            <td class="nk-tb-col tb-col-md">
-                <span class="tb-status text-primary">In Progress</span>
-            </td>
-            <td class="nk-tb-col tb-col-lg">
-                <span>Backend</span>
-            </td>
-            <td class="nk-tb-col tb-col-lg">
-                <a href="/Projects/Details/4"><span class="tb-status text-primary">Example Project 6</span></a>
-            </td>
-            <td class="nk-tb-col tb-col-xxl">
-                <ul class="list-status">
-                    <li><em class="icon ni ni-user-fill"></em>Jason Walker</li>
-                </ul>
-            </td>
-            <td class="nk-tb-col tb-col-xxl" data-sort="03/21/2022 04:15PM">
-                <span class="tb-status">Mar 21</span>
-            </td>
-            <td class="nk-tb-col tb-col-xxl" data-sort="Mar/28/2022">
-                <span class="tb-status">Mar 28</span>
-            </td>
-            <td class="nk-tb-col ">
-                <a class="btn btn-primary" href="/Tickets/Details/12"><span>View</span></a>
-            </td>
+    <thead>
+        <tr class="nk-tb-item nk-tb-head">
+            <th class="nk-tb-col tb-col-xxl"><span>Id</span></th>
+            <th class="nk-tb-col"><span class="sub-text">Title</span></th>
+            <th class="nk-tb-col"><span class="sub-text">Priority</span></th>
+            <th class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></th>
+            <th class="nk-tb-col tb-col-lg"><span class="sub-text">Type</span></th>
+            <th class="nk-tb-col tb-col-lg"><span class="sub-text">Project</span></th>
+            <th class="nk-tb-col tb-col-xxl"><span class="sub-text">Owner</span></th>
+            <th class="nk-tb-col tb-col-xxl"><span class="sub-text">Created</span></th>
+            <th class="nk-tb-col tb-col-xxl"><span class="sub-text">Updated</span></th>
+            <th class="nk-tb-col nk-tb-col-tools text-right">
+            </th>
         </tr>
+    </thead>
+    <tbody>
+            <% dashboardViewModel.unassignedTickets.forEach(function (ticket){ %> 
+            <tr class="nk-tb-item">
+                <td class="nk-tb-col tb-col-xxl">
+                    <span><a href="/Tickets/Details/<%= ticket._id %> ">#199</a></span>
+                </td>
+                <td class="nk-tb-col">
+                    <h6 class="text-wrap"><%= ticket.title %> </h6>
+                </td>
+                <td class="nk-tb-col" data-order="-3" style="color:#f4bd0e">
+                    <span class="badge badge-dot"><%= ticket.priority %> </span>
+                </td>
+                <td class="nk-tb-col tb-col-md">
+                    <span class="tb-status text-primary"><%= ticket.status %></span>
+                </td>
+                <td class="nk-tb-col tb-col-lg">
+                    <span><%= ticket.type %></span>
+                </td>
+                <td class="nk-tb-col tb-col-lg">
+                    <a href="/Projects/Details/<%= ticket.project.name %>"><span class="tb-status text-primary"><%= ticket.project.name %></span></a>
+                </td>
+                <td class="nk-tb-col tb-col-xxl">
+                    <ul class="list-status">
+                        <li><em class="icon ni ni-user-fill"></em></li>
+                    </ul>
+                </td>
+                <td class="nk-tb-col tb-col-xxl" data-sort="03/22/2022 01:26AM">
+                    <span class="tb-status"></span>
+                </td>
+                <td class="nk-tb-col tb-col-xxl" data-sort="Mar/31/2022">
+                    <span class="tb-status"></span>
+                </td>
+                <td class="nk-tb-col ">
+                    <a class="btn btn-primary" href="/Tickets/Details/<%= ticket._id %> "><span>View</span></a>
+                </td>
+            </tr>
+            <% }) %> 
     </tbody>
 </table>
 
@@ -223,5 +185,7 @@
         </div>
     </div>
 </div>
-<script>
-</script>
+
+
+
+
