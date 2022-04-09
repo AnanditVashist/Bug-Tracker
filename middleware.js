@@ -3,7 +3,7 @@ const { roles } = require('../Trackii/utilities/roles')
 module.exports.isLoggedIn=(req,res,next)=>{
     if(!req.isAuthenticated()){
          
-     return res.send('You must be signed in')
+     return res.redirect('/identity/login')
     }
     next();
 }

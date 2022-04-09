@@ -9,11 +9,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 const moment=require('moment')
-
-
-
-
-
+const {isLoggedIn}=require("./middleware")
 
 
 mongoose.connect('mongodb://localhost:27017/trackii',{
@@ -80,11 +76,14 @@ const homeController=require('./controllers/home')
 const userRolesController=require('./controllers/userRoles')
 
 
-app.use('/projects', projectsController)
-app.use('/tickets', ticketsController)
+app.get('/',(req,res)=>{
+    res.render('landingPage')
+})
+app.use('/projects',isLoggedIn, projectsController)
+app.use('/tickets',isLoggedIn ,ticketsController)
 app.use('/identity', identityController)
-app.use('/home', homeController)
-app.use('/userRoles', userRolesController)
+app.use('/home',isLoggedIn ,homeController)
+app.use('/userRoles',isLoggedIn ,userRolesController)
 
 
 
@@ -93,9 +92,7 @@ app.listen('4000',()=>{
     console.log('Serving on port 4000')
 })
 
-app.get('/',(req,res)=>{
-    res.render('home/homePage')
-})
+
 
 
 
