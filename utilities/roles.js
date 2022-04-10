@@ -3,11 +3,14 @@ const ac = new AccessControl();
  
 module.exports.roles = (function() {
 ac.grant("newUser")
+    .readOwn('project')
+    .readOwn('ticket')
  
 ac.grant("submitter")
  .readOwn("project")
  .readOwn('ticket')
- .createOwn('ticket')
+ .createAny('ticket')
+ .readOwn('ticket')
  .updateOwn('ticket')
 
 ac.grant('developer')
@@ -19,7 +22,7 @@ ac.grant("manager")
  .updateOwn('project')
  .deleteOwn('project')
  .createAny('ticket')
- .readAny('')
+ .readAny('ticket')
  .updateAny('ticket')
  .deleteAny("ticket")
  

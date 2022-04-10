@@ -1,13 +1,21 @@
 const mongoose=require('mongoose')
 const Ticket=require('../models/ticket')
 const Schema=mongoose.Schema;
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
-const ProjectSchema=new Schema({
-        name: String,
-        description: String,
+
+const projectSchema=new Schema({
+        name: {
+                type:String,
+                required:true
+        },
+        description: {
+                type:String,
+                required:true
+        },
         tickets:[{
                 type:Schema.Types.ObjectId,
-                ref:'Ticket'
+                ref:'Ticket',
         }],
         team:[{
                 type: Schema.Types.ObjectId,
@@ -24,5 +32,4 @@ const ProjectSchema=new Schema({
         timestamps: true
         }
 )
-
-module.exports= mongoose.models.Project ||mongoose.model('Project',ProjectSchema);
+module.exports= mongoose.models.Project ||mongoose.model('Project',projectSchema);
