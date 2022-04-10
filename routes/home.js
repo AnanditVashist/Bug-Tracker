@@ -5,10 +5,10 @@ const User=require('../models/user')
 const passport=require('passport')
 const Ticket=require('../models/ticket')
 const Project=require('../models/project')
-const home=require('../controllers/home')
+const homeController=require('../controllers/home')
 
 
-router.get('/welcome',home.welcome)
+router.get('/welcome',homeController.welcome)
 
-router.get('/dashboard',home.dashboard)
+router.get('/dashboard',homeController.dashboard)
 module.exports=router;

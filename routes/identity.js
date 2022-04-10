@@ -1,13 +1,13 @@
 const express = require('express')
 const router = express.Router()
-const mongoose=require('mongoose')
 const User=require('../models/user')
 const passport=require('passport')
 const identityController=require('../controllers/identity')
+const catchAsync=require('../utilities/catchAsync')
 
 router.route('/register')
-        .get(identityController.renderRegisterForm)
-        .post(identityController.postRegisterForm)
+        .get(catchAsync(identityController.renderRegisterForm))
+        .post(catchAsync(identityController.postRegisterForm))
 
 router.route('/login')
         .get(identityController.renderLogin)
@@ -15,18 +15,18 @@ router.route('/login')
 
 
 router.route('/logout')
-    .get(identityController.logoutUser)
+    .get(catchAsync(identityController.logoutUser))
 
 
 router.route('/manage')
-    .get(identityController.renderManageForm)
-    .post(identityController.postManageForm)
+    .get(catchAsync(identityController.renderManageForm))
+    .post(catchAsync(identityController.postManageForm))
 
 
     
 router.route('/changePassword')
-        .get(identityController.renderChangePassword)
-        .post(identityController.postChangePassword)
+        .get(catchAsync(identityController.renderChangePassword))
+        .post(catchAsync(identityController.postChangePassword))
 
 
 module.exports=router;

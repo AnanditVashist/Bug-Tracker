@@ -23,7 +23,7 @@ module.exports.postCreate=async (req,res)=>{
     const ticket=new Ticket(req.body.ticket)
     ticket.submitter=req.user.id;
     await ticket.save()
-    res.render('/tickets')
+    res.redirect('/tickets')
 }
 
 

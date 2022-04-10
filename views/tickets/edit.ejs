@@ -13,7 +13,7 @@
                         <li>Submitted by <span class="text-base">
                             <%= editTicketViewModel.ticket.submitter.firstName %>
                             <%= editTicketViewModel.ticket.submitter.lastName %>
-                        </span> on <span class="text-base"><%= editTicketViewModel.ticket.createdAt %>
+                        </span> on <span class="text-base"><%=moment(editTicketViewModel.ticket.createdAt).format('MMM D, YYYY') %>
                         </span></li>
                     </ul>
                 </div>

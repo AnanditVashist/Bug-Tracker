@@ -3,7 +3,7 @@ const Ticket=require('../models/ticket')
 const Project=require('../models/project')
 
 module.exports.welcome=async (req,res)=>{
-    res.render('home/welcome')
+    return res.render('home/welcome')
 }
 
 module.exports.dashboard= async (req,res)=>{
@@ -19,6 +19,6 @@ module.exports.dashboard= async (req,res)=>{
     if(req.user.role == 'admin'){
         return res.render('home/adminDashboard',{adminDashboardViewModel})
     }
-    res.render('home/dashboard',{dashboardViewModel})
+    return res.render('home/dashboard',{dashboardViewModel})
 
 }

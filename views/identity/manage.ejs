@@ -95,19 +95,19 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label" for="Input_FirstName">First Name</label>
-                                        <input type="text" class="form-control form-control-lg" data-val="true" data-val-required="The First Name field is required." id="Input_FirstName" name="Input.FirstName" value="<%= currentUser.firstName %>">
+                                        <input type="text" class="form-control form-control-lg" data-val="true" data-val-required="The First Name field is required." id="Input_FirstName" name="Input.FirstName" value="<%= currentUser.firstName %>" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label" for="Input_LastName">Last Name</label>
-                                        <input type="text" class="form-control form-control-lg" data-val="true" data-val-required="The Last Name field is required." id="Input_LastName" name="Input.LastName" value=<%= currentUser.lastName %>>
+                                        <input type="text" class="form-control form-control-lg" data-val="true" data-val-required="The Last Name field is required." id="Input_LastName" name="Input.LastName" value='<%= currentUser.lastName %>' required>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="form-label" for="Input_Email">Email</label>
-                                        <input disabled type="text" class="form-control form-control-lg" id="Username" name="Username" value="<%= currentUser.email %> ">
+                                        <input disabled type="text" class="form-control form-control-lg" id="Username" name="Username" value="<%= currentUser.email %>" required>
                                     </div>
                                 </div>
                                 <div class="col-12">
