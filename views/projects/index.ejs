@@ -84,12 +84,17 @@
                                 <ul class="project-users g-1">
                                             <li>
                                                 <div class="user-avatar sm bg-primary">
-                                                <span><%=project.team[0].firstName.charAt(0)%><%=project.team[0].lastName.charAt(0)%>
+                                                <span>
+                                                    <%=project.team[0].firstName.charAt(0)%><%=project.team[0].lastName.charAt(0)%>
                                                 </span></div>
                                             </li>
+                                            <% if(project.team.length>1){ %>
+
                                             <li>
-                                                <div class="user-avatar sm bg-blue"><span><%=project.team[1].firstName.charAt(0)%><%=project.team[1].lastName.charAt(0)%></span></div>
+                                                <div class="user-avatar sm bg-blue">
+                                                    <span><%=project.team[1].firstName.charAt(0)%><%=project.team[1].lastName.charAt(0)%></span></div>
                                             </li>
+                                            <% } %>
                                             <% if(project.team.length>2){ %>
 
                                                 <li>

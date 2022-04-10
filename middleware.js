@@ -25,3 +25,10 @@ module.exports.grantAccess = function(action, resource) {
  }
 }
  
+module.exports.checkForNewUsers=(req,res,next)=>{
+    
+    if(req.user != null && req.user.role=='newUser'){
+       return res.redirect('/home/welcome')
+    }
+    next();
+}

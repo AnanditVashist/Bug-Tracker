@@ -1,15 +1,10 @@
-const express = require('express')
-const router = express.Router()
-const mongoose=require('mongoose')
 const User=require('../models/user')
-const passport=require('passport')
 
-router.get('/register',(req,res)=>
+module.exports.renderRegisterForm= (req,res)=>{
     res.render('identity/register')
-)
+}
 
-
-router.post('/register', async(req,res)=>{
+    module.exports.postRegisterForm=  async(req,res)=>{
     const firstName=req.body['Input.FirstName']
     const lastName=req.body['Input.LastName']
     const email=req.body['Input.Email']
@@ -21,30 +16,33 @@ router.post('/register', async(req,res)=>{
         if(err)console.log(err);
         res.redirect('/home/welcome')
     })
-})
+}
 
 
-router.get('/login',(req,res)=>{
+module.exports.renderLogin= (req,res)=>{
     res.render('identity/login')
-})
+}
 
 // 
 
-router.post('/login',passport.authenticate('local', {  failureRedirect: '/identity/login' }),(req,res)=>{
-    res.redirect('/home/dashboard')
-})
+module.exports.postLogin= (req,res)=>{
+            if(req.user.role=='newUser'){
+                return res.redirect('/home/welcome')
+            }
+            else {   res.redirect('/home/dashboard')}
+}
 
-router.get('/logout',(req,res)=>{
+module.exports.logoutUser= (req,res)=>{
 
     req.logout()
     res.redirect('/')
-})
+}
 
-router.get('/manage',(req,res)=>{
+module.exports.renderManageForm= (req,res)=>{
     res.render('identity/manage')
-})
+}
 
-router.post('/manage',async (req,res)=>{
+module.exports.postManageForm= async (req,res)=>{
     const user=new User;
     user.firstName=req.body['Input.FirstName'];
     user.lastName=req.body['Input.LastName'];
@@ -52,18 +50,15 @@ router.post('/manage',async (req,res)=>{
     await userInDb.save();
     res.redirect('/identity/manage')
 
-})
+}
 
-router.get('/changePassword',(req,res)=>{
+module.exports.renderChangePassword= (req,res)=>{
     res.render('identity/changePassword')
-})
+}
 
-router.post('/changePassword',async (req,res)=>{
+module.exports.postChangePassword= async (req,res)=>{
     const user=await User.findById(req.user.id);
     await user.changePassword(req.body['Input.OldPassword'],req.body['Input.NewPassword'])
     res.redirect('/identity/changePassword')
 
-})
-
-
-module.exports=router;
+}

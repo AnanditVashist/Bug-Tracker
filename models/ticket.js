@@ -3,8 +3,14 @@ const Projet=require('../models/project')
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const ticketSchema=new mongoose.Schema({
-    title:String,
-    description: String,
+    title:{
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
     type:{
         type: String,
         enum:['UI','Backend','Runtime','Other'],
@@ -22,11 +28,13 @@ const ticketSchema=new mongoose.Schema({
     },
     project:{
         type: mongoose.Schema.Types.ObjectId,
-        ref:'Project'
+        ref:'Project',
+        required: true
     },
     submitter:{
         type: mongoose.Schema.Types.ObjectId,
-        ref:'User'
+        ref:'User',
+        required:true
     },
     asignee:{
         type: mongoose.Schema.Types.ObjectId,

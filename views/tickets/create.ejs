@@ -29,7 +29,7 @@
                                     <input class="form-control" type="text" data-val="true" 
                                     data-val-length="The field Title must be a string with a maximum length of 50." 
                                     data-val-length-max="50" data-val-required="The Title field is required." 
-                                    id="Title" maxlength="50" name="ticket[title]" value="" />
+                                    id="Title" maxlength="50" name="ticket[title]" value="" required/>
 
                                     <span class="text-danger field-validation-valid" 
                                     data-valmsg-for="Title" data-valmsg-replace="true"></span>
@@ -51,7 +51,7 @@
                                     <textarea class="form-control form-control-sm tinymce-basic" data-val="true" 
                                     data-val-length="The field Description must be a string with a maximum length of 250." data-val-length-max="250" 
                                     data-val-required="The Description field is required." 
-                                    id="Description" maxlength="250" name="ticket[description]"></textarea>
+                                    id="Description" maxlength="250" name="ticket[description]" required></textarea>
                                     <span class="text-danger field-validation-valid" data-valmsg-for="Description" data-valmsg-replace="true"></span>
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                             <div class="form-group">
                                 <div class="form-control-wrap">
                                     <select data-search="on" class="form-control form-select" data-val="true" 
-                                    data-val-required="The Project field is required." id="ProjectId" name="ticket[project]">
+                                    data-val-required="The Project field is required." id="ProjectId" name="ticket[project]" required>
                                         <option disabled selected>--- CHOOSE ---</option>
                                         <% createTicketViewModel.projects.forEach(project => { %>
                                                 <option value='<%= project._id %>'><%= project.name%> </option>%> 
@@ -89,7 +89,7 @@
                             <div class="form-group">
                                 <div class="form-control-wrap">
                                     <select data-search="on" class="form-control form-select" data-val="true" 
-                                    data-val-required="The Type field is required." id="TicketTypeId" name="ticket[type]">
+                                    data-val-required="The Type field is required." id="TicketTypeId" name="ticket[type]" required>
                                         <option value="UI">UI</option>
                                         <option value="Backend">Backend</option>
                                         <option value="Runtime">Runtime</option>
@@ -109,7 +109,7 @@
                                 <div class="form-group">
                                     <div class="form-control-wrap">
                                         <select data-search="on" class="form-control form-select" data-val="true" 
-                                        data-val-required="The Priority field is required." id="TicketPriorityId" name="ticket[priority]">
+                                        data-val-required="The Priority field is required." id="TicketPriorityId" name="ticket[priority]" required>
                                             <option value="Pending">Pending</option>
                                             <option value="Low">Low</option>
                                             <option value="Moderate">Moderate</option>
@@ -132,7 +132,7 @@
                                     <div class="form-control-wrap">
                                         <select data-search="on" class="form-control form-select" 
                                         data-val="true" data-val-required="The Status field is required." 
-                                        id="TicketStatusId" name="ticket[status]">
+                                        id="TicketStatusId" name="ticket[status]" required>
                                                 <option value="New">New</option>
                                                 <option value="Reviewed">Reviewed</option>
                                                 <option value="In Progress">In Progress</option>

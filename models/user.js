@@ -23,7 +23,13 @@ const UserSchema=new Schema({
         type: String,
         default: 'newUser',
         enum: ["admin", "manager","developer","submitter","newUser",
-                'Admin-Demo','Manager-Demo','Developer-Demo','Submitter-Demo']
+                'Admin-Demo','Manager-Demo','Developer-Demo','Submitter-Demo'],
+        required:true
+    },
+    img:
+    {
+        data: Buffer,
+        contentType: String
     }
 })
 

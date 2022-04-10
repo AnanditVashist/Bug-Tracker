@@ -1,18 +1,12 @@
-const express = require('express')
-const router = express.Router()
-const mongoose=require('mongoose')
 const User=require('../models/user')
-const passport=require('passport')
 const Ticket=require('../models/ticket')
 const Project=require('../models/project')
 
-
-router.get('/welcome',(req,res)=>{
-    
+module.exports.welcome=async (req,res)=>{
     res.render('home/welcome')
-})
+}
 
-router.get('/dashboard',async (req,res)=>{
+module.exports.dashboard= async (req,res)=>{
     const adminDashboardViewModel={
         unassignedTickets: await Ticket.find({status:'New'}).populate('project').populate('asignee').exec(),
         unassignedUsers:await User.find({role:'newUser'})
@@ -27,5 +21,4 @@ router.get('/dashboard',async (req,res)=>{
     }
     res.render('home/dashboard',{dashboardViewModel})
 
-})
-module.exports=router;
+}

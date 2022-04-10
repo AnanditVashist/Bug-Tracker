@@ -10,6 +10,8 @@ const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 const moment=require('moment')
 const {isLoggedIn}=require("./middleware")
+const {checkForNewUsers}=require("./middleware")
+const multer = require('multer');
 
 
 mongoose.connect('mongodb://localhost:27017/trackii',{
@@ -50,6 +52,7 @@ const sessionConfig = {
     }
 }
 
+
 app.use(session(sessionConfig))
 app.use(flash());
 
@@ -60,25 +63,31 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+
+
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     res.locals.moment=moment;
-    res.locals.userRolesArray=["admin", "manager","developer","submitter","newUser"]
+    res.locals.userRolesArray=["admin", "manager","developer","submitter","newUser"],
     next();
 })
 
 
 
-const projectsController=require('./controllers/projects')
-const ticketsController=require('./controllers/tickets')
-const identityController=require('./controllers/identity')
-const homeController=require('./controllers/home')
-const userRolesController=require('./controllers/userRoles')
+
+const projectsController=require('./routes/projects')
+const ticketsController=require('./routes/tickets')
+const identityController=require('./routes/identity')
+const homeController=require('./routes/home')
+const userRolesController=require('./routes/userRoles')
 
 
 app.get('/',(req,res)=>{
     res.render('landingPage')
 })
+
+
+
 app.use('/projects',isLoggedIn, projectsController)
 app.use('/tickets',isLoggedIn ,ticketsController)
 app.use('/identity', identityController)
