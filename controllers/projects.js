@@ -19,6 +19,7 @@ module.exports.postCreate=async (req,res)=>{
     project.description= req.body['description'];
     project.team.push(req.user.id)
     await project.save();
+    req.flash('success','New Project created successfully!')
     res.redirect('/projects')
 
 }

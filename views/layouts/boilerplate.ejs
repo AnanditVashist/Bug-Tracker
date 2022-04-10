@@ -52,7 +52,13 @@
     <script src="/js/scripts.js"></script>
     <script src="/js/addon.js"></script>
     <script src='/js/charts/chart-setup.js'></script>
-    
+    <%-include('../partials/successFlash')%> 
+    <% if(success != null){ %>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        $('#flashModal').modal('show');})
+        </script>
+            <% } %> 
 </body>
 
 </html>
