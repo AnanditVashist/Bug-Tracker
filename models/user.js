@@ -26,10 +26,10 @@ const UserSchema=new Schema({
                 'Admin-Demo','Manager-Demo','Developer-Demo','Submitter-Demo'],
         required:true
     },
-    img:
+    image:
     {
-        data: Buffer,
-        contentType: String
+            url: String,
+            filename: String
     }
 })
 

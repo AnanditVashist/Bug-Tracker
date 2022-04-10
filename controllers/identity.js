@@ -1,15 +1,16 @@
 const User=require('../models/user')
 
+
 module.exports.renderRegisterForm= (req,res)=>{
     res.render('identity/register')
 }
 
     module.exports.postRegisterForm=  async(req,res)=>{
-    const firstName=req.body['Input.FirstName']
-    const lastName=req.body['Input.LastName']
-    const email=req.body['Input.Email']
-    const username=req.body['Input.Email']
-    const password=req.body['Input.Password']
+    const firstName=req.body.Input.FirstName;
+    const lastName=req.body.Input.LastName;
+    const email=req.body.Input.Email;
+    const username=req.body.Input.Email;
+    const password=req.body.Input.Password;
     const user=new User({email,firstName,lastName,username})
     const registerUser=await User.register(user,password)
     req.login(user,err=>{
@@ -43,10 +44,15 @@ module.exports.renderManageForm= (req,res)=>{
 }
 
 module.exports.postManageForm= async (req,res)=>{
-    const user=new User;
-    user.firstName=req.body['Input.FirstName'];
-    user.lastName=req.body['Input.LastName'];
-    const userInDb = await User.findByIdAndUpdate(req.user.id,{firstName: user.firstName,lastName: req.body['Input.LastName'] })
+    const userInDb = await User.findByIdAndUpdate(
+        req.user.id,
+        {
+            firstName: req.body['Input.firstName'],
+            lastName: req.body['Input.LastName'],
+            image:{
+                url: req.file.path,
+                filename:req.file.filename
+    } })
     await userInDb.save();
     res.redirect('/identity/manage')
 
