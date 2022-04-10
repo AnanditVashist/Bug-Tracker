@@ -12,7 +12,9 @@ const moment=require('moment')
 const {isLoggedIn}=require("./middleware")
 const {checkForNewUsers}=require("./middleware")
 const multer = require('multer');
-
+const Joi=require('joi')
+const catchAsync = require('./utilities/catchAsync');
+const ExpressError = require('./utilities/ExpressError');
 
 mongoose.connect('mongodb://localhost:27017/trackii',{
     useNewUrlParser: true,	
@@ -82,9 +84,7 @@ const homeController=require('./routes/home')
 const userRolesController=require('./routes/userRoles')
 
 
-app.get('/',(req,res)=>{
-    res.render('landingPage')
-})
+
 
 
 
@@ -94,17 +94,22 @@ app.use('/identity', identityController)
 app.use('/home',isLoggedIn ,homeController)
 app.use('/userRoles',isLoggedIn ,userRolesController)
 
+app.get('/',(req,res)=>{
+    res.render('landingPage')
+})
 
+app.all('*', (req, res, next) => {
+    next(new ExpressError('Page Not Found', 404))
+})
 
+app.use((err, req, res, next) => {
+    const { statusCode = 500 } = err;
+    if (!err.message) err.message = 'Oh No, Something Went Wrong!'
+    res.status(statusCode).send({ err })
+})
 
 app.listen('4000',()=>{
     console.log('Serving on port 4000')
 })
 
 
-
-
-
-
-
-module.exports = app;

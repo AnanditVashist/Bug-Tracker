@@ -68,8 +68,8 @@
                             <div class="form-group">
                                 <div class="form-control-wrap">
                                     <select data-search="on" class="form-control form-select" data-val="true" 
-                                    data-val-required="The Project field is required." id="ProjectId" name="ticket[project]" required>
-                                        <option disabled selected>--- CHOOSE ---</option>
+                                     id="ProjectId" name="ticket[project]" required>
+                                        <option disabled selected value="">--- CHOOSE ---</option>
                                         <% createTicketViewModel.projects.forEach(project => { %>
                                                 <option value='<%= project._id %>'><%= project.name%> </option>%> 
                                         <% }) %>
@@ -90,7 +90,8 @@
                                 <div class="form-control-wrap">
                                     <select data-search="on" class="form-control form-select" data-val="true" 
                                     data-val-required="The Type field is required." id="TicketTypeId" name="ticket[type]" required>
-                                        <option value="UI">UI</option>
+                                    <option disabled selected value="">--- CHOOSE ---</option>
+                                    <option value="UI">UI</option>
                                         <option value="Backend">Backend</option>
                                         <option value="Runtime">Runtime</option>
                                     </select>
@@ -110,6 +111,7 @@
                                     <div class="form-control-wrap">
                                         <select data-search="on" class="form-control form-select" data-val="true" 
                                         data-val-required="The Priority field is required." id="TicketPriorityId" name="ticket[priority]" required>
+                                            <option disabled selected value="">--- CHOOSE ---</option>
                                             <option value="Pending">Pending</option>
                                             <option value="Low">Low</option>
                                             <option value="Moderate">Moderate</option>
@@ -133,6 +135,7 @@
                                         <select data-search="on" class="form-control form-select" 
                                         data-val="true" data-val-required="The Status field is required." 
                                         id="TicketStatusId" name="ticket[status]" required>
+                                                <option disabled selected value="">--- CHOOSE ---</option>
                                                 <option value="New">New</option>
                                                 <option value="Reviewed">Reviewed</option>
                                                 <option value="In Progress">In Progress</option>
@@ -153,8 +156,8 @@
                                 <div class="form-group">
                                     <div class="form-control-wrap">
                                         <div class="custom-file">
-                                            <select data-search="on" class="form-control form-select" id="DeveloperUserId" name="ticket[asignee]">
-                                                <option disabled selected>--- UNASSIGNED ---</option>
+                                            <select data-search="on" class="form-control form-select" id="DeveloperUserId" name="ticket[asignee]" required>
+                                                <option disabled selected value="">--- UNASSIGNED ---</option>
                                                 <% createTicketViewModel.users.forEach(user => { %>
                                                     <option value="<%=user._id%>"><%=user.firstName%> <%=user.lastName%> </option>
                                                 <% }) %>

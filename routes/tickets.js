@@ -8,24 +8,24 @@ var moment = require('moment');
 const {isLoggedIn}=require('../middleware')
 const {grantAccess}=require('../middleware')
 const ticketsController=require('../controllers/tickets')
-
+const catchAsync=require('../utilities/catchAsync')
 
 router.get('/',ticketsController.ticketsDashboard)
 
 router.route('/create')
-        .get(grantAccess('createAny','ticket'),ticketsController.renderCreate)
-        .post(grantAccess('createAny','ticket'),ticketsController.postCreate)
+        .get(grantAccess('createAny','ticket'),catchAsync(ticketsController.renderCreate))
+        .post(grantAccess('createAny','ticket'),catchAsync(ticketsController.postCreate))
 
 
 
-router.get('/details/:id',grantAccess('readOwn','ticket'),ticketsController.renderDetails)
+router.get('/details/:id',grantAccess('readOwn','ticket'),catchAsync(ticketsController.renderDetails))
 
 router.route('/edit/:id')
-    .get(grantAccess('updateOwn','ticket'),ticketsController.renderEdit)
-    .put(grantAccess('updateOwn','ticket'),ticketsController.postEdit)
+    .get(grantAccess('updateOwn','ticket'),catchAsync(ticketsController.renderEdit))
+    .put(grantAccess('updateOwn','ticket'),catchAsync(ticketsController.postEdit))
 
 
-router.get('/delete/:id',grantAccess('deleteOwn','ticket'),ticketsController.deleteTicket)
+router.get('/delete/:id',grantAccess('deleteOwn','ticket'),catchAsync(ticketsController.deleteTicket))
 
 
 module.exports=router
