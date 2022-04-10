@@ -4,6 +4,9 @@ const User=require('../models/user')
 const passport=require('passport')
 const identityController=require('../controllers/identity')
 const catchAsync=require('../utilities/catchAsync')
+const {storage}=require('../cloudinary')
+const multer=require('multer')
+const upload=multer({storage})
 
 router.route('/register')
         .get(catchAsync(identityController.renderRegisterForm))
@@ -20,7 +23,7 @@ router.route('/logout')
 
 router.route('/manage')
     .get(catchAsync(identityController.renderManageForm))
-    .post(catchAsync(identityController.postManageForm))
+    .post(upload.single('Input.Image'),catchAsync(identityController.postManageForm))
 
 
     

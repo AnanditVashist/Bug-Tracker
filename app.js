@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV !== 'production'){
+    require('dotenv').config()
+}
+
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -15,6 +19,8 @@ const multer = require('multer');
 const Joi=require('joi')
 const catchAsync = require('./utilities/catchAsync');
 const ExpressError = require('./utilities/ExpressError');
+const mongoSanitize=require('express-mongo-sanitize')
+const helmet=require('helmet')
 
 mongoose.connect('mongodb://localhost:27017/trackii',{
     useNewUrlParser: true,	
@@ -38,17 +44,19 @@ app.set('views', path.join(__dirname, '/views'))
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static('assets'))
-
+app.use(mongoSanitize())
 //app.use(express.static(path.join(__dirname, 'public')))
 
 
 
 const sessionConfig = {
+    name:'session',
     secret: 'thisshouldbeabettersecret!',
     resave: false,
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
+        // secure:true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
@@ -57,6 +65,8 @@ const sessionConfig = {
 
 app.use(session(sessionConfig))
 app.use(flash());
+app.use(helmet({contentSecurityPolicy:false}))
+
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -82,7 +92,6 @@ const ticketsController=require('./routes/tickets')
 const identityController=require('./routes/identity')
 const homeController=require('./routes/home')
 const userRolesController=require('./routes/userRoles')
-
 
 app.use((req,res,next)=>{
     res.locals.success=req.flash('success'),
