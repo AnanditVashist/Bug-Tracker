@@ -92,6 +92,7 @@ const ticketsController=require('./routes/tickets')
 const identityController=require('./routes/identity')
 const homeController=require('./routes/home')
 const userRolesController=require('./routes/userRoles')
+const chartsController=require('./routes/charts')
 
 app.use((req,res,next)=>{
     res.locals.success=req.flash('success'),
@@ -107,6 +108,7 @@ app.use('/tickets',isLoggedIn ,ticketsController)
 app.use('/identity', identityController)
 app.use('/home',isLoggedIn ,homeController)
 app.use('/userRoles',isLoggedIn ,userRolesController)
+app.use('/charts',isLoggedIn ,chartsController)
 
 app.get('/',(req,res)=>{
     res.render('landingPage')
