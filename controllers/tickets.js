@@ -1,6 +1,6 @@
 const Ticket=require('../models/ticket')
-const Project = require('../models/Project')
-const User = require('../models/User')
+const Project = require('../models/project')
+const User = require('../models/user')
 var moment = require('moment');
 
 
