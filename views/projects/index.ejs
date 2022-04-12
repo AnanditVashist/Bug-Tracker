@@ -11,29 +11,31 @@
                 </div>
             </div><!-- .nk-block-head-content -->
             <div class="nk-block-head-content">
-                <div class="toggle-wrap nk-block-tools-toggle">
+                <!-- <div class="toggle-wrap nk-block-tools-toggle">
                     <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-menu-alt-r"></em></a>
                     <div class="toggle-expand-content" data-content="pageMenu">
                         <ul class="nk-block-tools g-3">
-                                <!-- <li class="nk-block-tools-opt">
+                                <li class="nk-block-tools-opt">
                                     <input type="text" class="w-100 form-control d-inline-block search" value="" placeholder="Search projects..." />
-                                </li> -->
+                                </li>
                             <li>
                                 <div class="drodown">
                                     <a href="#" class="dropdown-toggle btn btn-white btn-dim btn-outline-light" data-toggle="dropdown"><span>View</span><em class="icon ni ni-chevron-down"></em></a>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <ul class="link-list-opt no-bdr">
                                             <li><a href="/Projects/"><span>All Projects</span></a></li>
-                                            <!-- <li><a href="/Projects/AssignedProjects"><span>My Projects</span></a></li> -->
+                                            <li><a href="/Projects/AssignedProjects"><span>My Projects</span></a></li>
                                             <li><a href="/Projects/ArchivedProjects"><span>Archived Projects</span></a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </li>
+                            <% if(currentUser.role == 'Admin-Demo' || currentUser.role == 'Manager-Demo') {%> 
                                 <li class="nk-block-tools-opt"><a class="btn btn-primary" href="/Projects/Create"><em class="icon ni ni-plus"></em><span>Add Project</span></a></li>
-                        </ul>
+                                <% } %> 
+                            </ul>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -61,7 +63,9 @@
                                             <ul class="link-list-opt no-bdr">
 
                                                 <li><a href="/Projects/Details/<%= project._id %>"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
-                                                <li><a href="/Projects/Edit/<%= project._id %>"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
+                                                <% if(currentUser.role == 'Admin-Demo' || currentUser.role == 'Manager-Demo') {%> 
+                                                    <li><a href="/Projects/Edit/<%= project._id %>"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
+                                                    <% } %> 
                                             </ul>
                                         </div>
                                     </div>
@@ -105,7 +109,7 @@
                                                 </li>
                                                 <%} %> 
                                 </ul>
-                                    <% if(project.status == 'active') {%> 
+                                    <% if(project.status == 'Active') {%> 
                         
                                     <span class="badge badge-dim badge-success"><em class="icon ni ni-check-circle"></em><span>Active</span></span>
                                     <% } else { %>

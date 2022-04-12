@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <meta property="og:image" content="http://Trackiitracker.herokuapp.com/Trackii-preview.jpg">
     <meta property="og:description" content="Trackii is a secure, easy-to-use bug tracking application designed for teams. Easily create tickets, projects, roles, attachments, and more – letting individual members focus on what matters.">
     <meta property="og:title" content="Trackii - Track Bugs, Track Solutions">
     
@@ -15,10 +14,11 @@
 
     <link rel="stylesheet" href="/landing/css/vendor.bundle.css?ver=192">
     <link rel="stylesheet" href="/landing/css/style.css?ver=192" id="changeTheme">
-
     <link rel="stylesheet" href="/landing/css/theme.css?ver=192">
+
 </head>
 <body class="nk-body body-wider bg-light-alt">
+    <div class="preloader"><span class="spinner spinner-round"></span></div>
 
     <div class="nk-wrap">
         <header class="nk-header page-header is-dark is-transparent is-sticky is-shrink" id="header">
@@ -87,7 +87,7 @@
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-xl-9 col-lg-8 col-sm-11">
-                                <img src="/images/trackii-ticket.jpg" alt="">
+                                <img src="/images/trackii-ticket.jpg" alt="ticket">
                             </div>
                         </div>
                     </div>
@@ -107,7 +107,7 @@
                         <div class="row align-items-center justify-content-between gutter-vr-30px">
                             <div class="col-lg-6">
                                 <div class="nk-block-img pl-lg-4">
-                                    <img src="/images/trackii-ticket.jpg" alt="">
+                                    <img src="/images/trackii-ticket.jpg" alt="ticket">
                                 </div>
                             </div>
                             <div class="col-lg-5">
@@ -177,7 +177,7 @@
                         <div class="row align-items-center justify-content-between gutter-vr-30px">
                             <div class="col-lg-6">
                                 <div class="nk-block-img pr-lg-4">
-                                    <img src="/images/projects-2.jpg" alt="">
+                                    <img src="/images/projects-2.jpg" alt="projects">
                                 </div>
                             </div>
                             <div class="col-lg-5">
@@ -196,7 +196,7 @@
                         <div class="row align-items-center justify-content-between gutter-vr-30px">
                             <div class="col-lg-6 order-lg-last">
                                 <div class="nk-block-img pl-lg-4">
-                                    <img src="/images/user-management.jpg" alt="">
+                                    <img src="/images/user-management.jpg" alt="user-management">
                                 </div>
                             </div>
                             <div class="col-lg-5">
@@ -231,14 +231,14 @@
                             <div class="col-lg-3 col-md-6">
                                 <div class="feature feature-s8 feature-center card card-full card-md bg-theme-alt animated" data-animate="fadeInUp" data-delay=".2">
                                     <div class="feature-icon feature-icon-lg my-0">
-                                        <img src="/landing/images/team/c-color-square.jpg" alt="team" class="round-full">
+                                        <img src="/landing/images/admin-demo.jpg" alt="team" class="round-full">
                                     </div>
                                     <div class="feature-text feature-text-s8">
                                         <h4 class="title title-sm title-thin title-s5"><span>ADMIN </span>Unlimited Access</h4>
                                         <p>Focused on the big picture with <strong>unlimited</strong> access to projects, tickets, &amp; users.</p>
-                                        <form method="post" action="/Identity/Account/Login">
+                                        <form method="post" action="/Identity/demoLogin">
                                             <span onclick="javascript: document.getElementById('submit-admin').click()" style="cursor:pointer;" class="link link-primary link-feature-s1" name="demoEmail" value="DemoSubmitterEmail"><em class="link-icon icon-circle icon-circle-md ti ti-arrow-right"></em></span>
-                                            <button id="submit-admin" type="submit" class="d-none" name="demoEmail" value="DemoAdminEmail"></button>
+                                            <button id="submit-admin" type="submit" class="d-none" name="demoEmail" value="admin-demo@gmail.com"></button>
                                         <input name="__RequestVerificationToken" type="hidden" value="CfDJ8KWTIVyiAU5EgYpcRhKyjZB5BqncuLqvFsxwCPU22d9laJSYdk1GtFnHPEoSO0LXIhrASuzRvFk-EoZVNMfsdWhLs1Njzz86G0UWZmhRo5EhS2dxm6FfjYY6HPdCmmk58V25Rk7cDYpczH9jCpP2heY" /></form>
                                     </div>
                                 </div>
@@ -246,14 +246,14 @@
                             <div class="col-lg-3 col-md-6">
                                 <div class="feature feature-s8 feature-center card card-full card-md bg-theme-alt animated" data-animate="fadeInUp" data-delay=".4">
                                     <div class="feature-icon feature-icon-lg my-0">
-                                        <img src="/landing/images/team/pm-1.jpg" alt="team" class="round-full">
+                                        <img src="/landing/images/manager-demo.jpg" alt="team" class="round-full">
                                     </div>
                                     <div class="feature-text feature-text-s8">
                                         <h4 class="title title-sm title-thin title-s5"><span>Project Manager </span>Project Access</h4>
                                         <p>A focus on their own projects with edit access to anything at the project level.</p>
-                                        <form method="post" action="/Identity/Account/Login">
-                                            <span onclick="javascript: document.getElementById('submit-pm').click()" style="cursor:pointer;" class="link link-primary link-feature-s1" name="demoEmail" value="DemoSubmitterEmail"><em class="link-icon icon-circle icon-circle-md icon ni ni-arrow-long-right"></em></span>
-                                            <button id="submit-pm" type="submit" class="d-none" name="demoEmail" value="DemoPMEmail"></button>
+                                        <form method="post" action="/Identity/demoLogin">
+                                            <span onclick="javascript: document.getElementById('submit-pm').click()" style="cursor:pointer;" class="link link-primary link-feature-s1" name="demoEmail" value="DemoSubmitterEmail"><em class="link-icon icon-circle icon-circle-md ti ti-arrow-right"></em></span>
+                                            <button id="submit-pm" type="submit" class="d-none" name="demoEmail" value="manager-demo@gmail.com"></button>
                                         <input name="__RequestVerificationToken" type="hidden" value="CfDJ8KWTIVyiAU5EgYpcRhKyjZB5BqncuLqvFsxwCPU22d9laJSYdk1GtFnHPEoSO0LXIhrASuzRvFk-EoZVNMfsdWhLs1Njzz86G0UWZmhRo5EhS2dxm6FfjYY6HPdCmmk58V25Rk7cDYpczH9jCpP2heY" /></form>
                                     </div>
                                 </div>
@@ -261,14 +261,14 @@
                             <div class="col-lg-3 col-md-6">
                                 <div class="feature feature-s8 feature-center card card-full card-md bg-theme-alt animated" data-animate="fadeInUp" data-delay=".5">
                                     <div class="feature-icon feature-icon-lg my-0">
-                                        <img src="/landing/images/team/f-color-square.jpg" alt="team" class="round-full">
+                                        <img src="/landing/images/developer-demo.jpg" alt="team" class="round-full">
                                     </div>
                                     <div class="feature-text feature-text-s8">
                                         <h4 class="title title-sm title-thin title-s5"><span>Developer </span>Ticket Access</h4>
                                         <p>A heavy focus on their own assigned tickets. Edit access restricted to their own tickets in their projects.</p>
-                                        <form method="post" action="/Identity/Account/Login">
+                                        <form method="post" action="/Identity/demoLogin">
                                             <span onclick="javascript: document.getElementById('submit-developer').click()" style="cursor:pointer;" class="link link-primary link-feature-s1" name="demoEmail" value="DemoSubmitterEmail"><em class="link-icon icon-circle icon-circle-md ti ti-arrow-right"></em></span>
-                                            <button id="submit-developer" type="submit" class="d-none" name="demoEmail" value="DemoDeveloperEmail"></button>
+                                            <button id="submit-developer" type="submit" class="d-none" name="demoEmail" value="developer-demo@gmail.com"></button>
                                         <input name="__RequestVerificationToken" type="hidden" value="CfDJ8KWTIVyiAU5EgYpcRhKyjZB5BqncuLqvFsxwCPU22d9laJSYdk1GtFnHPEoSO0LXIhrASuzRvFk-EoZVNMfsdWhLs1Njzz86G0UWZmhRo5EhS2dxm6FfjYY6HPdCmmk58V25Rk7cDYpczH9jCpP2heY" /></form>
                                     </div>
                                 </div>
@@ -276,14 +276,14 @@
                             <div class="col-lg-3 col-md-6">
                                 <div class="feature feature-s8 feature-center card card-full card-md bg-theme-alt animated" data-animate="fadeInUp" data-delay=".6">
                                     <div class="feature-icon feature-icon-lg my-0">
-                                        <img src="/landing/images/team/b-color-square.jpg" alt="team" class="round-full">
+                                        <img src="/landing/images/submitter-demo.jpg" alt="team" class="round-full">
                                     </div>
                                     <div class="feature-text feature-text-s8">
                                         <h4 class="title title-sm title-thin title-s5"><span>Submitter </span>Limited Access</h4>
                                         <p>The strictest of access levels. Can view most things but can only interact with their own tickets.</p>
-                                        <form method="post" action="/Identity/Account/Login">
-                                            <span onclick="javascript: document.getElementById('submit-submitter').click()" style="cursor:pointer;" class="link link-primary link-feature-s1" name="demoEmail" value="DemoSubmitterEmail"><em class="link-icon icon-circle icon-circle-md ti ti-arrow-right"></em></span>
-                                            <button id="submit-submitter" type="submit" class="d-none" name="demoEmail" value="DemoSubmitterEmail"></button>
+                                        <form method="post" action="/Identity/demoLogin">
+                                            <span onclick="javascript: document.getElementById('submit-submitter').click()" style="cursor:pointer;" class="link link-primary link-feature-s1" name="demoEmail" value="submitter-demo@gmail.com"><em class="link-icon icon-circle icon-circle-md ti ti-arrow-right"><i class="fa-solid fa-arrow-right"></i></em></span>
+                                            <button id="submit-submitter" type="submit" class="d-none" name="demoEmail" value="submitter-demo@gmail.com"></button>
                                         <input name="__RequestVerificationToken" type="hidden" value="CfDJ8KWTIVyiAU5EgYpcRhKyjZB5BqncuLqvFsxwCPU22d9laJSYdk1GtFnHPEoSO0LXIhrASuzRvFk-EoZVNMfsdWhLs1Njzz86G0UWZmhRo5EhS2dxm6FfjYY6HPdCmmk58V25Rk7cDYpczH9jCpP2heY" /></form>
                                     </div>
                                 </div>
@@ -294,7 +294,6 @@
             </section>
         </main>
     </div>
-    <div class="preloader"><span class="spinner spinner-round"></span></div>
     <!-- JavaScript -->
     <script src="/landing/js/jquery.bundle.js?ver=192"></script>
     <script src="/landing/js/scripts.js?ver=192"></script>

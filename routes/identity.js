@@ -7,6 +7,7 @@ const catchAsync=require('../utilities/catchAsync')
 const {storage}=require('../cloudinary')
 const multer=require('multer')
 const upload=multer({storage})
+const {checkForDemoUser}=require('../middleware')
 
 router.route('/register')
         .get(catchAsync(identityController.renderRegisterForm))
@@ -23,13 +24,15 @@ router.route('/logout')
 
 router.route('/manage')
     .get(catchAsync(identityController.renderManageForm))
-    .post(upload.single('Input.Image'),catchAsync(identityController.postManageForm))
+    .post(checkForDemoUser('updated','profile'),catchAsync(identityController.postManageForm))
 
 
     
 router.route('/changePassword')
         .get(catchAsync(identityController.renderChangePassword))
         .post(catchAsync(identityController.postChangePassword))
+
+router.post('/demoLogin',identityController.loginDemoUser)
 
 
 module.exports=router;

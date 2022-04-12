@@ -9,14 +9,14 @@ module.exports.welcome=async (req,res)=>{
 module.exports.dashboard= async (req,res)=>{
     const adminDashboardViewModel={
         unassignedTickets: await Ticket.find({status:'New'}).populate('project').populate('asignee').exec(),
-        unassignedUsers:await User.find({role:'newUser'})
+        unassignedUsers:await User.find({role:'NewUser'})
     }
 
     const dashboardViewModel={
         unassignedTickets: await Ticket.find({status:'New',asignee: req.user.id}).populate('asignee').populate('project').exec(),
     }
 
-    if(req.user.role == 'admin'){
+    if(req.user.role == 'Admin' ||req.user.role == 'Admin-Demo' ){
         return res.render('home/adminDashboard',{adminDashboardViewModel})
     }
     return res.render('home/dashboard',{dashboardViewModel})

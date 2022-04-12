@@ -1,4 +1,5 @@
 const User=require('../models/user')
+const env=require("dotenv").config();
 
 
 module.exports.renderRegisterForm= (req,res)=>{
@@ -64,7 +65,21 @@ module.exports.renderChangePassword= (req,res)=>{
 
 module.exports.postChangePassword= async (req,res)=>{
     const user=await User.findById(req.user.id);
-    await user.changePassword(req.body['Input.OldPassword'],req.body['Input.NewPassword'])
+    await user.changePassword(req.body.OldPassword,req.body.NewPassword)
     res.redirect('/identity/changePassword')
 
+}
+
+module.exports.loginDemoUser=async(req,res)=>{
+
+    const demoUser=await User.findOne({email:req.body.demoEmail})
+    req.login(demoUser,err=>{
+        if(err)console.log(err);
+        if(demoUser.role=='NewUser'){
+            return res.redirect('/home/welcome')
+        }
+        req.flash('success','Successfully')
+        res.redirect('/home/dashboard')
+    })
+    
 }

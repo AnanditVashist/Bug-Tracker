@@ -13,7 +13,7 @@
                 <div class="toggle-expand-content" data-content="pageMenu">
                     <ul class="nk-block-tools g-3">
                         <li>
-                            <div class="drodown">
+                            <!-- <div class="drodown">
                                 <a href="#" class="dropdown-toggle btn btn-white btn-dim btn-outline-light" data-toggle="dropdown"><span>Quick Filter</span><em class="icon ni ni-chevron-down"></em></a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <ul class="link-list-opt no-bdr">
@@ -22,7 +22,7 @@
                                             <li><a class="text-danger" href="/Tickets/AllTickets?unassigned=true"><span>Unassigned Tickets</span></a></li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div> -->
                         </li>
                     </ul>
                 </div>
@@ -35,12 +35,12 @@
 
 <div class="nk-block nk-block-lg">
     <div class="card card-bordered card-full">
-        <div class="card-inner position-relative card-tools-toggle">
+        <!-- <div class="card-inner position-relative card-tools-toggle">
             <div class="card-title-group">
                 <div class="card-tools">
                     <ul class="card-tools-nav">
                         <li class="active"><a href="/Tickets/AllTickets"><span>All</span></a></li>
-                            <li><a href="/Tickets/ProjectTickets"><span>In My Projects</span></a></li>
+                        <li><a href="/Tickets/ProjectTickets"><span>In My Projects</span></a></li>
                         <li><a href="/Tickets/MyTickets"><span>Submitted By Me</span></a></li>
 
                     </ul>
@@ -136,9 +136,9 @@
             <th class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></th>
             <th class="nk-tb-col tb-col-lg"><span class="sub-text">Type</span></th>
             <th class="nk-tb-col tb-col-lg"><span class="sub-text">Project</span></th>
-            <th class="nk-tb-col tb-col-xxl"><span class="sub-text">Owner</span></th>
-            <th class="nk-tb-col tb-col-xxl"><span class="sub-text">Created</span></th>
-            <th class="nk-tb-col tb-col-xxl"><span class="sub-text">Updated</span></th>
+            <th class="nk-tb-col tb-col-xxl"><span class="sub-text">Created By</span></th>
+            <th class="nk-tb-col tb-col-xxl"><span class="sub-text">Created On</span></th>
+            <th class="nk-tb-col tb-col-xxl"><span class="sub-text">Last Update</span></th>
             <th class="nk-tb-col nk-tb-col-tools text-right">
             </th>
         </tr>
@@ -176,11 +176,11 @@
                             </em><%= ticket.submitter.firstName %> <%= ticket.submitter.lastName %></li>
                     </ul>
                 </td>
-                <td class="nk-tb-col tb-col-xxl" data-sort="03/21/2022 04:15PM">
-                    <span class="tb-status">Mar 21</span>
+                <td class="nk-tb-col tb-col-xxl" data-sort="">
+                    <span class="tb-status"><%= moment(ticket.createdAt).format('MMM D, YYYY') %> </span>
                 </td>
                 <td class="nk-tb-col tb-col-xxl" data-sort="Mar/28/2022">
-                    <span class="tb-status"><%= ticket.createdAt %> </span>
+                    <span class="tb-status"><%= moment(ticket.updatedAt).format('MMM D, YYYY') %> </span>
                 </td>
                 <td class="nk-tb-col ">
                     <a class="btn btn-primary" href="/Tickets/Details/<%= ticket._id %>"><span>View</span></a>

@@ -2,21 +2,21 @@ const AccessControl = require("accesscontrol");
 const ac = new AccessControl();
  
 module.exports.roles = (function() {
-ac.grant("newUser")
+ac.grant(["NewUser",'NewUser-Demo'])
     .readOwn('project')
     .readOwn('ticket')
  
-ac.grant("submitter")
+ac.grant(["Submitter",'Submitter-Demo'])
  .readOwn("project")
  .readOwn('ticket')
  .createAny('ticket')
  .readOwn('ticket')
  .updateOwn('ticket')
 
-ac.grant('developer')
-    .extend('submitter')
+ac.grant(['Developer','Developer-Demo'])
+    .extend('Submitter')
  
-ac.grant("manager")
+ac.grant(["Manager",'Manager-Demo'])
  .createAny("project")
  .readAny('project')
  .updateOwn('project')
@@ -26,7 +26,7 @@ ac.grant("manager")
  .updateAny('ticket')
  .deleteAny("ticket")
  
- ac.grant('admin')
+ ac.grant(['Admin','Admin-Demo'])
     .createAny('project')
     .updateAny('project')
     .readAny('project')

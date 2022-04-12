@@ -40,11 +40,16 @@ const ticketSchema=new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref:'User'
     },
+    createdAt: { 
+        type: Date,
+        default: Date.now 
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now 
+    },
     comments: String,
 
-    },
-        {
-    timestamps: true
     }
 )
 

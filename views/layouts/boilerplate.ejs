@@ -34,6 +34,7 @@
                     <div class="container-fluid">
                         <div class="nk-content-inner">
                             <div class="nk-content-body">
+                                <%- include('../partials/flash')%>
                                 <%- body %>
                             </div>
                         </div>
@@ -52,13 +53,28 @@
     <script src="/js/scripts.js"></script>
     <script src="/js/addon.js"></script>
     <script src='/js/charts/chart-setup.js'></script>
-    <%-include('../partials/successFlash')%> 
-    <% if(success != null){ %>
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        $('#flashModal').modal('show');})
+    <% if(info && info.length) {%> 
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    icon: 'info',
+                    title: `<h2 class="swal2-title" id="swal2-title" style="display: flex;"><%= info%><br>BUT...</h2>`,
+                    html: `We haven't saved this change. As a demo user you can preview the functionality of the software but we do not save any of your changes.`,
+                })
+            })
         </script>
-            <% } %> 
+        <% } %>
+    <% if(success && success.length) {%> 
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    Swal.fire({
+                        icon: 'success',
+                        title: `Welcome, <%= currentUser.firstName %> <%= currentUser.lastName %>!`,
+                        html: `<div class="caption-text">In this demo, you can explore the inside of Trackii.<br><br><strong>Note</strong> - As a demo user, your <strong class="text-danger">changes will not be saved.</strong></div>`,
+                    })
+                })
+            </script>
+    <% } %>
 </body>
 
 </html>

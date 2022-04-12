@@ -23,8 +23,8 @@ const projectSchema=new Schema({
         }],
         status: {
                 type: String,
-                default: 'active',
-                enum: ["active", "archived"],
+                default: 'Active',
+                enum: ["Active", "Archived"],
             }
 
 },
