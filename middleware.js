@@ -1,4 +1,4 @@
-const {roles} = require('/utilities/roles')
+const {roles} = require('./utilities/roles')
 
 module.exports.isLoggedIn=(req,res,next)=>{
     if(!req.isAuthenticated()){
