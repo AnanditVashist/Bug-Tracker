@@ -9,9 +9,9 @@
                 <div class="nk-block-des">
                         <p>
                          <%= moment(projectDetailsViewModel.project.createdAt).format('MMM D, YYYY')%>      
-                        <% if(projectDetailsViewModel.project.status == 'active') {%> 
+                        <% if(projectDetailsViewModel.project.status == 'Active') {%> 
                         
-                            <span class="badge badge-success badge-pill ml-1"><span>Active</span></span>
+                            <span class="badge badge-dim badge-success"><em class="icon ni ni-check-circle"></em><span>Active</span></span>
                             <% } else { %>
                             <span class="badge badge-danger badge-pill"><em class="icon ni ni-archived"></em><span>Archived</span></span>
                             <% } %>
@@ -20,9 +20,12 @@
             </div>
             <div class="nk-block-head-content">
                 <ul class="nk-block-tools gx-3">
+                    <% if(currentUser.role == 'Admin-Demo' || currentUser.role == 'Manager-Demo') {%> 
+                        
                         <li class="order-md-last"><a class="btn btn-primary" href="/Projects/Edit/<%= projectDetailsViewModel.project._id %>"><span>Edit</span> </a></li>
                         <li class="order-md-last"><a class="btn btn-primary" href="/Projects/AssignUsers/<%= projectDetailsViewModel.project._id %>"><span>Assign Users</span> </a></li>
                         <li class="order-md-last"><button type="button" data-toggle="modal" data-target="#archiveProjectModal" class="btn btn-danger"><em class="icon ni ni-cross"></em> <span>Archive</span> </button></li>
+                        <% } %> 
                     <li><a class="btn btn-icon btn-light" href="/Projects/Details/<%= projectDetailsViewModel.project._id %>"><em class="icon ni ni-reload"></em></a></li>
                 </ul>
             </div>

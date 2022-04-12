@@ -25,10 +25,16 @@ module.exports.grantAccess = function(action, resource) {
  }
 }
  
-module.exports.checkForNewUsers=(req,res,next)=>{
-    
-    if(req.user != null && req.user.role=='newUser'){
-       return res.redirect('/home/welcome')
+module.exports.checkForDemoUser = function(action,resource) {
+    return async (req, res, next) => {
+     try {
+      if ((req.user.role.search('Demo')) !== -1) {
+          req.flash('info',`Your ${action} ${resource} has been received!`)
+       return res.redirect('/projects')
+      }
+      next()
+     } catch (error) {
+      next(error)
+     }
     }
-    next();
-}
+   }

@@ -179,14 +179,14 @@ module.exports.renderTicketsByPriority=async(req,res)=>{
     const ticketsByPriorityData=[]
     const pendingTickets=await Ticket.find({priority:'Pending'})
     const pendingTicketData={
-        priority:'pending',
+        priority:'Pending',
         count:pendingTickets.length
     }
     ticketsByPriorityData.push(pendingTicketData)
 
     const lowTickets=await Ticket.find({priority:'Low'})
     const lowTicketData={
-        status:'low',
+        status:'Low',
         count:lowTickets.length
     }
     ticketsByPriorityData.push(lowTicketData)

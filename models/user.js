@@ -21,8 +21,8 @@ const UserSchema=new Schema({
     },
     role: {
         type: String,
-        default: 'newUser',
-        enum: ["admin", "manager","developer","submitter","newUser",
+        default: 'NewUser',
+        enum: ["Admin", "Manager","Developer","Submitter","NewUser",
                 'Admin-Demo','Manager-Demo','Developer-Demo','Submitter-Demo'],
         required:true
     },
@@ -30,8 +30,11 @@ const UserSchema=new Schema({
     {
             url: String,
             filename: String
-    }
-})
+    }},
+    {
+        timestamps: true
+        }
+)
 
 
 UserSchema.plugin(passportLocalMongoose);

@@ -21,6 +21,7 @@ const catchAsync = require('./utilities/catchAsync');
 const ExpressError = require('./utilities/ExpressError');
 const mongoSanitize=require('express-mongo-sanitize')
 const helmet=require('helmet')
+const Swal = require('sweetalert2')
 
 mongoose.connect('mongodb://localhost:27017/trackii',{
     useNewUrlParser: true,	
@@ -80,7 +81,8 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     res.locals.moment=moment;
-    res.locals.userRolesArray=["admin", "manager","developer","submitter","newUser"],
+    res.locals.userRolesArray=["Admin", "Manager","Developer","Submitter","NewUser",
+    'Admin-Demo','Manager-Demo','Developer-Demo','Submitter-Demo'];
     next();
 })
 

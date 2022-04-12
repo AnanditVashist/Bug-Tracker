@@ -83,7 +83,7 @@
                             <ul class="timeline-list is-scrollable h-max-300px">
                                 <li class="timeline-item">
                                     <div class="timeline-status bg-teal"></div>
-                                    <div class="timeline-date"><%= moment(ticket.createdAt).format('MMM D, YYYY') %>    <em class="icon ni ni-alarm-alt"></em></div>
+                                    <div class="timeline-date"><%= moment(ticket.createdAt).format('MMM D') %><em class="icon ni ni-alarm-alt"></em></div>
                                     <div class="timeline-data">
                                         <h6 class="timeline-title">Submitted by <%= ticket.submitter.firstName %> <%= ticket.submitter.lastName %></h6>
                                         <div class="timeline-des">

@@ -12,6 +12,7 @@ module.exports.ticketsDashboard=async (req,res)=>{
     res.render('tickets/index',{tickets})
 }
 
+
 module.exports.renderCreate=async (req,res)=>{
     const createTicketViewModel={};
     createTicketViewModel.projects=await Project.find()
