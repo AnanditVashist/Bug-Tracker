@@ -11,4 +11,7 @@ const homeController=require('../controllers/home')
 router.get('/welcome',homeController.welcome)
 
 router.get('/dashboard',homeController.dashboard)
+
+router.get('/jira',homeController.integrateJira)
 module.exports=router;
+

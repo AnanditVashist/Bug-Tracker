@@ -1,14 +1,14 @@
 const Project=require('../models/project')
 const Ticket=require('../models/ticket')
 const User=require('../models/user')
-
+const {createNewJiraProject,getCloudId}=require('../apiWorker')
 module.exports.renderProjectsDashboard =async (req,res)=>{
         const projects= await Project.find().populate({path:'team'})
         res.render('projects',{projects})
 }
 
 module.exports.renderCreate=(req,res)=>{
-  
+    
     res.render('projects/create')
 }
 
@@ -20,6 +20,21 @@ module.exports.postCreate=async (req,res)=>{
     project.status='Active';
     project.team.push(req.user.id)
     await project.save();
+    
+    let cloudId;
+    try {
+        cloudId=getCloudId(currentUser.jiraAccessToken)
+    } catch (error) {
+        console.log(error)
+    }
+
+    try {
+        createNewJiraProject(project,cloudId,currentUser.jiraAccessToken)
+    } catch (error) {
+        console.log(error)
+        
+    }
+   
     res.redirect('/projects')
 
 }

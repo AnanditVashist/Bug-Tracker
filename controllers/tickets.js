@@ -1,7 +1,7 @@
 const Ticket=require('../models/ticket')
 const Project = require('../models/project')
 const User = require('../models/user')
-const {sendEmail}=require('../middleware')
+const {sendEmail}=require('../apiWorker')
 var moment = require('moment');
 
 

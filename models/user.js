@@ -19,6 +19,9 @@ const UserSchema=new Schema({
         required: true,
         unique: false
     },
+    jiraAccessToken:{
+        type: String
+    },
     role: {
         type: String,
         default: 'NewUser',
