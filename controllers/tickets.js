@@ -1,6 +1,7 @@
 const Ticket=require('../models/ticket')
 const Project = require('../models/project')
 const User = require('../models/user')
+const {sendEmail}=require('../middleware')
 var moment = require('moment');
 
 
@@ -24,6 +25,23 @@ module.exports.postCreate=async (req,res)=>{
     const ticket=new Ticket(req.body.ticket)
     ticket.submitter=req.user.id;
     await ticket.save()
+    const submitter= await User.findById(ticket.submitter)
+    const assignee=await User.findById(ticket.asignee)
+    const submitterInfo={
+        firstName:submitter.firstName,
+        email: submitter.email,
+    }
+    const assigneeInfo={
+        firstName:assignee.firstName,
+        email: assignee.email,
+    }
+    try{
+        sendEmail(submitterInfo,assigneeInfo)
+
+    }
+    catch(e){
+        console.log(e)
+    }
     res.redirect('/tickets')
 }
 
